@@ -524,12 +524,13 @@ function tipFor(d,p){if(p>=85)return'حافظ على التميز: ثبّت ال
 
 /* ============ عرض المجالات والمراحل ============ */
 const STAGE_PAGES={s1:'stage-0-2.html',s2:'stage-3-5.html',s3:'stage-6-8.html',s4:'stage-9-11.html',s5:'stage-12-14.html',s6:'stage-15-17.html',s7:'stage-18-plus.html'};
+const DOMAIN_PAGES={iman:'domain-iman.html',shar:'domain-shar.html',sulu:'domain-sulu.html',aql:'domain-aql.html',daw:'domain-daw.html',fikr:'domain-fikr.html',nafs:'domain-nafs.html',usar:'domain-usar.html',lugh:'domain-lugh.html',tiqn:'domain-tiqn.html',qiy:'domain-qiy.html'};
 const dh=document.getElementById('domainsHome');
-DOMAINS.forEach(d=>{const el=document.createElement('div');el.className='dcard';el.innerHTML=`<div class="ic">${d.i}</div><h4>${d.n}</h4><p>${d.d}</p>`;dh.appendChild(el);});
+DOMAINS.forEach(d=>{const el=document.createElement('div');el.className='dcard';el.innerHTML=`<div class="ic">${d.i}</div><h4>${d.n}</h4><p>${d.d}</p><a class="btn" style="margin-top:.4rem;font-size:.78em" href="${DOMAIN_PAGES[d.id]}">↗ صفحة المجال بالتفصيل</a>`;dh.appendChild(el);});
 const sh=document.getElementById('stagesHome');
 STAGES.forEach(s=>{const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age">${s.age}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
 const ad=document.getElementById('aboutDomains');
-DOMAINS.forEach((d,i)=>{const li=document.createElement('li');li.innerHTML=`<b>${d.n}</b> — ${d.d}`;ad.appendChild(li);});
+DOMAINS.forEach((d,i)=>{const li=document.createElement('li');li.innerHTML=`<b><a href="${DOMAIN_PAGES[d.id]}" style="color:inherit">${d.n}</a></b> — ${d.d}`;ad.appendChild(li);});
 
 /* ============ صفحات المراحل ============ */
 let curStage='s3';
@@ -552,7 +553,7 @@ function renderStage(){
   DOMAINS.forEach(d=>{
     const arr=(s.std[d.id]||[]).filter(t=>!q||t.includes(q));
     if(q&&!arr.length&&!(d.n.includes(q)))return;
-    html+=`<div class="domain-block" data-d="${d.id}"><h4><span class="dot" style="background:${d.c}"></span>${d.i} ${d.n}</h4><ul>${arr.map(t=>`<li>${t}</li>`).join('')||'<li class="note">لا نتيجة مطابقة للبحث في هذا المجال.</li>'}</ul>`;
+    html+=`<div class="domain-block" data-d="${d.id}"><h4><span class="dot" style="background:${d.c}"></span>${d.i} <a href="${DOMAIN_PAGES[d.id]}" style="color:inherit" title="فتح صفحة المجال">${d.n} ↗</a></h4><ul>${arr.map(t=>`<li>${t}</li>`).join('')||'<li class="note">لا نتيجة مطابقة للبحث في هذا المجال.</li>'}</ul>`;
     const acts=(ACT[d.id]&&ACT[d.id][groupOf(s.id)])||[];
     if(!q&&acts.length)html+=`<div class="tip">💡 أنشطة مقترحة: ${acts.join(' • ')}</div>`;
     html+=`</div>`;
