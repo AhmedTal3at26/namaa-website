@@ -55,7 +55,7 @@
 
   /* قاموس الإيموجي → الأيقونة (مرتب الأطول أولًا) */
   var DICT = [
-    ["👶🧑‍🎓", "layers"], ["🏠", "home"], ["🗂️", "layers"], ["📝", "clipboard"],
+    ["👶🧑‍🎓", "layers"], ["🗺️", "compass"], ["🏠", "home"], ["🗂️", "layers"], ["📝", "clipboard"],
     ["📊", "chart"], ["📚", "book-open"], ["📋", "clipboard"], ["🖨️", "printer"],
     ["🌙", "moon"], ["☀️", "sun"], ["↗", "external"], ["👁", "eye"],
     ["🗓️", "calendar"], ["⭐", "star"], ["🌟", "compass"], ["🧭", "compass"],
@@ -76,7 +76,7 @@
     if (emoji === "🗓️" && txt.indexOf("ورقة") !== -1) return "calendar-check";
     if (emoji === "⭐" && txt.indexOf("ورقة") !== -1) return "star";
     if (emoji === "🗓️") return "calendar";
-    var map = { "🏠": "home", "🗂️": "layers", "📝": "clipboard", "📊": "chart", "📚": "book-open", "📋": "clipboard", "🖨️": "printer", "🌙": "moon", "☀️": "sun", "↗": "external", "👁": "eye", "⭐": "star", "🌟": "compass", "🧭": "compass", "🌿": "sprout", "🎵": "music", "🕌": "moon", "📖": "book-open", "🤝": "pencil", "📱": "shield", "🔍": "search", "▶": "play", "📂": "folder", "→": "arrow-right", "←": "arrow-left", "↑": "arrow-up", "👶🧑‍🎓": "layers" };
+    var map = { "🗺️": "compass", "🏠": "home", "🗂️": "layers", "📝": "clipboard", "📊": "chart", "📚": "book-open", "📋": "clipboard", "🖨️": "printer", "🌙": "moon", "☀️": "sun", "↗": "external", "👁": "eye", "⭐": "star", "🌟": "compass", "🧭": "compass", "🌿": "sprout", "🎵": "music", "🕌": "moon", "📖": "book-open", "🤝": "pencil", "📱": "shield", "🔍": "search", "▶": "play", "📂": "folder", "→": "arrow-right", "←": "arrow-left", "↑": "arrow-up", "👶🧑‍🎓": "layers" };
     return map[emoji] || null;
   }
   var joint = DICT.map(function (p) { return p[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|");
