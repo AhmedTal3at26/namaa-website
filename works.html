@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أوراق العمل والأناشيد | نماء لبناء الشخصية الإسلامية</title>
+<meta name="description" content="أوراق عمل قابلة للملء والطباعة (خطة 30 يومًا، لوحة النجوم، متابعة الصلاة والحفظ، ميثاق الشرف، الاتفاقية الرقمية) + مكتبة الأناشيد المقترحة بروابط يوتيوب.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ea;--bg2:#fffdf6;--card:#fff;--text:#232a28;--muted:#7b766a;--brand:#0e7c61;--brand2:#149a79;--brand-soft:#e3f3ec;--gold:#b8860b;--gold2:#d4a017;--gold-soft:#fdf3d3;--border:#e7dfc9;--shadow:0 12px 32px rgba(90,70,10,.10);--radius:20px;--font-size:18px;--header-bg:rgba(255,253,246,.95)}
+[data-theme="dark"]{--bg:#111418;--bg2:#171b21;--card:#1d222c;--text:#f0ead8;--muted:#a8a393;--brand:#3ddc97;--brand2:#2bbf84;--brand-soft:#152a22;--gold:#e3b341;--gold2:#f0c75e;--gold-soft:#2b2413;--border:#2e3442;--shadow:0 12px 32px rgba(0,0,0,.5);--header-bg:rgba(17,20,24,.95)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:var(--font-size);line-height:1.95;transition:background .3s,color .3s}
+header{position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.topbar{max-width:1180px;margin:auto;padding:.65rem 1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:.7rem;font-weight:700;text-decoration:none;color:var(--text)}
+.logo-mark{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:linear-gradient(135deg,#0e7c61,#149a79 55%,#d4a017);color:#fff;flex-shrink:0}
+.logo small{display:block;font-weight:400;color:var(--muted);font-size:.72em}
+.controls{margin-inline-start:auto;display:flex;gap:.45rem;flex-wrap:wrap}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.35rem .95rem;cursor:pointer;font-family:inherit;font-size:.86em;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+.btn.primary{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent}
+.btn.gold{background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border-color:transparent}
+nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.tab{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:.5rem 1.1rem;font-family:inherit;font-weight:700;font-size:.9em;text-decoration:none}
+.tab.active{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent}
+.hero{max-width:1180px;margin:1rem auto 0;padding:2rem 1.4rem;text-align:center;background:radial-gradient(700px 240px at 50% -60px,rgba(212,160,23,.28),transparent),linear-gradient(180deg,var(--bg2),transparent);border:1px solid var(--border);border-radius:28px}
+.hero h1{font-family:"Aref Ruqaa",serif;font-size:2em;margin:.2rem 0}
+.hero h1 span{color:var(--brand2)}
+.hero p{color:var(--muted);max-width:820px;margin:.5rem auto;font-size:.93em}
+.wrap{max-width:1180px;margin:1rem auto 2rem;padding:0 1rem}
+.wsheet{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.3rem;margin-bottom:1rem;position:relative;overflow:hidden}
+.wsheet::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold2),var(--brand2),transparent)}
+.wsheet h2{font-family:"Aref Ruqaa",serif;font-size:1.35em;font-weight:400;margin:.1rem 0 .5rem}
+.wsheet h2 span{color:var(--brand2)}
+.note{font-size:.82em;color:var(--muted)}
+.tip{background:var(--brand-soft);border:1px dashed var(--brand2);border-radius:12px;padding:.5rem .8rem;font-size:.87em;margin:.4rem 0}
+.warn{background:var(--gold-soft);border:1px dashed var(--gold);border-radius:12px;padding:.5rem .8rem;font-size:.87em;margin:.4rem 0}
+label.f{display:block;font-weight:700;font-size:.88em;margin:.5rem 0 .2rem}
+input[type=text],textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem;font-family:inherit;font-size:.88em;background:var(--bg2);color:var(--text)}
+textarea{min-height:70px;resize:vertical}
+table.grid{width:100%;border-collapse:collapse;font-size:.85em;margin:.4rem 0}
+table.grid th,table.grid td{border:1px solid var(--border);padding:.35rem .4rem;text-align:center}
+table.grid th{background:var(--bg);font-size:.8em}
+table.grid td input[type=text]{border:none;background:transparent;padding:.15rem;font-size:.85em;text-align:center}
+table.grid input[type=checkbox]{width:20px;height:20px;accent-color:#0e7c61;cursor:pointer}
+.row{display:flex;gap:.6rem;flex-wrap:wrap}
+.row>div{flex:1;min-width:180px}
+.song{display:flex;gap:.7rem;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.6rem .8rem;margin-bottom:.5rem}
+.song .pl{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4em;background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;flex-shrink:0}
+.song a{color:var(--text);font-weight:700;text-decoration:none}
+.song a:hover{color:var(--gold)}
+.song small{display:block;color:var(--muted);font-weight:400;font-size:.78em}
+footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;color:var(--muted);font-size:.82em}
+@media print{
+  header,nav.tabs,.hero,footer,.no-print{display:none!important}
+  body{background:#fff;color:#111;font-size:13px}
+  body.printing .wsheet{display:none}
+  body.printing .wsheet.toprint{display:block;box-shadow:none}
+  .wsheet{break-inside:avoid}
+  input[type=text],textarea{border:none;border-bottom:1px dotted #999}
+}
+@media(max-width:640px){.hero h1{font-size:1.5em}}
+</style>
+</head>
+<body>
+<header><div class="topbar">
+<a class="logo" href="index.html"><span class="logo-mark">🌱</span><span>نماء <span style="color:var(--brand2)">لبناء الشخصية الإسلامية</span><small>أوراق العمل والأناشيد — املأ واطبع وعلّق</small></span></a>
+<div class="controls"><button class="btn" id="fontDecrease">أ− تصغير</button><button class="btn" id="fontReset">100%</button><button class="btn" id="fontIncrease">تكبير أ+</button><button class="btn" id="themeBtn">🌙 داكن / ☀️ فاتح</button></div>
+</div></header>
+<nav class="tabs no-print">
+<a class="tab" href="index.html">🏠 الرئيسية</a>
+<a class="tab" href="index.html#stages">🗂️ المراحل</a>
+<a class="tab" href="index.html#about">📚 المجالات</a>
+<a class="tab" href="index.html#quiz">📝 الاستبانة</a>
+<a class="tab" href="index.html#report">📊 التقرير</a>
+<a class="tab active" href="works.html">📋 أوراق العمل</a>
+</nav>
+<section class="hero">
+<div style="color:var(--gold);letter-spacing:.6rem">✦ ✦ ✦</div>
+<h1>📋 أوراق <span>العمل</span> + 🎵 <span>الأناشيد</span></h1>
+<p>نماذج عملية مرتبطة باقتراحات المجالات: املؤوها مع أبنائكم على الشاشة (تُحفظ تلقائيًا) أو اطبعوا الورقة وعلّقوها — كل ورقة لها زر طباعة مستقل.</p>
+</section>
+<div class="wrap">
+
+<section class="wsheet" id="ws-plan">
+<h2>🗓️ ورقة 1: خطة <span>الـ30 يومًا</span></h2>
+<p class="note">مقابل أولويتين من التقرير فقط (الأقل درجة). عادة واحدة صغيرة لكل مجال — القليل الدائم خير من الكثير المنقطع.</p>
+<div class="row"><div><label class="f">اسم الطفل</label><input type="text" data-w="plan-name" placeholder="الاسم"></div><div><label class="f">يبدأ من تاريخ</label><input type="text" data-w="plan-date" placeholder="مثال: 10 / 10"></div></div>
+<table class="grid"><tr><th>الأسبوع</th><th>المجال المستهدف</th><th>العادة اليومية (10 دقائق)</th><th>تم ✅</th></tr>
+<tr><td>1</td><td><input type="text" data-w="plan-d1"></td><td><input type="text" data-w="plan-a1"></td><td><input type="checkbox" data-w="plan-c1"></td></tr>
+<tr><td>2</td><td><input type="text" data-w="plan-d2"></td><td><input type="text" data-w="plan-a2"></td><td><input type="checkbox" data-w="plan-c2"></td></tr>
+<tr><td>3</td><td><input type="text" data-w="plan-d3"></td><td><input type="text" data-w="plan-a3"></td><td><input type="checkbox" data-w="plan-c3"></td></tr>
+<tr><td>4 (تقييم)</td><td><input type="text" data-w="plan-d4" placeholder="إعادة الاستبانة + احتفال"></td><td><input type="text" data-w="plan-a4"></td><td><input type="checkbox" data-w="plan-c4"></td></tr></table>
+<div class="tip">📌 مكافأة نهاية الشهر (معنوية أولًا: رحلة، اختيار نشاط، مدح أمام الأهل): <input type="text" data-w="plan-reward" placeholder="اكتبوها معًا من البداية"></div>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn primary" onclick="printSheet('ws-plan')">🖨️ طباعة هذه الورقة</button><button class="btn" onclick="clearSheet('ws-plan')">↺ مسح</button></div>
+</section>
+
+<section class="wsheet" id="ws-stars">
+<h2>⭐ ورقة 2: لوحة <span>النجوم الأسبوعية</span></h2>
+<p class="note">سمّوا حتى 5 عادات (صلاة الفجر، ترتيب الغرفة، صدق اليوم...) وضعوا ✓ يوميًا — 5 نجوم = مكافأة متفق عليها.</p>
+<div class="row"><div><label class="f">اسم الطفل</label><input type="text" data-w="stars-name" placeholder="الاسم"></div><div><label class="f">الأسبوع</label><input type="text" data-w="stars-week" placeholder="مثال: الأسبوع الأول"></div></div>
+<table class="grid" id="starsTable"><tr><th>العادة ⭐</th><th>السبت</th><th>الأحد</th><th>الاثنين</th><th>الثلاثاء</th><th>الأربعاء</th><th>الخميس</th><th>الجمعة</th></tr></table>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn primary" onclick="printSheet('ws-stars')">🖨️ طباعة هذه الورقة</button><button class="btn" onclick="clearSheet('ws-stars')">↺ مسح</button></div>
+</section>
+
+<section class="wsheet" id="ws-salah">
+<h2>🕌 ورقة 3: متابعة <span>الصلاة الأسبوعية</span></h2>
+<p class="note">ضع ✓ لكل صلاة في وقتها (وللبنين: في المسجد عند الإمكان). الهدف: الاستمرار لا الكمال — شجع كل تقدم.</p>
+<div class="row"><div><label class="f">اسم الطفل</label><input type="text" data-w="salah-name" placeholder="الاسم"></div><div><label class="f">الأسبوع</label><input type="text" data-w="salah-week" placeholder="مثال: 12 – 18 أكتوبر"></div></div>
+<table class="grid" id="salahTable"><tr><th>الصلاة</th><th>السبت</th><th>الأحد</th><th>الاثنين</th><th>الثلاثاء</th><th>الأربعاء</th><th>الخميس</th><th>الجمعة</th></tr></table>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn primary" onclick="printSheet('ws-salah')">🖨️ طباعة هذه الورقة</button><button class="btn" onclick="clearSheet('ws-salah')">↺ مسح</button></div>
+</section>
+
+<section class="wsheet" id="ws-hifz">
+<h2>📖 ورقة 4: متابعة <span>الحفظ والمراجعة</span></h2>
+<p class="note">القاعدة: حفظ قليل + مراجعة يومية. اكتبوا السورة والمقدار، وضعوا ✓ (حفظ) و↺ (مراجعة).</p>
+<table class="grid" id="hifzTable"><tr><th>السورة / المقدار</th><th>السبت</th><th>الأحد</th><th>الاثنين</th><th>الثلاثاء</th><th>الأربعاء</th><th>الخميس</th><th>الجمعة</th></tr></table>
+<div class="row"><div><label class="f">مقدار الحفظ اليومي</label><input type="text" data-w="hifz-new" placeholder="مثال: 5 آيات"></div><div><label class="f">مقدار المراجعة</label><input type="text" data-w="hifz-rev" placeholder="مثال: جزء عم كاملًا أسبوعيًا"></div></div>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn primary" onclick="printSheet('ws-hifz')">🖨️ طباعة هذه الورقة</button><button class="btn" onclick="clearSheet('ws-hifz')">↺ مسح</button></div>
+</section>
+
+<section class="wsheet" id="ws-charter">
+<h2>🤝 ورقة 5: ميثاق <span>شرف عائلي</span></h2>
+<p class="note">يُكتب مع الأبناء ويوقّعه الجميع (بمن فيهم الوالدان!) ويُعلَّق في مكان ظاهر. خلق واحد كل شهر.</p>
+<div class="row"><div><label class="f">نحن أسرة</label><input type="text" data-w="ch-fam" placeholder="اسم العائلة"></div><div><label class="f">خلق هذا الشهر</label><input type="text" data-w="ch-khuluq" placeholder="مثال: الصدق"></div></div>
+<label class="f">نتعاهد أمام الله على</label><textarea data-w="ch-text" placeholder="مثال: أن نقول الصدق دائمًا حتى لو كان صعبًا، وأن نعتذر فور الخطأ، وأن يكافئ بعضنا بعضًا على ذلك..."></textarea>
+<div class="row"><div><label class="f">التوقيع: الأب</label><input type="text" data-w="ch-s1"></div><div><label class="f">التوقيع: الأم</label><input type="text" data-w="ch-s2"></div></div>
+<div class="row"><div><label class="f">التوقيع: الابن/الابنة</label><input type="text" data-w="ch-s3"></div><div><label class="f">التاريخ</label><input type="text" data-w="ch-date"></div></div>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn primary" onclick="printSheet('ws-charter')">🖨️ طباعة هذه الورقة</button><button class="btn" onclick="clearSheet('ws-charter')">↺ مسح</button></div>
+</section>
+
+<section class="wsheet" id="ws-digital">
+<h2>📱 ورقة 6: الاتفاقية <span>الرقمية للأسرة</span></h2>
+<p class="note">تُكتب مع الأبناء وتنطبق على الجميع (والدان وأبناء). عدّلوا الصياغة حسب أعماركم ثم وقّعوا.</p>
+<label class="f">قواعدنا المتفق عليها (عدّلوا ما شئتم)</label>
+<textarea data-w="dg-rules" rows="4">1) لا أجهزة أثناء الطعام ولا قبل النوم بساعة.
+2) الأجهزة في الصالة فقط، ولا خلوة بالجهاز في الغرف.
+3) لا حسابات تواصل إلا بإذن، ولا محادثة للغرباء أبدًا.
+4) أي محتوى مخيف أو مسيء نخبر به الوالدين فورًا دون خوف من العقاب.
+5) وقت الشاشة اليومي: ___ والمحتوى بموافقة الوالدين.</textarea>
+<div class="row"><div><label class="f">توقيع الوالدين</label><input type="text" data-w="dg-p"></div><div><label class="f">توقيع الأبناء</label><input type="text" data-w="dg-k"></div><div><label class="f">التاريخ</label><input type="text" data-w="dg-date"></div></div>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn primary" onclick="printSheet('ws-digital')">🖨️ طباعة هذه الورقة</button><button class="btn" onclick="clearSheet('ws-digital')">↺ مسح</button></div>
+</section>
+
+<section class="wsheet" id="songs">
+<h2>🎵 مكتبة <span>الأناشيد المقترحة</span></h2>
+<p class="note">أناشيد مرتبطة باقتراحات المجالات — اختاروها حسب العمر. جميع الروابط يوتيوب وتم التحقق من عملها.</p>
+<h3 style="font-size:1em">🤲 إيمانية وتعبدية</h3>
+<div class="song"><div class="pl">▶</div><div><a href="https://www.youtube.com/watch?v=QAmzCaqIXn8" target="_blank" rel="noopener">نشيد «الله يراني» — أناشيد دينية للأطفال</a><small>يغرس المراقبة (المجال الإيماني) — مناسب 3–8 سنوات</small></div></div>
+<div class="song"><div class="pl">▶</div><div><a href="https://www.youtube.com/watch?v=41WOlAL29M0" target="_blank" rel="noopener">نشيد «أركان الإسلام الخمسة»</a><small>يحفظ الأركان (العلم الشرعي) — مناسب 3–8 سنوات</small></div></div>
+<h3 style="font-size:1em">🕌 الوضوء والصلاة</h3>
+<div class="song"><div class="pl">▶</div><div><a href="https://www.youtube.com/watch?v=HoSL41FpfX0" target="_blank" rel="noopener">«الوضوء» — طيور الجنة (جاد وإياد)</a><small>تعليم الوضوء بالتقليد المرح — مناسب 3–7 سنوات</small></div></div>
+<div class="song"><div class="pl">▶</div><div><a href="https://www.youtube.com/watch?v=Yf0j4vEl-Zk" target="_blank" rel="noopener">نشيد «تعلُّم الصلاة» — الأذان والوضوء خطوة بخطوة</a><small>يربط بالمسجد والصلاة — مناسب 5–10 سنوات</small></div></div>
+<h3 style="font-size:1em">🌷 الأخلاق (الصدق)</h3>
+<div class="song"><div class="pl">▶</div><div><a href="https://www.youtube.com/watch?v=UOAaad2T3lc" target="_blank" rel="noopener">«الصدق أحسن لك» — طيور بيبي</a><small>خلق الصدق (المجال السلوكي) — مناسب 3–7 سنوات</small></div></div>
+<div class="song"><div class="pl">▶</div><div><a href="https://www.youtube.com/watch?v=OvktNEexuww" target="_blank" rel="noopener">«قول الصدق» — عمر وهنا (رسوم إسلامية)</a><small>قيمة الصدق بقصة ممتعة — مناسب 4–9 سنوات</small></div></div>
+<div class="warn">⚠️ شاهدوا مع أطفالكم لا بدلًا عنهم، والتزموا قواعد الاتفاقية الرقمية (ورقة 6): وقت محدد، محتوى معروف، ولا شاشات قبل النوم. من يتحرج من الموسيقى فليبحث عن النسخ «بدون موسيقى/بدون إيقاع» للعنوان نفسه.</div>
+<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn gold" onclick="printSheet('songs')">🖨️ طباعة قائمة الأناشيد</button></div>
+</section>
+
+</div>
+<footer>منهج نماء — مؤسسة المربي • خط IBM Plex Sans Arabic (خط ثمانية الرسمي) • <a href="index.html" style="color:inherit">العودة للرئيسية</a></footer>
+<script>
+/* الثيم والخط */
+const root=document.documentElement;
+function applyFont(px){root.style.setProperty('--font-size',px+'px');localStorage.setItem('namaa_font',px);document.getElementById('fontReset').textContent=Math.round(px/18*100)+'%';}
+let curFont=parseInt(localStorage.getItem('namaa_font')||'18',10);
+function applyTheme(t){root.setAttribute('data-theme',t);localStorage.setItem('namaa_theme',t);}
+applyFont(Math.min(28,Math.max(14,curFont)));applyTheme(localStorage.getItem('namaa_theme')||'light');
+document.getElementById('fontIncrease').onclick=()=>{curFont=Math.min(28,curFont+1);applyFont(curFont);};
+document.getElementById('fontDecrease').onclick=()=>{curFont=Math.max(14,curFont-1);applyFont(curFont);};
+document.getElementById('fontReset').onclick=()=>{curFont=18;applyFont(18);};
+document.getElementById('themeBtn').onclick=()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
+/* بناء الجداول + الحفظ التلقائي */
+const DAYS=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة"];
+function grid(id,rows,rowLabel){
+  const t=document.getElementById(id);if(!t)return;
+  rows.forEach((r,i)=>{
+    const tr=document.createElement('tr');
+    if(rowLabel){const td=document.createElement('td');const inp=document.createElement('input');inp.type='text';inp.setAttribute('data-w',id+'-r'+i);inp.placeholder=r;td.appendChild(inp);tr.appendChild(td);}
+    else{const td=document.createElement('td');td.textContent=r;tr.appendChild(td);}
+    DAYS.forEach((d,j)=>{const td=document.createElement('td');const c=document.createElement('input');c.type='checkbox';c.title=r+' — '+d;c.setAttribute('data-w',id+'-c'+i+'-'+j);td.appendChild(c);tr.appendChild(td);});
+    t.appendChild(tr);
+  });
+}
+grid('starsTable',['العادة 1','العادة 2','العادة 3','العادة 4','العادة 5'],true);
+grid('salahTable',['الفجر','الظهر','العصر','المغرب','العشاء'],false);
+grid('hifzTable',['السورة/المقدار 1','السورة/المقدار 2','السورة/المقدار 3','السورة/المقدار 4','السورة/المقدار 5'],true);
+let store={};try{store=JSON.parse(localStorage.getItem('namaa_works')||'{}');}catch(e){store={};}
+function restore(){document.querySelectorAll('[data-w]').forEach(el=>{const k=el.getAttribute('data-w');if(!(k in store))return;if(el.type==='checkbox')el.checked=!!store[k];else el.value=store[k];});}
+function save(){document.querySelectorAll('[data-w]').forEach(el=>{const k=el.getAttribute('data-w');store[k]=el.type==='checkbox'?(el.checked?1:0):el.value;});localStorage.setItem('namaa_works',JSON.stringify(store));}
+document.addEventListener('change',e=>{if(e.target.hasAttribute&&e.target.hasAttribute('data-w'))save();});
+document.addEventListener('input',e=>{if(e.target.hasAttribute&&e.target.hasAttribute('data-w'))save();});
+restore();
+function printSheet(id){document.body.classList.add('printing');document.getElementById(id).classList.add('toprint');window.print();}
+window.addEventListener('afterprint',()=>{document.body.classList.remove('printing');document.querySelectorAll('.toprint').forEach(el=>el.classList.remove('toprint'));});
+function clearSheet(id){if(!confirm('مسح محتويات هذه الورقة؟'))return;document.getElementById(id).querySelectorAll('[data-w]').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value='';});save();}
+</script>
+</body>
+</html>
