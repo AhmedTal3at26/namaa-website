@@ -115,17 +115,11 @@
 })();
 /* ===== هوية نماء البصرية (تُطبق على كل الصفحات) ===== */
 (function () {
-  var PATTERN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23b8860b' stroke-opacity='0.14'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3C/g%3E%3C/svg%3E\")";
   var LOGO_SVG = "<svg viewBox='0 0 64 64' role='img' aria-label='شعار نماء'><rect x='6' y='38' width='12' height='18' rx='6' style='fill:currentColor'/><rect x='24' y='28' width='12' height='28' rx='6' style='fill:currentColor'/><rect x='42' y='18' width='12' height='38' rx='6' style='fill:currentColor'/><path d='M48 18v-6' style='stroke:currentColor' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M48 12C41 12 36 8 35 2c7 0 12 3 13 10z' style='fill:currentColor'/><path d='M48 12c7 0 12-4 13-10-7 0-12 3-13 10z' style='fill:var(--gold)'/></svg>";
   var FAVICON = "favicon.svg";
   var css = ".logo-mark{background:transparent;border:none;box-shadow:none;color:var(--brand);display:grid;place-items:center}.logo-mark svg{width:44px;height:44px;display:block}"
     + ".footer-brand{display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:700;font-size:1.2em;margin-bottom:.3rem}.footer-brand small{display:block;font-weight:400;color:var(--muted);font-size:.58em}.fb-mark{width:40px;height:40px;color:var(--brand);display:inline-flex;flex-shrink:0}.fb-mark svg{width:100%;height:100%}"
-    + "body{background-image:" + PATTERN + ";background-size:96px 96px}"
-    + ".hero{position:relative;overflow:hidden}.hero-pattern{position:absolute;inset:0;background-image:" + PATTERN + ";background-size:72px 72px;opacity:.55;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}"
     + ".hero-kicker{display:inline-block;font-size:.78em;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:.1rem 1rem;margin-bottom:.3rem;background:var(--gold-soft)}"
-    + ".orn{display:flex;align-items:center;gap:.8rem;max-width:1180px;margin:1rem auto 0;padding:0 1rem;color:var(--gold)}"
-    + ".orn::before,.orn::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.55}"
-    + ".orn span{font-size:1.25rem;line-height:1}"
     + ".panel h2,.wsheet h2{border-inline-start:4px solid var(--gold);padding-inline-start:.6rem}"
     + ".panel,.wsheet{box-shadow:var(--shadow),inset 0 0 0 1px var(--bg)}"
     + ".btn.primary{box-shadow:0 6px 16px rgba(20,154,121,.22)}"
@@ -147,24 +141,8 @@
     m.innerHTML = LOGO_SVG;
     m.setAttribute("aria-hidden", "true");
   });
-  function orn() {
-    var d = document.createElement("div");
-    d.className = "orn no-print";
-    d.setAttribute("aria-hidden", "true");
-    d.innerHTML = "<span>\u06DE</span>";
-    return d;
-  }
   function decorate() {
-    document.querySelectorAll("section.hero:not([data-orn])").forEach(function (h) {
-      h.setAttribute("data-orn", "1");
-      var p = document.createElement("div");
-      p.className = "hero-pattern";
-      p.setAttribute("aria-hidden", "true");
-      h.insertBefore(p, h.firstChild);
-      if (h.parentNode) h.parentNode.insertBefore(orn(), h.nextSibling);
-    });
-    var ft = document.querySelector("footer:not([data-orn])");
-    if (ft && ft.parentNode) { ft.setAttribute("data-orn", "1"); ft.parentNode.insertBefore(orn(), ft); }
+    /* هوية الشعار في التذييل فقط — بلا زخارف عامة */
     var fb = document.querySelector("footer:not([data-brand])");
     if (fb) {
       fb.setAttribute("data-brand", "1");
@@ -215,6 +193,8 @@
   else if (path.indexOf("works.html") > -1) page = "works";
   else if (path.indexOf("logo.html") > -1) page = "logo";
   document.body.dataset.page = page;
+  var wrap = document.querySelector(".wrap");
+  if (wrap && !wrap.hasAttribute("role")) wrap.setAttribute("role", "main");
   if (page === "index") return;
 
   // مسار التنقل

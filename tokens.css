@@ -77,11 +77,21 @@ body{
 }
 .quran{font-family:"Amiri Quran",serif;line-height:2.2;}
 
+/* عزل الأرقام والمديات (0–2) عن سياق RTL حتى لا ينعكس ترتيبها */
+.age,.badge,.chip{unicode-bidi:isolate;}
+
 /* ---------- 4) تهدئة الأسطح (داخل الشاشة فقط) ---------- */
 @media screen{
   header{background:var(--header-bg);backdrop-filter:none;-webkit-backdrop-filter:none;}
-  .hero{background:var(--bg2);}              /* بلا توهجات عائمة */
-  .hero::before{opacity:.22;}                /* تخفيف الزخرفة النصية */
+  .hero{background:var(--bg2);}
+  .hero::before{display:none;}               /* إخفاء صف النجوم الزخرفي */
+  .hero>div[style*="letter-spacing"]{display:none;} /* إخفاء ✦ في الصفحات الداخلية */
+  .hero-pattern{display:none;}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+    html{scroll-behavior:auto;}
+  }
+
   .panel,.wsheet,.stat,.dcard,.scard{border-radius:var(--radius);}
   .hero{border-radius:var(--radius-lg);}
   .panel,.wsheet{box-shadow:var(--shadow),inset 0 0 0 1px var(--bg);}
