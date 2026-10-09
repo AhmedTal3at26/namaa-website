@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نماء | منهج بناء الشخصية الإسلامية — استبانة وتقرير ومراحل</title>
+<meta name="description" content="موقع تفاعلي يحول كتاب نماء - منهج بناء الشخصية الإسلامية إلى استبانة للوالدين مع تقرير مفصل، وصفحات للمراحل العمرية بالمجالات والمعايير.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Amiri+Quran&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ea; --bg2:#fffdf6; --card:#ffffff; --text:#232a28; --muted:#7b766a;
+  --brand:#0e7c61; --brand2:#149a79; --brand-soft:#e3f3ec;
+  --gold:#b8860b; --gold2:#d4a017; --gold-soft:#fdf3d3;
+  --rose:#c0392b; --rose-soft:#fdecea;
+  --blue:#1d6fa5; --blue-soft:#e5f1f9;
+  --border:#e7dfc9; --shadow:0 12px 32px rgba(90,70,10,.10);
+  --radius:20px; --font-size:18px; --header-bg:rgba(255,253,246,.95);
+}
+[data-theme="dark"]{
+  --bg:#111418; --bg2:#171b21; --card:#1d222c; --text:#f0ead8; --muted:#a8a393;
+  --brand:#3ddc97; --brand2:#2bbf84; --brand-soft:#152a22;
+  --gold:#e3b341; --gold2:#f0c75e; --gold-soft:#2b2413;
+  --rose:#ff8a80; --rose-soft:#2e1a18;
+  --blue:#64b5f6; --blue-soft:#182635;
+  --border:#2e3442; --shadow:0 12px 32px rgba(0,0,0,.5); --header-bg:rgba(17,20,24,.95);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:var(--font-size);line-height:1.95;transition:background .3s,color .3s}
+.quran{font-family:"Amiri Quran",serif;line-height:2.2}
+.ruqaa{font-family:"Aref Ruqaa",serif}
+header{position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.topbar{max-width:1180px;margin:auto;padding:.65rem 1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:.7rem;font-weight:700;font-size:1.05em}
+.logo-mark{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:linear-gradient(135deg,#0e7c61,#149a79 55%,#d4a017);color:#fff;box-shadow:var(--shadow);flex-shrink:0}
+.logo small{display:block;font-weight:400;color:var(--muted);font-size:.72em;line-height:1.5}
+.controls{margin-inline-start:auto;display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.35rem .95rem;cursor:pointer;font-family:inherit;font-size:.86em;display:inline-flex;align-items:center;gap:.4rem;transition:.2s;font-weight:600}
+.btn:hover{border-color:var(--gold);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent}
+.btn.gold{background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border-color:transparent}
+.btn.ghost{background:transparent}
+nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.tab{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:.5rem 1.1rem;cursor:pointer;font-family:inherit;font-weight:700;font-size:.92em;transition:.2s}
+.tab.active{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent;box-shadow:var(--shadow)}
+.hero{max-width:1180px;margin:1rem auto 0;padding:2.2rem 1.4rem;text-align:center;background:radial-gradient(700px 240px at 50% -60px, rgba(212,160,23,.28), transparent),radial-gradient(600px 220px at 85% 120%, rgba(20,154,121,.18), transparent),linear-gradient(180deg, var(--bg2), transparent);border:1px solid var(--border);border-radius:28px;position:relative;overflow:hidden}
+.hero::before{content:"✦ ✦ ✦ ✦ ✦";position:absolute;top:10px;right:0;left:0;color:var(--gold);opacity:.35;letter-spacing:.7rem;font-size:.9rem}
+.hero h1{font-family:"Aref Ruqaa",serif;font-size:2.2em;margin:.4rem 0 .2rem;line-height:1.7}
+.hero h1 span{color:var(--brand2)}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:var(--muted);max-width:820px;margin:.4rem auto;font-size:.94em}
+.hero-cta{margin-top:1rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.stat-row{max-width:1180px;margin:1rem auto 0;padding:0 1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:.7rem;text-align:center;box-shadow:var(--shadow)}
+.stat strong{font-size:1.5em;display:block;color:var(--brand2)}
+.stat span{font-size:.8em;color:var(--muted)}
+.wrap{max-width:1180px;margin:1rem auto 2rem;padding:0 1rem}
+.section{display:none}
+.section.active{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.3rem;margin-bottom:1rem;position:relative;overflow:hidden}
+.panel::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold2),var(--brand2),transparent)}
+.panel h2{font-family:"Aref Ruqaa",serif;margin:.1rem 0 .7rem;font-size:1.4em;font-weight:400}
+.panel h2 span{color:var(--brand2)}
+.panel h3{margin:1rem 0 .4rem;font-size:1.05em}
+.grid{display:grid;gap:.8rem}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.dcard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:.9rem;transition:.2s}
+.dcard:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--gold)}
+.dcard .ic{font-size:1.7em}
+.dcard h4{margin:.2rem 0;font-size:.98em}
+.dcard p{margin:.2rem 0;font-size:.82em;color:var(--muted);line-height:1.8}
+.scard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:.9rem;cursor:pointer;transition:.2s;text-align:right;font-family:inherit;color:var(--text);width:100%}
+.scard:hover{border-color:var(--brand2);transform:translateY(-2px)}
+.scard.active{border:2px solid var(--brand2);background:var(--brand-soft)}
+.scard h4{margin:.15rem 0;font-size:1em}
+.scard .age{display:inline-block;font-size:.75em;background:var(--gold-soft);border:1px dashed var(--gold);border-radius:999px;padding:.05rem .7rem;margin-top:.2rem}
+.stage-detail h3.stg-title{font-family:"Aref Ruqaa",serif;font-size:1.35em;margin:.2rem 0}
+.pill{display:inline-block;font-size:.76em;border-radius:999px;padding:.1rem .8rem;border:1px solid var(--border);background:var(--bg);color:var(--muted);margin:.15rem}
+.domain-block{border:1px solid var(--border);border-radius:16px;padding:.9rem;background:var(--bg2);margin-bottom:.7rem}
+.domain-block h4{margin:0 0 .3rem;display:flex;align-items:center;gap:.5rem;font-size:1em}
+.domain-block h4 .dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.domain-block ul{margin:.3rem 0;padding-inline-start:1.3rem;font-size:.9em}
+.domain-block li{margin-bottom:.25rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.4rem 1rem;cursor:pointer;font-family:inherit;font-size:.86em;font-weight:600}
+.chip.active{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent}
+label.f{display:block;font-weight:700;font-size:.9em;margin:.6rem 0 .25rem}
+input[type=text],input[type=number],select{width:100%;border:1px solid var(--border);border-radius:12px;padding:.6rem .8rem;font-family:inherit;font-size:.92em;background:var(--bg2);color:var(--text)}
+.q{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.8rem;margin-bottom:.6rem}
+.q.did{border-color:var(--brand2);background:var(--brand-soft)}
+.q p{margin:.1rem 0 .5rem;font-weight:600;font-size:.95em}
+.q .dom{font-size:.72em;color:var(--muted);font-weight:400}
+.likert{display:flex;gap:.4rem;flex-wrap:wrap}
+.likert button{flex:1;min-width:90px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.4rem .3rem;cursor:pointer;font-family:inherit;font-size:.8em;font-weight:600;transition:.15s}
+.likert button.sel{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent}
+.progress{height:12px;background:var(--bg);border:1px solid var(--border);border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold2),var(--brand2));transition:.3s}
+.bar-row{display:flex;align-items:center;gap:.6rem;margin:.35rem 0;font-size:.86em}
+.bar-row .nm{flex:0 0 165px;font-weight:700}
+.bar-row .tr{flex:1;height:14px;background:var(--bg);border:1px solid var(--border);border-radius:999px;overflow:hidden}
+.bar-row .tr i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold2),var(--brand2))}
+.badge{font-size:.72em;border-radius:999px;padding:.1rem .7rem;font-weight:700;white-space:nowrap}
+.b-ex{color:#0e7c61;background:#e3f3ec;border:1px solid #0e7c61}
+[data-theme="dark"] .b-ex{background:#152a22}
+.b-good{color:#1d6fa5;background:#e5f1f9;border:1px solid #1d6fa5}
+[data-theme="dark"] .b-good{background:#182635}
+.b-mid{color:#b8860b;background:#fdf3d3;border:1px solid #d4a017}
+[data-theme="dark"] .b-mid{background:#2b2413}
+.b-low{color:#fff;background:#c0392b;border:1px solid #c0392b}
+.rep-domain{border:1px solid var(--border);border-radius:16px;padding:.9rem;background:var(--bg2);margin-bottom:.7rem}
+.rep-domain h4{margin:0 0 .3rem}
+.tip{background:var(--brand-soft);border:1px dashed var(--brand2);border-radius:12px;padding:.5rem .8rem;font-size:.88em;margin:.3rem 0}
+.warn{background:var(--gold-soft);border:1px dashed var(--gold);border-radius:12px;padding:.5rem .8rem;font-size:.88em;margin:.3rem 0}
+.plan{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:.7rem .9rem;font-size:.9em}
+.plan li{margin-bottom:.3rem}
+footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;color:var(--muted);font-size:.82em;line-height:2}
+.fab{position:fixed;bottom:18px;left:18px;display:flex;gap:.5rem}
+.fab button{width:52px;height:52px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1.3rem;cursor:pointer;box-shadow:var(--shadow)}
+.note{font-size:.82em;color:var(--muted)}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.5rem .9rem}
+.search input{flex:1;border:none;outline:none;background:transparent;color:var(--text);font-family:inherit;font-size:.92em}
+@media(max-width:640px){.hero h1{font-size:1.55em}.bar-row .nm{flex-basis:110px;font-size:.8em}body{line-height:1.9}}
+@media print{
+  header,nav.tabs,.hero,.stat-row,.fab,.no-print{display:none!important}
+  body{background:#fff;color:#111;font-size:14px}
+  .section{display:block!important}
+  .panel{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="logo">
+      <div class="logo-mark">🌱</div>
+      <div>نماء <span style="color:var(--brand2)">لبناء الشخصية الإسلامية</span>
+        <small>من الرضاعة إلى ما بعد الجامعة — مؤسسة المربي • استبانة + تقرير + مراحل</small>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="fontDecrease" title="تصغير الخط">أ− تصغير</button>
+      <button class="btn" id="fontReset" title="حجم افتراضي">100%</button>
+      <button class="btn" id="fontIncrease" title="تكبير الخط">تكبير أ+</button>
+      <button class="btn" id="themeBtn" title="تبديل الثيم">🌙 داكن / ☀️ فاتح</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs no-print" id="mainTabs">
+  <button class="tab active" data-sec="home">🏠 الرئيسية</button>
+  <button class="tab" data-sec="stages">🗂️ صفحات المراحل</button>
+  <button class="tab" data-sec="quiz">📝 الاستبانة</button>
+  <button class="tab" data-sec="report">📊 التقرير</button>
+  <button class="tab" data-sec="about">📚 عن المنهج</button>
+</nav>
+
+<section class="hero">
+  <h1>منهج <span>نماء</span> لبناء <em>الشخصية الإسلامية</em></h1>
+  <p class="quran">﴿ وَابْتَغِ فِيمَا آتَاكَ اللَّهُ الدَّارَ الْآخِرَةَ وَلَا تَنْسَ نَصِيبَكَ مِنَ الدُّنْيَا ﴾ — القصص 77</p>
+  <p>حوّلنا كتاب <b>«نماء — منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة»</b> (مؤسسة المربي) إلى موقع عملي: <b>استبانة للآباء والأمهات</b> لتقييم الطفل عبر <b>11 مجالًا</b> مع <b>تقرير مفصل واقتراحات حسب العمر</b>، و<b>7 صفحات للمراحل</b> تضم المجالات والمعايير المناسبة لكل عمر.</p>
+  <div class="hero-cta no-print">
+    <button class="btn primary" onclick="goSec('quiz')">📝 ابدأ الاستبانة الآن</button>
+    <button class="btn gold" onclick="goSec('stages')">🗂️ استعرض المراحل</button>
+    <button class="btn" onclick="goSec('about')">📚 تعرف على المنهج</button>
+  </div>
+</section>
+
+<div class="stat-row">
+  <div class="stat"><strong>11</strong><span>مجالًا لبناء الشخصية</span></div>
+  <div class="stat"><strong>7</strong><span>مراحل عمرية من 0 إلى +18</span></div>
+  <div class="stat"><strong>33</strong><span>عبارة في الاستبانة</span></div>
+  <div class="stat"><strong>~190</strong><span>معيارًا ومؤشرًا عمريًا</span></div>
+</div>
+
+<div class="wrap">
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+  <div class="panel">
+    <h2>🌟 كيف <span>تستخدم</span> الموقع؟</h2>
+    <div class="grid g3">
+      <div class="dcard"><div class="ic">1️⃣</div><h4>اختر المرحلة العمرية</h4><p>من صفحة «المراحل» اختر عمر طفلك لتظهر المجالات والمعايير والأنشطة المناسبة له بدقة.</p></div>
+      <div class="dcard"><div class="ic">2️⃣</div><h4>أجب عن الاستبانة</h4><p>33 عبارة سلوكية قابلة للملاحظة (دائمًا → أبدًا). تستغرق 8–12 دقيقة، وتُحفظ تلقائيًا.</p></div>
+      <div class="dcard"><div class="ic">3️⃣</div><h4>استلم التقرير المفصل</h4><p>درجة لكل مجال، مستوى، نقاط قوة، أولويات، خطة 30 يومًا، وأنشطة عملية قابلة للطباعة.</p></div>
+    </div>
+    <div class="warn">⚠️ تنبيه تربوي: الاستبانة أداة استرشادية للوالدين وليست تشخيصًا طبيًا أو نفسيًا. عند القلق العميق استشر مختصًا ثقة.</div>
+  </div>
+  <div class="panel">
+    <h2>🧭 المجالات <span>الأحد عشر</span> في منهج نماء</h2>
+    <p class="note">وهي نفس تقسيم الكتاب (المستوى الثاني: المجالات) — اضغط أي مجال لترى أمثلة المعايير.</p>
+    <div class="grid g4" id="domainsHome"></div>
+  </div>
+  <div class="panel">
+    <h2>👶🧑‍🎓 المراحل <span>العمرية السبع</span></h2>
+    <div class="grid g4" id="stagesHome"></div>
+    <div style="margin-top:.7rem"><button class="btn primary" onclick="goSec('stages')">فتح صفحات المراحل ←</button></div>
+  </div>
+</div>
+
+<!-- STAGES -->
+<div class="section" id="sec-stages">
+  <div class="panel">
+    <h2>🗂️ صفحات <span>المراحل العمرية</span></h2>
+    <p class="note">كل مرحلة لها <b>صفحة مستقلة</b> + عرض سريع هنا. الصفحة المستقلة تضم: نبذة + سمات النمو + المجالات الـ11 والمعايير + أنشطة مقترحة + زر الاستبانة الخاص بها.</p>
+    <div class="chips no-print" id="stagePagesLinks" style="margin-bottom:.4rem">
+      <a class="chip" href="stage-0-2.html">🌱 0–2 صفحة مستقلة</a>
+      <a class="chip" href="stage-3-5.html">🧸 3–5 صفحة مستقلة</a>
+      <a class="chip" href="stage-6-8.html">📚 6–8 صفحة مستقلة</a>
+      <a class="chip" href="stage-9-11.html">🌟 9–11 صفحة مستقلة</a>
+      <a class="chip" href="stage-12-14.html">🧭 12–14 صفحة مستقلة</a>
+      <a class="chip" href="stage-15-17.html">🚀 15–17 صفحة مستقلة</a>
+      <a class="chip" href="stage-18-plus.html">🎓 +18 صفحة مستقلة</a>
+    </div>
+    <div class="search no-print">🔍 <input id="stageSearch" placeholder="ابحث في المعايير… مثال: الصلاة، الصدق، الحفظ، التقنية"></div>
+    <div class="chips no-print" id="stageChips"></div>
+    <div class="stage-detail" id="stageDetail"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+  <div class="panel">
+    <h2>📝 استبانة <span>الوالدين</span> لتقييم الطفل</h2>
+    <p class="note">أجب بصدق حسب ملاحظتك لطفلك خلال آخر شهر. المقياس: دائمًا (5) • غالبًا (4) • أحيانًا (3) • نادرًا (2) • أبدًا (1). تُحفظ الإجابات تلقائيًا في جهازك فقط.</p>
+    <div class="grid g2">
+      <div><label class="f" for="childName">اسم الطفل (اختياري)</label><input type="text" id="childName" placeholder="مثال: عبدالله"></div>
+      <div><label class="f" for="childAge">عمر الطفل بالسنوات</label><input type="number" id="childAge" min="0" max="30" value="7"></div>
+    </div>
+    <label class="f">المرحلة العمرية (تُقترح تلقائيًا حسب العمر — ويمكن تغييرها)</label>
+    <div class="chips" id="quizStageChips"></div>
+    <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:.6rem 0" class="no-print">
+      <div class="progress" style="flex:1;min-width:200px"><i id="quizBar"></i></div>
+      <span id="quizCount" class="note">0 / 0</span>
+      <button class="btn" id="clearQuiz">↺ مسح الإجابات</button>
+    </div>
+    <div id="quizList"></div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem" class="no-print">
+      <button class="btn primary" id="showReportBtn" style="font-size:1em;padding:.6rem 1.6rem">📊 عرض التقرير المفصل ←</button>
+      <button class="btn" onclick="goSec('stages')">مراجعة معايير المرحلة</button>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT -->
+<div class="section" id="sec-report">
+  <div class="panel">
+    <h2>📊 التقرير <span>المفصل</span> والاقتراحات</h2>
+    <p class="note">يُبنى التقرير تلقائيًا من إجابات الاستبانة حسب المرحلة العمرية. يمكنك الطباعة / الحفظ PDF / نسخ الملخص.</p>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap" class="no-print">
+      <button class="btn primary" id="printBtn">🖨️ طباعة / حفظ PDF</button>
+      <button class="btn" id="copyBtn">📋 نسخ ملخص التقرير</button>
+      <button class="btn" id="loadLastBtn">📂 استرجاع آخر تقرير</button>
+      <button class="btn ghost" onclick="goSec('quiz')">→ العودة للاستبانة</button>
+    </div>
+    <div id="reportBox" style="margin-top:.8rem"><p class="note">لم يتم إنشاء تقرير بعد. أجب عن الاستبانة ثم اضغط «عرض التقرير المفصل».</p></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="sec-about">
+  <div class="panel">
+    <h2>📚 عن <span>منهج نماء</span></h2>
+    <p><b>الكتاب:</b> «نماء — منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة» — إعداد مجموعة باحثين بـ<b>مؤسسة المربي</b> بإشراف د. محمد بن عبدالله الدويش، الرياض 1431هـ (~400 صفحة).</p>
+    <ul style="font-size:.9em">
+      <li><b>الفكرة:</b> إطار عام «ماذا نربي؟» بنموذج <b>المعايير</b> على أربعة مستويات: الرؤية العامة ← <b>المجالات (11)</b> ← المعايير ← المؤشرات (معرفية / مهارية / وجدانية).</li>
+      <li><b>المستفيدون:</b> الأسرة أولًا (خاصة المراحل الأولى)، ثم المؤسسات التربوية والدعوية.</li>
+      <li><b>المنهجية:</b> عمل جماعي، باحثون من السعودية ومصر والأردن، ورش تحكيم، توسط بين الإجمال والتفصيل.</li>
+      <li><b>الهدف:</b> شخصية إسلامية مؤهلة للأدوار الدعوية والإصلاحية، تجمع بين صلاح الدنيا والآخرة.</li>
+    </ul>
+    <h3>المجالات الأحد عشر (نص الكتاب)</h3>
+    <ol style="font-size:.9em" id="aboutDomains"></ol>
+    <h3>المراحل المعتمدة في هذا الموقع</h3>
+    <ul style="font-size:.9em">
+      <li><b>1 — البراعم الصغار:</b> الرضاعة والحضانة (0–2)</li>
+      <li><b>2 — التأسيس المحبب:</b> الطفولة المبكرة (3–5)</li>
+      <li><b>3 — التمييز الأول:</b> الطفولة الوسطى (6–8)</li>
+      <li><b>4 — التمييز المتقدم:</b> الطفولة المتأخرة (9–11)</li>
+      <li><b>5 — عتبة التكليف:</b> المراهقة المبكرة (12–14)</li>
+      <li><b>6 — صناعة الهوية:</b> المراهقة المتأخرة (15–17)</li>
+      <li><b>7 — الانطلاق والبناء:</b> الجامعة وما بعدها (18+)</li>
+    </ul>
+    <div class="tip">💡 صممنا صياغة المعايير والأسئلة والاقتراحات بروح الكتاب وبأسلوب إجرائي مبسط للوالدين، مع الحفاظ على نفس المجالات والتدرج العمري. عند التعارض فالمرجع هو الكتاب الورقي.</div>
+    <h3>المصادر</h3>
+    <ul style="font-size:.86em;color:var(--muted)">
+      <li>مؤسسة المربي — «نماء: منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة» (الطبعة الثانية).</li>
+      <li>عرض وتحليل المنهج: مقال رواحل + فهرس المكتبة التربوية (المجالات الأحد عشر).</li>
+      <li>الخط: IBM Plex Sans Arabic (خط ثمانية الرسمي) + Amiri Quran + Aref Ruqaa.</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  خط المتن: IBM Plex Sans Arabic (خط ثمانية الرسمي) • العناوين: Aref Ruqaa • الآيات: Amiri Quran<br>
+  صُمم بعناية لتحويل «نماء» إلى أداة عملية للأسر — نسأل الله أن ينبت أبناءنا نباتًا حسنًا 🌱
+</footer>
+
+<div class="fab no-print"><button id="toTop" title="للأعلى">↑</button></div>
+
+<script>
+/* ============ الثيم والخط ============ */
+const root=document.documentElement;
+function applyFont(px){root.style.setProperty('--font-size',px+'px');localStorage.setItem('namaa_font',px);document.getElementById('fontReset').textContent=Math.round(px/18*100)+'%';}
+let curFont=parseInt(localStorage.getItem('namaa_font')||'18',10);
+function applyTheme(t){root.setAttribute('data-theme',t);localStorage.setItem('namaa_theme',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀️ فاتح / 🌙 داكن':'🌙 داكن / ☀️ فاتح';}
+applyFont(Math.min(28,Math.max(14,curFont)));
+applyTheme(localStorage.getItem('namaa_theme')||'light');
+document.getElementById('fontIncrease').onclick=()=>applyFont(Math.min(28,curFont+1>28?28:(curFont+=1)));
+document.getElementById('fontDecrease').onclick=()=>applyFont(Math.max(14,curFont-1<14?14:(curFont-=1)));
+document.getElementById('fontReset').onclick=()=>{curFont=18;applyFont(18);};
+document.getElementById('themeBtn').onclick=()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
+document.getElementById('toTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+/* ============ التنقل ============ */
+function goSec(id){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.sec===id));
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='sec-'+id));
+  try{history.replaceState(null,'','#'+id);}catch(e){}
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='report'&&!document.getElementById('reportBox').dataset.built){renderEmptyHint();}
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>goSec(b.dataset.sec));
+
+/* ============ البيانات: المجالات ============ */
+const DOMAINS=[
+ {id:'iman',n:'المجال الإيماني',i:'🤲',c:'#0e7c61',d:'حب الله ورسوله، الإيمان بالغيب، مراقبة الله، التوكل والرضا.'},
+ {id:'shar',n:'مجال العلم الشرعي',i:'📖',c:'#b8860b',d:'القرآن حفظًا وتلاوة، أركان الإسلام، الفقه والسيرة والأذكار.'},
+ {id:'sulu',n:'المجال السلوكي والأخلاقي',i:'🌷',c:'#c0392b',d:'الصدق والأمانة والحياء والاحترام وآداب التعامل.'},
+ {id:'aql',n:'المجال العقلي',i:'🧠',c:'#1d6fa5',d:'التفكير والسؤال وحل المشكلات والحفظ والفهم.'},
+ {id:'daw',n:'المجال الدعوي',i:'📢',c:'#7b4fc9',d:'حب الخير للغير، الدلالة على الخير، المشاركة في العمل الصالح.'},
+ {id:'fikr',n:'المجال الفكري والمنهجي',i:'🧭',c:'#d35400',d:'التمييز بين الحق والباطل، التثبت، المنهجية والقدوة الفكرية.'},
+ {id:'nafs',n:'المجال النفسي وإدارة الذات',i:'💚',c:'#149a79',d:'الثقة، ضبط الانفعالات، إدارة الوقت، العادات الصحية.'},
+ {id:'usar',n:'المجال الأسري والاجتماعي',i:'👨‍👩‍👧',c:'#e91e63',d:'بر الوالدين، صلة الرحم، الصداقة، التعاون وخدمة المجتمع.'},
+ {id:'lugh',n:'مجال اللغة والتواصل',i:'💬',c:'#0288d1',d:'اللغة العربية، التحدث والاستماع، الحوار والقراءة.'},
+ {id:'tiqn',n:'مجال التقنية والمعلومات',i:'💻',c:'#455a64',d:'الاستخدام الآمن النافع للتقنية تحت إشراف، والإنتاج لا الاستهلاك.'},
+ {id:'qiy',n:'المجال القيادي والإداري',i:'🏅',c:'#b8860b',d:'تحمل المسؤولية، المبادرة، العمل الجماعي، التخطيط البسيط.'}
+];
+const DNAME={};DOMAINS.forEach(d=>DNAME[d.id]=d);
+
+/* ============ المراحل + المعايير ============ */
+const STAGES=[
+{id:'s1',name:'البراعم الصغار',age:'0 – 2 سنة (الرضاعة والحضانة)',short:'0–2',
+ desc:'مرحلة الأمان والتعلق والحواس. الطفل يتعلم بالحب والاحتضان والتقليد والمناغاة. الدور الأكبر على الوالدين في التهيئة والقدوة والبيئة.',
+ traits:['التعلق الآمن بالأم والأب أساس كل بناء لاحق','التعلم بالحواس والتقليد والمناغاة والتكرار','الحاجة للحضن واللعب والروتين والنوم المنتظم','بداية اللغة: المناغاة ثم الكلمات الأولى','تجنب الشاشات تمامًا، والاعتماد على التفاعل البشري'],
+ std:{
+ iman:['يأنس بسماع الأذان والقرآن وصوت الدعاء في البيت','يهدأ ويفرح بأجواء الذكر والحنان المرتبطة بالله'],
+ shar:['يسمع قصار السور والأذكار اليومية بصوت الوالدين','يعتاد رؤية الوالدين يصليان ويقرآن القرآن'],
+ sulu:['يبتسم ويستجيب للحنان ويكف عن البكاء بالاحتواء','يبدأ تمييز النبرة الحانية من الغاضبة'],
+ aql:['يتتبع الأشياء بعينيه ويمسك ويستكشف بيديه','يستجيب لاسمه ويلتفت للأصوات المألوفة'],
+ daw:['يُحمل برفق ويُقبَّل ويُدعى له أمام الناس (تهيئة للدعوة بالقدوة)','يعتاد رؤية الكرم والضيافة في البيت'],
+ fikr:['يعيش روتينًا ثابتًا يمنحه الشعور بالنظام والأمان','تُلبَّى حاجاته بسرعة فيتعلم الثقة بالعالم'],
+ nafs:['ينام ويأكل بانتظام نسبي وفق روتين صحي','يهدأ تدريجيًا بالاحتضان دون هز عنيف'],
+ usar:['يتعلق بأمه وأبيه ويميز الغرباء (طبيعي وصحي)','يلعب بجوار الأطفال (لعب متوازٍ) ويبتسم لهم'],
+ lugh:['يناغي ثم يقول كلماته الأولى (بابا/ماما)','يُقرأ له يوميًا 10 دقائق مع الصور والإشارة'],
+ tiqn:['لا شاشات في هذه المرحلة — البديل: اللعب الحسي والقصص','تُبعد الأجهزة عن غرفة النوم وأوقات الطعام'],
+ qiy:['يُترك له هامش اختيار بسيط (لعبتان) لتنمية الاستقلال','يُشجَّع على المحاولة (الأكل بيده) دون عقاب']}
+ },
+{id:'s2',name:'التأسيس المحبب',age:'3 – 5 سنوات (الطفولة المبكرة / الروضة)',short:'3–5',
+ desc:'مرحلة الخيال واللعب والأسئلة الكثيرة (لماذا؟). يترسخ حب الله بالقصص والأناشيد والقدوة، ويتعلم الآداب بالتدريب المرح لا بالأمر.',
+ traits:['التعلم باللعب والقصص والأناشيد والتكرار المرح','كثرة الأسئلة وخيال واسع — فرصة لغرس الإيمان بالمحسوس','التقليد الدقيق للوالدين (القدوة أبلغ من الكلام)','بداية الاستقلال: الأكل واللبس ودورة المياه','الغيرة والعناد طبيعيان — يُعالجان بالاحتواء لا القمع'],
+ std:{
+ iman:['يعرف أن الله خلقنا ويرزقنا ويحفظنا (بأمثلة محسوسة)','يردد: الله يراني ويحبني — ويفرح بذكر الله','يحب النبي ﷺ ويعرف اسمه وصلاته عليه'],
+ shar:['يحفظ الفاتحة والإخلاص والمعوذتين وقصار السور','يعرف أركان الإسلام الخمسة إجمالًا بالأناشيد','يقلد الوضوء والصلاة مع والديه بمرح دون إلزام'],
+ sulu:['يقول: السلام عليكم، شكرًا، من فضلك، عفوًا','يصدق ولا يكذب (يُشجَّع على الصدق دون تخويف)','يستأذن قبل الدخول ويحترم الكبير ويرحم الصغير'],
+ aql:['يسأل (لماذا؟) ويُجاب بإجابات قصيرة صادقة','يركب ويصنف ويلون ويحفظ الأناشيد','يروي قصة قصيرة سمعها بكلماته'],
+ daw:['يشارك لعبة أو طعامًا مع طفل آخر بتشجيع','يقول دعاءً بسيطًا لأخيه أو صديقه المريض'],
+ fikr:['يميز: هذا حلال نحبه / هذا خطأ لا نفعله (ببساطة)','يتعلم: نسأل الكبار قبل تصديق أي كلام غريب'],
+ nafs:['يسمي مشاعره (فرح/حزين/غاضب) ويهدأ بمساعدة','يرتب ألعابه وينام في وقته بروتين ثابت','يتحمل الانتظار لدقائق ويشارك الدور'],
+ usar:['يقبّل والديه ويطيعهما في المعروف بفرح','يلعب مع الأطفال ويعتذر إذا أخطأ','يعرف أسماء أقاربه ويفرح بزيارتهم'],
+ lugh:['يتحدث بجمل مفيدة ويحاور ويسأل','يحفظ أناشيد عربية ويستمتع بالقصص اليومية','يمسك القلم ويرسم ويكتب اسمه لاحقًا'],
+ tiqn:['مشاهدة محدودة جدًا (نصف ساعة) مع الوالدين وبمحتوى هادف','يتعلم أن الأجهزة ليست قبل النوم ولا أثناء الطعام'],
+ qiy:['يختار بين خيارين ويتحمل نتيجة اختياره البسيطة','يقود لعبة صغيرة ويوزع الأدوار على إخوته']}
+ },
+{id:'s3',name:'التمييز الأول',age:'6 – 8 سنوات (الطفولة الوسطى / الصفوف الأولية)',short:'6–8',
+ desc:'سن التمييز والتعليم («مروهم بالصلاة لسبع»). العقل يفهم القواعد، والقلب يرتبط بالمسجد والقرآن والمدرسة. التربية بالتعويد والتشجيع والمتابعة.',
+ traits:['فهم القواعد والتمييز بين الصواب والخطأ','الارتباط بالمدرسة والمعلم والأصحاب','القدرة على الحفظ المنهجي والقراءة والكتابة','الحساسية للمدح والذم — التشجيع وقود التفوق','بداية التفكير بالعواقب (إذا فعلت.. حدث..)'],
+ std:{
+ iman:['يعرف أركان الإيمان الستة إجمالًا ويحب الله ورسوله','يستشعر مراقبة الله (الله يرانا دائمًا) في خلوته','يدعو الله وحده ويتوكل عليه قبل الامتحان واللعب'],
+ shar:['يحافظ على الصلوات الخمس بالتعويد والتشجيع (لسبع)','يحفظ جزء عمّ مع التجويد الميسر ويفهم معانيه','يتوضأ وضوءًا صحيحًا ويعرف نواقضه','يحفظ أذكار الصباح والمساء والنوم والطعام','يعرف سيرة النبي ﷺ إجمالًا وقصص الأنبياء'],
+ sulu:['يصدق دائمًا ويعترف بخطئه ويعتذر','أمين على الأشياء والأسرار ويستأذن','نظيف مرتب، يحترم المعلم والجار والكبير'],
+ aql:['يقرأ بطلاقة مناسبة ويلخص ما قرأ','يحل مسائل رياضية وحياتية مناسبة لعمره','يسأل أسئلة عميقة ويبحث عن الإجابة مع والديه'],
+ daw:['يدعو صديقًا للصلاة أو لحلقة قرآن بأدب','يشارك في صندوق صدقة البيت وكفالة يتيم بمبلغ يسير'],
+ fikr:['يميز الخبر الصادق من الكاذب ويسأل: من قال؟','يعرف أن قدوتنا النبي ﷺ والصحابة لا المشاهير السيئين'],
+ nafs:['يضبط غضبه (يستعيذ، يتوضأ، يبتعد) غالبًا','ينظم وقته: صلاة/مذاكرة/لعب/نوم بجدول بسيط','يثق بنفسه ويعبر عن رأيه بأدب'],
+ usar:['يبر والديه: يقبّل أيديهما ويساعدهما يوميًا','يصل رحمه (اتصال/زيارة) ويحفظ أسماءهم','يتعاون مع زملائه ويحمي الضعيف ولا يسخر'],
+ lugh:['يقرأ قصصًا عربية يوميًا ويكتب فقرة سليمة','يتحدث الفصحى الميسرة ويحسن الاستماع والحوار'],
+ tiqn:['يستخدم الأجهزة بوقت محدد وإشراف ومحتوى مفلتر','لا حسابات تواصل، ولا ألعاب عنيفة، ولا خلوة بالجهاز'],
+ qiy:['مسؤول عن مهمة بيتية ثابتة (ترتيب، سقي، إخوة)','يبادر بفكرة نافعة (مسابقة حفظ، تنظيف حي) وينفذها']}
+ },
+{id:'s4',name:'التمييز المتقدم',age:'9 – 11 سنة (الطفولة المتأخرة / ما قبل البلوغ)',short:'9–11',
+ desc:'الاستعداد للبلوغ والتكليف. تثبيت الصلاة («واضربوهم عليها لعشر» تأديبًا تربويًا غير مبرح)، والصوم التدريجي، والمسؤولية المالية، والصحبة الصالحة.',
+ traits:['الاستعداد للبلوغ: أسئلة عن الجسم والطهارة بأدب وعلم','قوة الانتماء للأصحاب — اختيار الصحبة مصيري','القدرة على الصوم التدريجي والقيام والصدقة','بداية التفكير المجرد وحب التحديات والمسابقات','الحاجة للخصوصية والاحترام لا للتدليل الزائد'],
+ std:{
+ iman:['يؤمن بالغيب (الملائكة/الجنة/النار) إيمانًا جازمًا مؤثرًا','يراقب الله في السر والعلن ويحاسب نفسه','يحب الصحابة ويقتدي بهم ويعرف فضلهم'],
+ shar:['يحافظ على الصلاة في وقتها (وفي المسجد للبنين)','يحفظ 3 أجزاء فأكثر مع مراجعة، ويختم أذكارًا','يصوم رمضان كاملًا أو أغلبه بالتدرج','يعرف أحكام الطهارة والصلاة والصوم الأساسية','يقرأ في السيرة والقصص القرآني بفهم'],
+ sulu:['عفيف اللسان والنظر، غاضٌّ لبصره، حييٌّ','يحفظ الأمانة ويفي بالوعد ويحترم المواعيد','آداب الطعام والمجلس والهاتف والضيافة'],
+ aql:['يفكر قبل أن يتصرف ويتوقع العواقب','يبحث ويقارن ويستنتج (مشاريع مدرسية، تجارب)','يحفظ المتون القصيرة (تحفة الأطفال، الأربعين)'],
+ daw:['يعلّم غيره ما تعلم (آية/حديث/خُلق) أسبوعيًا','يشارك في حلقة أو نادٍ دعوي/تطوعي'],
+ fikr:['يرد الشبهات البسيطة (من خلق الله؟) بإجابات صحيحة','يميز بين العلم النافع واللغو ويختار النافع'],
+ nafs:['يدير غضبه وحزنه بمهارات (تنفس، وضوء، فضفضة)','يدير مصروفه ويدخر ويتصدق بجزء منه','ينام مبكرًا ويعتني بصحته ورياضته'],
+ usar:['يخدم والديه (مشتريات، إخوة، بيت) دون تذمر','يختار الصديق الصالح ويبتعد عن السيئ بحزم','يشارك في مناسبات الأهل ويكرم الضيف'],
+ lugh:['يكتب موضوعًا مترابطًا ويلقي كلمة قصيرة','يقرأ 20+ دقيقة يوميًا ويحاور بثقة وأدب'],
+ tiqn:['يلتزم بقواعد الأسرة الرقمية (وقت/محتوى/خصوصية)','ينتج بالتقنية (عرض، فيديو دعوي، برمجة مبسطة)'],
+ qiy:['يقود مجموعة (فريق، حلقة، رحلة) ويديرها بعدل','يخطط لأهدافه (حفظ/دراسة/رياضة) ويتابعها']}
+ },
+{id:'s5',name:'عتبة التكليف',age:'12 – 14 سنة (المراهقة المبكرة / المتوسطة)',short:'12–14',
+ desc:'سن البلوغ والتكليف الشرعي والهوية. أخطر المراحل: تغيرات جسمية ونفسية، وضغط الأقران، والشهوات والشبهات. الاحتواء والحوار والمسؤولية بدل الأوامر.',
+ traits:['البلوغ والتكليف: فقه الطهارة والصلاة والصوم واجب عيني','البحث عن الهوية والاستقلال — الحوار لا الفرض','العاطفة الجياشة وحب الانتماء للمجموعة','التفكير المجرد والفلسفة والأسئلة الكبرى (لماذا نعبد؟)','الشهوة والفضول الجنسي — التربية على العفة والحياء'],
+ std:{
+ iman:['يصحح عقيدته (التوحيد/القضاء والقدر) ويناقشها بوعي','يحافظ على الفرائض عن قناعة ومراقبة ذاتية','يكثر من النوافل (وتر/ضحى/ذكر) محبةً لا عادة'],
+ shar:['يعرف أحكام البلوغ والغسل والصلاة والصوم بتفصيل','يحفظ 5 أجزاء فأكثر مع فهم وتدبر','يطلب العلم الشرعي المنهجي (متون + دروس)','يعرف محرمات البلوغ (العورة/الاختلاط/الخلوة)'],
+ sulu:['عفيف: يغض بصره ويحفظ فرجه ويتجنب الخلوة والمثيرات','صادق أمين وفيّ، يحترم خصوصيات الآخرين','حسن المظهر والنظافة دون إسراف أو تشبه محرم'],
+ aql:['يفكر نقديًا: يميز الدليل من الدعوى ويطالب بالبرهان','يتقن أساسيات الرياضيات والعلوم ويربطها بالإيمان'],
+ daw:['يدعو بالحكمة: آية/موقف/قدوة دون تنفير','يشارك في عمل تطوعي ثابت (تعليم صغار، نظافة مسجد)'],
+ fikr:['يعرف مصادر التلقي (الكتاب/السنة/العلماء الثقات)','يكشف الشبهات الشائعة (الإلحاد/الشهوات) ولا يتبع كل ناعق'],
+ nafs:['يدير وقته بين عبادة ودراسة ورياضة وترفيه مباح','يواجه الضغوط (تنمر/قلق امتحان) بمهارات صحية','يعتني بجسمه (رياضة/غذاء/نوم) ويتجنب التدخين والمسكرات'],
+ usar:['يبر والديه برًّا عمليًا (وقت/خدمة/مشورة) ويخفض لهما الجناح','يحسن اختيار الصحبة ويقاطع السيئة دون خجل','يشارك في قرارات الأسرة ويتحمل نتائجها'],
+ lugh:['يتقن العربية قراءة وكتابة وخطابة، ويبدأ لغة ثانية','يكتب مقالًا ويناقش بمنطق ويحترم المخالف'],
+ tiqn:['أمن رقمي: خصوصية، عدم إرسال صور، إبلاغ عن إساءة','يستخدم التقنية للتعلم والإنتاج ويتجنب الإباحية والألعاب المدمنة'],
+ qiy:['يقود مشروعًا (حفظ/رياضي/خيري) من التخطيط للتقييم','يدير ميزانيته (مصروف/عمل صيفي) ويتصدق ويدخر']}
+ },
+{id:'s6',name:'صناعة الهوية',age:'15 – 17 سنة (المراهقة المتأخرة / الثانوية)',short:'15–17',
+ desc:'اكتمال الشخصية واختيار التخصص والمستقبل. المعركة على العقل والقلب: الشبهات الفكرية، والقدوات، والعلاقات، والتقنية. التمكين والإرشاد لا الوصاية.',
+ traits:['تبلور الهوية والقيم والانتماء للأمة','القدرة على الاستدلال والمناظرة — يحتاج تأصيلًا','الاستقلال المالي والاجتماعي الجزئي (عمل/قيادة)','العلاقات العاطفية والضغوط — العفة والزواج المبكر فكرة','التخطيط للجامعة والتخصص والمهنة'],
+ std:{
+ iman:['يحقق التوحيد ويدرك مقاصد الشريعة وحكمة التكليف','يثبت عند الشبهات (الشر/القدر/المرأة) بأجوبة مؤصلة','يخلو بربه (قيام/تدبر/دعاء) ويأنس به'],
+ shar:['يحفظ 10 أجزاء فأكثر أو يختم (حسب القدرة) مع الإتقان','يدرس الفقه الميسر وأصوله ومصطلح الحديث والسيرة بعمق','يعرف أحكام المعاملات واللباس والعلاقات بتفصيل'],
+ sulu:['مروءة وشهامة: نصرة المظلوم وإغاثة المحتاج','عفة شاملة (نظر/سمع/علاقات) والتزام بضوابط الاختلاط'],
+ aql:['يقرأ الكتب الجادة ويلخص ويناقش (10+ كتاب سنويًا)','يتقن البحث العلمي والتفكير الإحصائي والنقدي'],
+ daw:['له ثغر دعوي ثابت (تحفيظ صغار، محتوى نافع، إمامة)','يأمر بالمعروف وينهى عن المنكر بحكمة وشجاعة'],
+ fikr:['يميز المذاهب الفكرية (علمانية/نسوية/إلحاد) ويرد عليها','يتبع العلماء الثقات ويحذر من الغلو والتطرف والتفريط'],
+ nafs:['يضع رؤية ورسالة وأهدافًا مكتوبة ويراجعها','يتعامل مع الفشل والضغوط بمرونة واستشارة','يعتني بصحته ونومه ورياضته ويترك المنبهات'],
+ usar:['علاقة ناضجة بوالديه (بر + حوار + استشارة)','يبني شبكة صالحة (شيوخ/معلمون/أصحاب) ويخدم مجتمعه','يتدرب على إدارة البيت والميزانية والتسوق'],
+ lugh:['خطيب وكاتب مؤثر بالعربية، ومتمكن من الإنجليزية','ينتج محتوى (مقال/بودكاست/فيديو) بلغة سليمة'],
+ tiqn:['صانع محتوى تقني نافع، ويحمي بياناته وسمعته','يبرمج/يصمم/يبحث باحتراف ويتجنب الإدمان الرقمي'],
+ qiy:['يقود فريقًا/ناديًا/مبادرة مجتمعية بمهارات إدارية','يخطط لمستقبله (تخصص/جامعة/مهنة) بخطة مكتوبة']}
+ },
+{id:'s7',name:'الانطلاق والبناء',age:'18+ سنة (الجامعة وما بعدها / الرشد)',short:'18+',
+ desc:'الرشد الكامل: التخصص، والمهنة، والزواج، والدعوة، وخدمة الأمة. الشخصية الإسلامية هنا: عالمٌ عاملٌ مصلحٌ، يجمع بين الإتقان المهني والرسالة.',
+ traits:['الاستقلال التام والمسؤولية الشرعية والقانونية','اختيار التخصص والمهنة والشريك — قرارات مصيرية','الانفتاح على العالم (جامعة/سفر/إنترنت) — الثبات','القدرة على العطاء: تعليم ودعوة وإصلاح وإنفاق','بناء الأسرة وتربية الجيل التالي بمنهج نماء'],
+ std:{
+ iman:['عقيدة راسخة وعمل بها ودعوة إليها (علم + خشية)','إخلاص ومراقبة ومحاسبة، وورد ثابت من العبادة'],
+ shar:['طلب علم منهجي (تخصص شرعي أو ثقافة شرعية متينة)','فقه الواقع والنوازل وأحكام الأسرة والمعاملات','حفظ ومراجعة مستمرة ولو جزءًا شهريًا'],
+ sulu:['نموذج أخلاقي في الجامعة والعمل والبيت (أمانة/وفاء)','عفة واحتشام وغض بصر والتزام في العلاقات'],
+ aql:['تفوق أكاديمي/مهني مع تفكير بحثي وإبداعي','قراءة موسعة وتخصص عميق (50+ كتابًا في التخصص)'],
+ daw:['مشروع دعوي/إصلاحي مستمر (حلقة/مبادرة/كتابة)','صبر على الأذى وحكمة في الخلاف ورفق بالمدعوين'],
+ fikr:['منهجية في التلقي والاستدلال، ووسطية بلا غلو','مشروع فكري (قراءة للمدارس الفكرية والرد عليها)'],
+ nafs:['إدارة ذاتية كاملة (وقت/مال/صحة/علاقات)','توازن بين الدين والدنيا، ومعالجة الاحتراق والقلق'],
+ usar:['بر متقدم (إسكان/نفقة/صحبة) وصلة رحم فاعلة','اختيار شريك صالح وبناء بيت مسلم وإنجاب وتربية','إصلاح مجتمعي (جمعيات/مساجد/أعمال خيرية)'],
+ lugh:['إتقان العربية والإنجليزية (أو لغة تخصصه) كتابة وخطابة','نشر علمي ودعوي (تدريس/كتابة/ترجمة)'],
+ tiqn:['احتراف تقني يخدم الدعوة والمهنة (بحث/إنتاج)','أخلاقيات رقمية: صدق، خصوصية، أمانة علمية'],
+ qiy:['قيادة مؤسسية (إدارة مشروع/فريق/وقف) بكفاءة وأمانة','تخطيط استراتيجي لحياته وأمته، وصناعة خلفاء']}
+ }
+];
+
+/* ============ الاستبانة: 33 عبارة ============ */
+const SCALE=[{v:5,t:'دائمًا'},{v:4,t:'غالبًا'},{v:3,t:'أحيانًا'},{v:2,t:'نادرًا'},{v:1,t:'أبدًا'}];
+const QUESTIONS=[
+ {d:'iman',t:'يُظهر حب الله (يفرح بالعبادة، يذكر الله، يدعوه)',min:1},
+ {d:'iman',t:'يستشعر أن الله يراه فيتجنب الخطأ حتى لوحده',min:2},
+ {d:'iman',t:'يحب النبي ﷺ ويصلي عليه ويقتدي به',min:1},
+ {d:'shar',t:'يحافظ على الصلوات في أوقاتها بما يناسب عمره',min:1},
+ {d:'shar',t:'يحفظ من القرآن والأذكار ما يناسب مرحلته ويراجع',min:1},
+ {d:'shar',t:'يعرف أساسيات دينه (الطهارة/السيرة/الأركان) لعمره',min:2},
+ {d:'sulu',t:'صادق: يقول الحقيقة ويعترف بخطئه',min:1},
+ {d:'sulu',t:'أمين ومحترم: يستأذن، يحفظ الأمانة، يحترم الكبير',min:1},
+ {d:'sulu',t:'عفيف اللسان والنظر، حسن الآداب في الطعام والمجلس',min:2},
+ {d:'aql',t:'يسأل ويفكر ويحب الاكتشاف والتعلم',min:1},
+ {d:'aql',t:'يحل المشكلات المناسبة لعمره ويتوقع العواقب',min:2},
+ {d:'aql',t:'يقرأ / يُقرأ له بانتظام ويفهم ما يقرأ',min:1},
+ {d:'daw',t:'يدل غيره على الخير (صلاة/صدقة/خُلق) بأدب',min:2},
+ {d:'daw',t:'يشارك في عمل خيري أو تطوعي (ولو بسيطًا)',min:2},
+ {d:'daw',t:'يحب الخير لأصحابه ويفرح لنفعهم',min:1},
+ {d:'fikr',t:'يميز الصواب من الخطأ ولا يقلد كل ما يرى',min:2},
+ {d:'fikr',t:'يتثبت قبل تصديق الأخبار (يسأل الكبار/المصدر)',min:3},
+ {d:'fikr',t:'قدوته الصالحة (الأنبياء/الصحابة) لا المشاهير السيئين',min:3},
+ {d:'nafs',t:'يضبط انفعالاته (الغضب/البكاء) بطرق صحية غالبًا',min:1},
+ {d:'nafs',t:'واثق بنفسه ويعبر عن رأيه وحاجاته بأدب',min:1},
+ {d:'nafs',t:'منظم: ينام مبكرًا، ويدير وقته ومصروفه وصحته',min:2},
+ {d:'usar',t:'بار بوالديه: يطيعهما ويساعدهما ويخفض صوته',min:1},
+ {d:'usar',t:'يحسن لأقاربه وأصحابه ويتعاون ولا يسخر',min:1},
+ {d:'usar',t:'يختار الصحبة الصالحة ويبتعد عن السيئة',min:3},
+ {d:'lugh',t:'يتحدث بطلاقة تناسب عمره ويحاور بأدب',min:1},
+ {d:'lugh',t:'يستمع جيدًا ويقرأ العربية بانتظام',min:2},
+ {d:'lugh',t:'يكتب / يلقي بما يناسب عمره (جملة/فقرة/كلمة)',min:3},
+ {d:'tiqn',t:'يستخدم الأجهزة بوقت ومحتوى آمنين وتحت إشراف',min:1},
+ {d:'tiqn',t:'يتجنب المحرم والضار رقميًا (عري/عنف/إدمان/غرباء)',min:3},
+ {d:'tiqn',t:'ينتج بالتقنية (تعلم/بحث/مشروع) لا يستهلك فقط',min:4},
+ {d:'qiy',t:'يتحمل مسؤولية ثابتة في البيت/المدرسة',min:1},
+ {d:'qiy',t:'يبادر بأفكار نافعة ويخطط وينفذ',min:2},
+ {d:'qiy',t:'يعمل ضمن فريق ويحترم الدور والقائد',min:2},
+];
+function groupOf(stageId){const i=STAGES.findIndex(s=>s.id===stageId);if(i<=1)return 'صغار';if(i<=3)return 'وسط';return 'يافعون';}
+
+/* أنشطة مقترحة لكل مجال حسب الفئة */
+const ACT={
+ iman:{'صغار':['قصة يومية عن الله (الخالق الرازق) + دعاء بصوت عالٍ','أنشودة «الله يراني» + لوحة نجوم للذكر','تقبيل المصحف وربط الحب لا الخوف'], 'وسط':['جلسة تدبر قصيرة (آية + تطبيق) 3 مرات أسبوعيًا','مشروع «أسماء الله الحسنى»: اسم أسبوعيًا حفظًا وتطبيقًا','قيام ركعتين مع الأب + دعاء من القلب'], 'يافعون':['ورد تدبر + كتاب عقيدة ميسر (أصول الإيمان)','خلوة أسبوعية: محاسبة ودعاء وقيام','مناقشة الشبهات بهدوء مع شيخ ثقة']},
+ shar:{'صغار':['حلقة 10 دقائق: سورة قصيرة + حديث واحد + ذكر','بطاقات الوضوء والصلاة المصورة + تقليد مرح','قصص الأنبياء المصورة قبل النوم'], 'وسط':['حلقة مسجد/بيت: حفظ + مراجعة + تجويد ميسر','جدول صلاة بالنجوم + مكافأة الالتزام الشهري','منهج فقه مصور (الطهارة/الصلاة) + اختبار مرح'], 'يافعون':['برنامج حفظ (صفحة يوميًا) + مراجعة + سرد','درس فقه البلوغ + متن مختصر مع معلم','قراءة سيرة كاملة + تلخيص الدروس']},
+ sulu:{'صغار':['لوحة «خلق الأسبوع» (الصدق/الشكر) + مكافأة فورية','قصة عن الصدق + تمثيل دور + مدح الصادق','تعليم الاستئذان والسلام بالتدريب العملي'], 'وسط':['ميثاق شرف عائلي (صدق/أمانة/احترام) موقع من الجميع','صندوق الأمانات + تقييم أسبوعي هادئ','زيارة مريض/جار + آداب الضيافة عمليًا'], 'يافعون':['مشروع عفة: غض البصر + صحبة + بديل مباح (رياضة)','خدمة مجتمعية شهرية + توثيق الأثر','قراءة كتاب أخلاقي (مدارج/خلق المسلم) ومناقشته']},
+ aql:{'صغار':['ألعاب تركيب وتصنيف + أسئلة «لماذا» بإجابات قصيرة','قراءة يومية 15 دقيقة + سؤال: ماذا تعلمت؟','تجارب حسية بسيطة (زراعة/ماء/مغناطيس)'], 'وسط':['نادي قراءة عائلي: كتاب شهريًا + مسابقة','مسائل ذكاء وألغاز + مشاريع مدرسية بجودة','حفظ متن علمي قصير + شرح ميسر'], 'يافعون':['قراءة 10 كتب جادة سنويًا + تلخيص ومناقشة','دورة تفكير نقدي وبحث علمي + مشروع تخرج مصغر','تعلم مهارة عقلية (برمجة/خطابة/لغة)']},
+ daw:{'صغار':['«مهمة الخير»: مشاركة لعبة + دعاء لصديق','حصالة صدقة البيت + وضعها معًا في المسجد'], 'وسط':['دعوة صديق لحلقة + تعليم آية لغيره أسبوعيًا','صندوق إفطار صائم / حقيبة محتاج كل شهر'], 'يافعون':['ثغر ثابت: تحفيظ صغار / محتوى دعوي / إمامة','مبادرة حي (نظافة/إفطار/دروس) بقيادته']},
+ fikr:{'صغار':['«نسأل قبل أن نصدق» + قدوتنا النبي ﷺ (قصة)'], 'وسط':['لعبة «من قال؟ ما الدليل؟» للأخبار + قصص ثبات الصحابة','مقارنة القدوات: عالم/مجاهد vs مشهور تافه'], 'يافعون':['قراءة في المذاهب الفكرية + رد الشبهات مع مختص','قاعدة: التلقي عن الثقات + الوسطية (لا غلو ولا تفريط)']},
+ nafs:{'صغار':['روتين ثابت (نوم/أكل/لعب) + ركن الهدوء + تسمية المشاعر','ترتيب الألعاب + انتظار الدور بالتدريب'], 'وسط':['جدول يومي (صلاة/مذاكرة/لعب) + مصروف وادخار وصدقة','تقنية الغضب: استعاذة/وضوء/تنفس/ابتاعد + رياضة'], 'يافعون':['خطة أهداف مكتوبة (دين/دراسة/صحة) + مراجعة أسبوعية','إدارة ضغوط: رياضة + نوم + فضفضة + استشارة','تحدي 30 يومًا لعادة (قراءة/رياضة/حفظ)']},
+ usar:{'صغار':['قبلة يومية للوالدين + مساعدة بسيطة + زيارة جد/جدة أسبوعيًا','لعب جماعي + اعتذار عند الخطأ'], 'وسط':['مهمة بر يومية + اتصال رحم + إكرام ضيف','اختيار صديق صالح + نشاط جماعي (كشافة/نادي)'], 'يافعون':['جلسة حوار أسرية أسبوعية + مشاركة في القرار','قطع الصحبة السيئة + بناء شبكة صالحة + خدمة مجتمع']},
+ lugh:{'صغار':['قراءة قصص + أناشيد + حوار يومي 15 دقيقة','منع العامية المكسرة: تحدث فصحى ميسرة بمرح'], 'وسط':['قراءة 20 دقيقة يوميًا + إلقاء + كتابة فقرة','مكتبة بيت + مسابقة تلخيص + إذاعة مدرسية'], 'يافعون':['خطابة وكتابة مقال + لغة ثانية + إنتاج محتوى','قراءة التراث الميسر + مناظرات هادئة']},
+ tiqn:{'صغار':['بديل الشاشة: لعب حسي + قصص + خروج طبيعة','قاعدة: لا أجهزة في الغرف والطعام وقبل النوم بساعة'], 'وسط':['اتفاقية رقمية مكتوبة (وقت/محتوى/خصوصية) + فلترة','إنتاج: عرض/فيديو/برمجة مبسطة + لا تواصل اجتماعي'], 'يافعون':['أمن رقمي: خصوصية + إبلاغ + تجنب الإباحية بحزم','مشروع تقني نافع + إدارة وقت الشاشة بتطبيق']},
+ qiy:{'صغار':['اختيار بين خيارين + مهمة صغيرة + مدح المبادرة'], 'وسط':['مسؤولية ثابتة + قيادة فريق/رحلة + تخطيط هدف صغير','ميزانية مصروف + ادخار + صدقة'], 'يافعون':['قيادة مبادرة مجتمعية كاملة + خطة مستقبل مكتوبة','عمل صيفي/تطوع + إدارة مال + صناعة خليفة']}
+};
+function levelOf(p){if(p>=85)return{t:'متميز 🌟',c:'b-ex'};if(p>=70)return{t:'جيد 👍',c:'b-good'};if(p>=50)return{t:'يحتاج دعمًا 🌱',c:'b-mid'};return{t:'أولوية قصوى 🚨',c:'b-low'};}
+function tipFor(d,p){if(p>=85)return'حافظ على التميز: ثبّت العادة، وزد التحدي تدريجيًا، واجعله قدوة يُعلّم غيره.';if(p>=70)return'البناء جيد: ركز على الاستمرارية اليومية + مراجعة أسبوعية قصيرة مع التشجيع.';if(p>=50)return'يحتاج خطة مركزة 30 يومًا: عادة واحدة صغيرة يوميًا + متابعة لطيفة + مكافأة معنوية.';return'ابدأ فورًا بخطوة صغيرة جدًا يوميًا (5–10 دقائق)، مع احتواء وحوار، واستشر مختصًا عند الحاجة.';}
+
+/* ============ عرض المجالات والمراحل ============ */
+const STAGE_PAGES={s1:'stage-0-2.html',s2:'stage-3-5.html',s3:'stage-6-8.html',s4:'stage-9-11.html',s5:'stage-12-14.html',s6:'stage-15-17.html',s7:'stage-18-plus.html'};
+const dh=document.getElementById('domainsHome');
+DOMAINS.forEach(d=>{const el=document.createElement('div');el.className='dcard';el.innerHTML=`<div class="ic">${d.i}</div><h4>${d.n}</h4><p>${d.d}</p>`;dh.appendChild(el);});
+const sh=document.getElementById('stagesHome');
+STAGES.forEach(s=>{const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age">${s.age}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
+const ad=document.getElementById('aboutDomains');
+DOMAINS.forEach((d,i)=>{const li=document.createElement('li');li.innerHTML=`<b>${d.n}</b> — ${d.d}`;ad.appendChild(li);});
+
+/* ============ صفحات المراحل ============ */
+let curStage='s3';
+const chipsBox=document.getElementById('stageChips');
+STAGES.forEach(s=>{const b=document.createElement('button');b.className='chip'+(s.id===curStage?' active':'');b.dataset.id=s.id;b.textContent=`${s.name} (${s.short})`;b.onclick=()=>selectStage(s.id);chipsBox.appendChild(b);});
+function selectStage(id){
+  curStage=id; quizStage=id;
+  document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===id));
+  renderStage();
+  document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===id));
+  buildQuiz();
+}
+function renderStage(){
+  const s=STAGES.find(x=>x.id===curStage);
+  const q=document.getElementById('stageSearch').value.trim();
+  let html=`<h3 class="stg-title">${s.name} <span style="color:var(--brand2)">• ${s.age}</span></h3><p class="note">${s.desc}</p>`;
+  html+=`<div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.4rem 0"><a class="btn primary" href="${STAGE_PAGES[s.id]}">↗ فتح هذه المرحلة في صفحة مستقلة</a><a class="btn" href="index.html?stage=${s.id}#quiz">📝 استبانة هذه المرحلة</a></div>`;
+  html+=`<h3>🌿 سمات النمو في هذه المرحلة</h3><ul style="font-size:.9em">`+s.traits.map(t=>`<li>${t}</li>`).join('')+`</ul>`;
+  html+=`<h3>🧭 المجالات والمعايير المناسبة لهذا العمر</h3>`;
+  DOMAINS.forEach(d=>{
+    const arr=(s.std[d.id]||[]).filter(t=>!q||t.includes(q));
+    if(q&&!arr.length&&!(d.n.includes(q)))return;
+    html+=`<div class="domain-block"><h4><span class="dot" style="background:${d.c}"></span>${d.i} ${d.n}</h4><ul>${arr.map(t=>`<li>${t}</li>`).join('')||'<li class="note">لا نتيجة مطابقة للبحث في هذا المجال.</li>'}</ul>`;
+    const acts=(ACT[d.id]&&ACT[d.id][groupOf(s.id)])||[];
+    if(!q&&acts.length)html+=`<div class="tip">💡 أنشطة مقترحة: ${acts.join(' • ')}</div>`;
+    html+=`</div>`;
+  });
+  document.getElementById('stageDetail').innerHTML=html;
+}
+document.getElementById('stageSearch').addEventListener('input',renderStage);
+renderStage();
+
+/* ============ الاستبانة ============ */
+let quizStage='s3';
+const qChips=document.getElementById('quizStageChips');
+STAGES.forEach(s=>{const b=document.createElement('button');b.className='chip'+(s.id===quizStage?' active':'');b.dataset.id=s.id;b.textContent=`${s.name} (${s.short})`;b.onclick=()=>{quizStage=s.id;curStage=s.id;document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));renderStage();document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));buildQuiz();};qChips.appendChild(b);});
+function stageIdx(id){return STAGES.findIndex(s=>s.id===id);}
+function ageToStage(a){a=+a||0;if(a<=2)return 's1';if(a<=5)return 's2';if(a<=8)return 's3';if(a<=11)return 's4';if(a<=14)return 's5';if(a<=17)return 's6';return 's7';}
+document.getElementById('childAge').addEventListener('change',e=>{
+  const sug=ageToStage(e.target.value);
+  quizStage=sug;
+  document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===sug));
+  buildQuiz();
+});
+let answers={};
+try{answers=JSON.parse(localStorage.getItem('namaa_answers')||'{}');}catch(e){answers={};}
+function saveAns(){localStorage.setItem('namaa_answers',JSON.stringify(answers));localStorage.setItem('namaa_child',JSON.stringify({n:document.getElementById('childName').value,a:document.getElementById('childAge').value,s:quizStage}));}
+try{const c=JSON.parse(localStorage.getItem('namaa_child')||'null');if(c){document.getElementById('childName').value=c.n||'';document.getElementById('childAge').value=c.a||7;quizStage=c.s||ageToStage(c.a||7);document.querySelectorAll('#quizStageChips .chip').forEach(x=>x.classList.toggle('active',x.dataset.id===quizStage));}}catch(e){}
+function filteredQ(){const idx=stageIdx(quizStage);return QUESTIONS.map((q,i)=>({...q,qi:i})).filter(q=>idx>=q.min);}
+function buildQuiz(){
+  const list=filteredQ();
+  const box=document.getElementById('quizList');box.innerHTML='';
+  list.forEach(q=>{
+    const d=DNAME[q.d];
+    const div=document.createElement('div');div.className='q'+(answers['q'+q.qi]?' did':'');
+    div.innerHTML=`<p>${q.t} <span class="dom">— ${d.i} ${d.n}</span></p><div class="likert"></div>`;
+    const lk=div.querySelector('.likert');
+    SCALE.forEach(s=>{
+      const b=document.createElement('button');b.textContent=`${s.t}`;if(answers['q'+q.qi]===s.v)b.classList.add('sel');
+      b.onclick=()=>{answers['q'+q.qi]=s.v;saveAns();div.classList.add('did');lk.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');updateProg();};
+      lk.appendChild(b);
+    });
+    box.appendChild(div);
+  });
+  updateProg();
+}
+function updateProg(){
+  const list=filteredQ();
+  const done=list.filter(q=>answers['q'+q.qi]).length;
+  document.getElementById('quizBar').style.width=(list.length?Math.round(done/list.length*100):0)+'%';
+  document.getElementById('quizCount').textContent=`${done} / ${list.length} مُجاب`;
+}
+document.getElementById('clearQuiz').onclick=()=>{if(confirm('مسح جميع الإجابات؟')){answers={};saveAns();buildQuiz();}};
+document.getElementById('childName').addEventListener('input',saveAns);
+buildQuiz();
+
+/* ============ التقرير ============ */
+function compute(){
+  const list=filteredQ();
+  const per={};
+  DOMAINS.forEach(d=>per[d.id]={sum:0,n:0});
+  list.forEach(q=>{const v=answers['q'+q.qi];if(v){per[q.d].sum+=v;per[q.d].n++;}});
+  const out={};
+  Object.keys(per).forEach(k=>{const o=per[k];out[k]=o.n?Math.round(o.sum/o.n/5*100):null;});
+  const vals=Object.values(out).filter(v=>v!==null);
+  const total=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):0;
+  return{per:out,total,answered:list.filter(q=>answers['q'+q.qi]).length,count:list.length};
+}
+document.getElementById('showReportBtn').onclick=()=>{
+  const r=compute();
+  if(r.answered<5){alert('أجب عن 5 عبارات على الأقل لعرض تقرير مفيد (الأفضل إتمام الكل).');goSec('quiz');return;}
+  buildReport(r);goSec('report');
+};
+function renderEmptyHint(){}
+function buildReport(r){
+  const stage=STAGES.find(s=>s.id===quizStage);
+  const name=document.getElementById('childName').value||'طفلنا الحبيب';
+  const age=document.getElementById('childAge').value||'—';
+  const g=groupOf(quizStage);
+  const lv=levelOf(r.total);
+  const sorted=Object.entries(r.per).filter(([k,v])=>v!==null).sort((a,b)=>b[1]-a[1]);
+  const strong=sorted.slice(0,2), weak=[...sorted].reverse().slice(0,3);
+  let h=`<div class="panel" style="background:var(--bg2)"><h3>تقرير ${name} — المرحلة: ${stage.name} (${stage.age}) • العمر: ${age} • الإجابات: ${r.answered}/${r.count}</h3>`;
+  h+=`<div class="bar-row"><span class="nm">المؤشر العام</span><div class="tr"><i style="width:${r.total}%"></i></div><b>${r.total}%</b><span class="badge ${lv.c}">${lv.t}</span></div>`;
+  h+=`<div class="tip">${r.total>=85?'ما شاء الله! شخصية متوازنة. مهمتكم: التثبيت + التحدي الأعلى + تعليمه لغيره.':r.total>=70?'مستوى جيد ومبشر. ثبتوا العادات اليومية الصغيرة وستصلون للتميز بإذن الله.':r.total>=50?'بداية طيبة تحتاج خطة مركزة 30 يومًا (عادة واحدة لكل مجال ضعيف). لا تكثروا الأهداف دفعة واحدة.':'لا تقلقوا — كل مهارة تُبنى بالتدريج. ابدءوا بأولويتين فقط (الإيماني + السلوكي) بخطوات صغيرة محببة.'}</div></div>`;
+  h+=`<h3>📊 الدرجات حسب المجال</h3>`;
+  sorted.forEach(([k,v])=>{const d=DNAME[k];const l=levelOf(v);h+=`<div class="bar-row"><span class="nm">${d.i} ${d.n}</span><div class="tr"><i style="width:${v}%"></i></div><b>${v}%</b><span class="badge ${l.c}">${l.t}</span></div>`;});
+  const na=Object.entries(r.per).filter(([k,v])=>v===null);
+  if(na.length)h+=`<p class="note">لا ينطبق في هذه المرحلة (يُركَّز على تهيئة البيئة): ${na.map(([k])=>DNAME[k].n).join('، ')}</p>`;
+  h+=`<div class="grid g2"><div class="tip">💪 <b>نقاط القوة:</b> ${strong.map(([k,v])=>`${DNAME[k].n} (${v}%)`).join('، ')||'—'} — عززوها بالمدح والقدوة وتكليفه بتعليم غيره.</div><div class="warn">🎯 <b>أولويات العمل (الأقل درجة):</b> ${weak.map(([k,v])=>`${DNAME[k].n} (${v}%)`).join('، ')||'—'} — ابدءوا بها في الخطة أدناه.</div></div>`;
+  h+=`<h3>📝 البطاقات التفصيلية والاقتراحات (حسب عمره)</h3>`;
+  sorted.forEach(([k,v])=>{
+    const d=DNAME[k];const l=levelOf(v);
+    const stds=(stage.std[k]||[]).slice(0,3);
+    const acts=(ACT[k]&&ACT[k][g])||[];
+    h+=`<div class="rep-domain"><h4>${d.i} ${d.n} — <b>${v}%</b> <span class="badge ${l.c}">${l.t}</span></h4><div class="note">${d.d}</div>`;
+    if(stds.length)h+=`<div style="font-size:.88em"><b>المعايير المستهدفة في مرحلته:</b><ul style="margin:.2rem 0">${stds.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
+    h+=`<div class="tip">💡 <b>اقتراحات عملية (30 يومًا):</b><ul style="margin:.2rem 0">${acts.map(a=>`<li>${a}</li>`).join('')}</ul><div>${tipFor(k,v)}</div></div></div>`;
+  });
+  const w1=weak[0]?DNAME[weak[0][0]].n:'—', w2=weak[1]?DNAME[weak[1][0]].n:'—';
+  h+=`<h3>🗓️ خطة 30 يومًا المقترحة</h3><div class="plan"><ol><li><b>الأسبوع 1 — التثبيت:</b> ثبتوا الصلاة/القرآن + خلق واحد (من ${w1}) بعادة 10 دقائق يوميًا + لوحة نجوم.</li><li><b>الأسبوع 2 — التركيز:</b> أضيفوا مجال (${w2}) بنشاط واحد ممتع + جلسة حوار أسبوعية 20 دقيقة.</li><li><b>الأسبوع 3 — التوسع:</b> أشركوا الطفل في عمل خيري/دعوي صغير + قللوا الشاشة لصالح بديل (قراءة/رياضة/طبيعة).</li><li><b>الأسبوع 4 — التقييم:</b> أعيدوا الاستبانة، واحتفلوا بالتقدم (ولو 5%)، وحددوا هدف الشهر التالي.</li></ol><div class="tip">📌 قاعدة نماء الذهبية: <b>قدوة + حب + تعويد + تشجيع + متابعة</b> — وكثرة اللوم تهدم ما يبنيه التشجيع.</div></div>`;
+  h+=`<div class="warn">⚠️ متى تستشير مختصًا؟ عناد شديد مستمر + تراجع دراسي حاد + انعزال/عدوانية + مخاوف/كوابيس معطلة + تعرض لإساءة — فاستشارة مبكرة رحمة وليست وصمة.</div>`;
+  h+=`<p class="note">أُعد هذا التقرير آليًا من استبانة نماء (روح الكتاب، صياغة مبسطة للوالدين). المرجع الحاكم عند الشك: الكتاب الورقي واستشارة مربٍّ ثقة.</p>`;
+  const box=document.getElementById('reportBox');box.innerHTML=h;box.dataset.built='1';
+  const data={name,age,stage:quizStage,r,date:new Date().toISOString()};
+  localStorage.setItem('namaa_last_report',JSON.stringify(data));
+}
+document.getElementById('printBtn').onclick=()=>window.print();
+document.getElementById('copyBtn').onclick=()=>{
+  const r=compute();const stage=STAGES.find(s=>s.id===quizStage);
+  const txt=`تقرير نماء — ${document.getElementById('childName').value||'الطفل'} (${stage.name}) — العام ${r.total}%`+'\n'+Object.entries(r.per).filter(([k,v])=>v!==null).map(([k,v])=>`${DNAME[k].n}: ${v}% (${levelOf(v).t})`).join('\n');
+  navigator.clipboard.writeText(txt).then(()=>alert('تم نسخ الملخص ✅'));
+};
+document.getElementById('loadLastBtn').onclick=()=>{
+  try{const d=JSON.parse(localStorage.getItem('namaa_last_report')||'null');if(!d){alert('لا يوجد تقرير محفوظ بعد.');return;}quizStage=d.stage;document.getElementById('childName').value=d.name||'';buildReport(d.r);goSec('report');}catch(e){alert('تعذر الاسترجاع');}
+};
+/* دعم الروابط العميقة: index.html?stage=s4#quiz */
+(function(){
+  try{
+    const params=new URLSearchParams(location.search);
+    const st=params.get('stage');
+    if(st&&STAGES.some(s=>s.id===st)){curStage=st;quizStage=st;
+      document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===st));
+      document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===st));
+      renderStage();buildQuiz();}
+    const h=(location.hash||'').replace('#','');
+    if(['home','stages','quiz','report','about'].includes(h))goSec(h);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
