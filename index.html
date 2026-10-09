@@ -79,7 +79,9 @@ nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5
 .scard:hover{border-color:var(--brand2);transform:translateY(-2px)}
 .scard.active{border:2px solid var(--brand2);background:var(--brand-soft)}
 .scard h4{margin:.15rem 0;font-size:1em}
-.scard .age{display:inline-block;font-size:.75em;background:var(--gold-soft);border:1px dashed var(--gold);border-radius:999px;padding:.05rem .7rem;margin-top:.2rem}
+.scard .age{display:block;font-size:.8em;background:var(--gold-soft);border:1px dashed var(--gold);border-radius:10px;padding:.3rem .7rem;margin-top:.3rem;text-align:center}
+.scard .age b{display:block;unicode-bidi:isolate}
+.scard .age small{display:block;font-size:.85em;color:var(--muted)}
 .stage-detail h3.stg-title{font-family:"Aref Ruqaa",serif;font-size:1.35em;margin:.2rem 0}
 .pill{display:inline-block;font-size:.76em;border-radius:999px;padding:.1rem .8rem;border:1px solid var(--border);background:var(--bg);color:var(--muted);margin:.15rem}
 .domain-block{border:1px solid var(--border);border-radius:16px;padding:.9rem;background:var(--bg2);margin-bottom:.7rem}
@@ -548,7 +550,7 @@ const DOMAIN_PAGES={iman:'domain-iman.html',shar:'domain-shar.html',sulu:'domain
 const dh=document.getElementById('domainsHome');
 DOMAINS.forEach(d=>{const el=document.createElement('div');el.className='dcard';el.innerHTML=`<div class="ic">${d.i}</div><h4>${d.n}</h4><p>${d.d}</p><a class="btn" style="margin-top:.4rem;font-size:.78em" href="${DOMAIN_PAGES[d.id]}">↗ صفحة المجال بالتفصيل</a>`;dh.appendChild(el);});
 const sh=document.getElementById('stagesHome');
-STAGES.forEach(s=>{const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age">${s.age}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn btn-sm primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn btn-sm" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
+STAGES.forEach(s=>{const m=s.age.match(/^(.*)\((.*)\)$/);const rg=(m?m[1]:s.age).trim();const lb=m?m[2].trim():'';const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age"><b>${rg}</b>${lb?`<small>${lb}</small>`:''}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn btn-sm primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn btn-sm" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
 const ad=document.getElementById('aboutDomains');
 DOMAINS.forEach((d,i)=>{const li=document.createElement('li');li.innerHTML=`<b><a href="${DOMAIN_PAGES[d.id]}" style="color:inherit">${d.n}</a></b> — ${d.d}`;ad.appendChild(li);});
 
