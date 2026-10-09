@@ -191,7 +191,6 @@
   if (path.indexOf("stage-") > -1) page = "stage";
   else if (path.indexOf("domain-") > -1) page = "domain";
   else if (path.indexOf("works.html") > -1) page = "works";
-  else if (path.indexOf("sections.html") > -1) page = "sections";
   else if (path.indexOf("logo.html") > -1) page = "logo";
   document.body.dataset.page = page;
   var wrap = document.querySelector(".wrap");
@@ -205,7 +204,6 @@
   if (page === "stage") html += sep + '<a href="index.html#stages">المراحل</a>' + sep + "<span>" + raw + "</span>";
   else if (page === "domain") html += sep + '<a href="index.html#about">المجالات</a>' + sep + "<span>" + raw + "</span>";
   else if (page === "works") html += sep + "<span>أوراق العمل والأناشيد</span>";
-  else if (page === "sections") html += sep + "<span>أقسام الموقع</span>";
   else if (page === "logo") html += sep + "<span>الشعار</span>";
   var crumb = document.createElement("nav");
   crumb.className = "crumbs no-print";

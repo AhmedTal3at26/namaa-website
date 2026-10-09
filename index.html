@@ -162,7 +162,6 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <button class="tab" data-sec="report">📊 التقرير</button>
   <button class="tab" data-sec="about">📚 عن المنهج</button>
   <a class="tab" href="works.html" style="text-decoration:none">📋 أوراق العمل والأناشيد</a>
-  <a class="tab" href="sections.html" style="text-decoration:none">🗺️ أقسام الموقع</a>
 </nav>
 
 <section class="hero">
@@ -173,7 +172,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <div class="hero-cta no-print">
     <button class="btn primary" onclick="goSec('stages')">استكشف المنهج</button>
     <button class="btn" onclick="goSec('quiz')">أجب عن الاستبانة</button>
-    <button class="btn" onclick="goSec('home');setTimeout(()=>document.getElementById('howto').scrollIntoView({behavior:'smooth'}),80)">كيف تستخدم المنهج؟</button>
+    <button class="btn" onclick="goSec('quiz');setTimeout(()=>document.getElementById('howto').scrollIntoView({behavior:'smooth'}),80)">كيف تستخدم المنهج؟</button>
     <a class="btn gold" href="works.html" style="text-decoration:none">أوراق العمل والأناشيد</a>
   </div>
 </section>
@@ -190,39 +189,20 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <!-- HOME -->
 <div class="section active" id="sec-home">
   <div class="panel">
-    <h2>بنية <span>المنهج الأصلية</span></h2>
-    <p class="note">كما وضعها فريق مؤسسة المربي بنموذج المعايير — أربعة مستويات:</p>
-    <ol style="font-size:.9em">
-      <li><b>الرؤية العامة:</b> وصف إجمالي للشخصية الإسلامية المؤهلة للأدوار الدعوية والإصلاحية.</li>
-      <li><b>المجالات (11):</b> الإيماني، العلم الشرعي، السلوكي والأخلاقي، العقلي، الدعوي، الفكري والمنهجي، النفسي وإدارة الذات، الأسري والاجتماعي، اللغة والتواصل، التقنية والمعلومات، القيادي والإداري.</li>
-      <li><b>المعايير:</b> وصف أداء المتعلم بعد مروره بخبرات المنهج في كل مجال.</li>
-      <li><b>المؤشرات:</b> عبارات إجرائية معرفية ومهارية ووجدانية تحت كل معيار.</li>
-    </ol>
-  </div>
-  <div class="panel example">
-    <h2>مثال <span>مما ستجده</span></h2>
-    <p>من صفحة <a href="stage-6-8.html">التمييز الأول (6–8 سنوات)</a> — المجال السلوكي والأخلاقي، تجد المعيار: «يصدق دائمًا ويعترف بخطئه ويعتذر»، وتحته نشاط تطبيقي: «ميثاق شرف عائلي موقع من الجميع».</p>
-    <p class="note">المصدر: صفحة المرحلة في هذا الموقع (صياغة مبسطة من الكتاب) — ولكل معيار مراجع وأنشطة وخطة في صفحته.</p>
-    <div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn primary" href="stage-6-8.html">فتح صفحة المثال</a><a class="btn" href="index.html?stage=s3#quiz">استبانة هذه المرحلة</a></div>
+    <h2>إخلاء <span>مسؤولية</span></h2>
+    <div class="warn">⚠️ هذا الموقع ليس بديلًا عن الكتاب ولا جهة تربوية رسمية — بل هو <b>تحويل لكتاب «نماء — منهج بناء الشخصية الإسلامية» الصادر عن مؤسسة المربي إلى استبانة تقييم وأدوات مساندة للوالدين</b>. المحتوى بصياغة مبسطة، والمرجع الحاكم عند التعارض هو الكتاب الورقي، ونتائج الاستبانة استرشادية وليست تشخيصًا طبيًا أو نفسيًا.</div>
   </div>
   <div class="panel">
-    <h2 id="howto">🌟 كيف <span>تستخدم</span> الموقع؟</h2>
+    <h2>أقسام <span>الموقع</span></h2>
+    <p class="note">اضغط على القسم المطلوب للانتقال إليه مباشرة:</p>
     <div class="grid g3">
-      <div class="dcard"><div class="ic">1️⃣</div><h4>اختر المرحلة العمرية</h4><p>من صفحة «المراحل» اختر عمر طفلك لتظهر المجالات والمعايير والأنشطة المناسبة له بدقة.</p></div>
-      <div class="dcard"><div class="ic">2️⃣</div><h4>أجب عن الاستبانة</h4><p>33 عبارة سلوكية قابلة للملاحظة (دائمًا → أبدًا). تستغرق 8–12 دقيقة، وتُحفظ تلقائيًا.</p></div>
-      <div class="dcard"><div class="ic">3️⃣</div><h4>استلم التقرير المفصل</h4><p>درجة لكل مجال، مستوى، نقاط قوة، أولويات، خطة 30 يومًا، وأنشطة عملية قابلة للطباعة.</p></div>
+      <div class="dcard"><h4>صفحات المراحل السبع</h4><p>المجالات والمعايير والأنشطة لكل عمر من 0 إلى +18.</p><button class="btn primary btn-sm" onclick="goSec('stages')">فتح المراحل ←</button></div>
+      <div class="dcard"><h4>الاستبانة وملفات الأطفال</h4><p>33 عبارة لتقييم كل طفل عبر المجالات الأحد عشر.</p><button class="btn primary btn-sm" onclick="goSec('quiz')">بدء الاستبانة ←</button></div>
+      <div class="dcard"><h4>التقرير وسجل التقارير</h4><p>الدرجات والاقتراحات وخطة 30 يومًا لكل طفل.</p><button class="btn primary btn-sm" onclick="goSec('report')">عرض التقرير ←</button></div>
+      <div class="dcard"><h4>المجالات الأحد عشر</h4><p>صفحات مستقلة لطبيعة كل مجال ومعاييره ومراجعه.</p><button class="btn btn-sm" onclick="goSec('about')">تعرف على المجالات ←</button></div>
+      <div class="dcard"><h4>أوراق العمل والأناشيد</h4><p>نماذج قابلة للملء والطباعة + أناشيد بروابط.</p><a class="btn btn-sm" href="works.html">فتح أوراق العمل ←</a></div>
+      <div class="dcard"><h4>بنية المنهج والمصادر</h4><p>المستويات الأصلية للمنهج ومثال من المحتوى ومصادره.</p><button class="btn btn-sm" onclick="goSec('about')">عن المنهج ←</button></div>
     </div>
-    <div class="warn">⚠️ تنبيه تربوي: الاستبانة أداة استرشادية للوالدين وليست تشخيصًا طبيًا أو نفسيًا. عند القلق العميق استشر مختصًا ثقة.</div>
-  </div>
-  <div class="panel">
-    <h2>🧭 المجالات <span>الأحد عشر</span> في منهج نماء</h2>
-    <p class="note">وهي نفس تقسيم الكتاب (المستوى الثاني: المجالات) — اضغط أي مجال لترى أمثلة المعايير.</p>
-    <div class="grid g4" id="domainsHome"></div>
-  </div>
-  <div class="panel">
-    <h2>👶🧑‍🎓 المراحل <span>العمرية السبع</span></h2>
-    <div class="grid g4" id="stagesHome"></div>
-    <div style="margin-top:.7rem"><button class="btn primary" onclick="goSec('stages')">فتح صفحات المراحل ←</button></div>
   </div>
 </div>
 
@@ -248,6 +228,15 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 
 <!-- QUIZ -->
 <div class="section" id="sec-quiz">
+  <div class="panel">
+    <h2 id="howto">🌟 كيف <span>تستخدم</span> الموقع؟</h2>
+    <div class="grid g3">
+      <div class="dcard"><div class="ic">1️⃣</div><h4>اختر المرحلة العمرية</h4><p>من صفحة «المراحل» اختر عمر طفلك لتظهر المجالات والمعايير والأنشطة المناسبة له بدقة.</p></div>
+      <div class="dcard"><div class="ic">2️⃣</div><h4>أجب عن الاستبانة</h4><p>33 عبارة سلوكية قابلة للملاحظة (دائمًا → أبدًا). تستغرق 8–12 دقيقة، وتُحفظ تلقائيًا.</p></div>
+      <div class="dcard"><div class="ic">3️⃣</div><h4>استلم التقرير المفصل</h4><p>درجة لكل مجال، مستوى، نقاط قوة، أولويات، خطة 30 يومًا، وأنشطة عملية قابلة للطباعة.</p></div>
+    </div>
+    <div class="warn">⚠️ تنبيه تربوي: الاستبانة أداة استرشادية للوالدين وليست تشخيصًا طبيًا أو نفسيًا. عند القلق العميق استشر مختصًا ثقة.</div>
+  </div>
   <div class="panel">
     <h2>📝 استبانة <span>الوالدين</span> لتقييم الطفل</h2>
     <p class="note">أجب بصدق حسب ملاحظتك لطفلك خلال آخر شهر. المقياس: دائمًا (5) • غالبًا (4) • أحيانًا (3) • نادرًا (2) • أبدًا (1). تُحفظ الإجابات تلقائيًا في جهازك فقط.</p>
@@ -294,6 +283,22 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 
 <!-- ABOUT -->
 <div class="section" id="sec-about">
+  <div class="panel">
+    <h2>بنية <span>المنهج الأصلية</span></h2>
+    <p class="note">كما وضعها فريق مؤسسة المربي بنموذج المعايير — أربعة مستويات:</p>
+    <ol style="font-size:.9em">
+      <li><b>الرؤية العامة:</b> وصف إجمالي للشخصية الإسلامية المؤهلة للأدوار الدعوية والإصلاحية.</li>
+      <li><b>المجالات (11):</b> الإيماني، العلم الشرعي، السلوكي والأخلاقي، العقلي، الدعوي، الفكري والمنهجي، النفسي وإدارة الذات، الأسري والاجتماعي، اللغة والتواصل، التقنية والمعلومات، القيادي والإداري.</li>
+      <li><b>المعايير:</b> وصف أداء المتعلم بعد مروره بخبرات المنهج في كل مجال.</li>
+      <li><b>المؤشرات:</b> عبارات إجرائية معرفية ومهارية ووجدانية تحت كل معيار.</li>
+    </ol>
+  </div>
+  <div class="panel example">
+    <h2>مثال <span>مما ستجده</span></h2>
+    <p>من صفحة <a href="stage-6-8.html">التمييز الأول (6–8 سنوات)</a> — المجال السلوكي والأخلاقي، تجد المعيار: «يصدق دائمًا ويعترف بخطئه ويعتذر»، وتحته نشاط تطبيقي: «ميثاق شرف عائلي موقع من الجميع».</p>
+    <p class="note">المصدر: صفحة المرحلة في هذا الموقع (صياغة مبسطة من الكتاب) — ولكل معيار مراجع وأنشطة وخطة في صفحته.</p>
+    <div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn primary" href="stage-6-8.html">فتح صفحة المثال</a><a class="btn" href="index.html?stage=s3#quiz">استبانة هذه المرحلة</a></div>
+  </div>
   <div class="panel">
     <h2>📚 عن <span>منهج نماء</span></h2>
     <p><b>الكتاب:</b> «نماء — منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة» — إعداد مجموعة باحثين بـ<b>مؤسسة المربي</b> بإشراف د. محمد بن عبدالله الدويش، الرياض 1431هـ (~400 صفحة).</p>
@@ -558,7 +563,7 @@ const DOMAIN_PAGES={iman:'domain-iman.html',shar:'domain-shar.html',sulu:'domain
 const dh=document.getElementById('domainsHome');
 DOMAINS.forEach(d=>{const el=document.createElement('div');el.className='dcard';el.innerHTML=`<div class="ic">${d.i}</div><h4>${d.n}</h4><p>${d.d}</p><a class="btn" style="margin-top:.4rem;font-size:.78em" href="${DOMAIN_PAGES[d.id]}">↗ صفحة المجال بالتفصيل</a>`;dh.appendChild(el);});
 const sh=document.getElementById('stagesHome');
-STAGES.forEach(s=>{const m=s.age.match(/^(.*)\((.*)\)$/);const rg=(m?m[1]:s.age).trim();const lb=m?m[2].trim():'';const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age"><b>${rg}</b>${lb?`<small>${lb}</small>`:''}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn btn-sm primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn btn-sm" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
+if(sh)STAGES.forEach(s=>{const m=s.age.match(/^(.*)\((.*)\)$/);const rg=(m?m[1]:s.age).trim();const lb=m?m[2].trim():'';const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age"><b>${rg}</b>${lb?`<small>${lb}</small>`:''}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn btn-sm primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn btn-sm" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
 const ad=document.getElementById('aboutDomains');
 DOMAINS.forEach((d,i)=>{const li=document.createElement('li');li.innerHTML=`<b><a href="${DOMAIN_PAGES[d.id]}" style="color:inherit">${d.n}</a></b> — ${d.d}`;ad.appendChild(li);});
 
