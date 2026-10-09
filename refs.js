@@ -113,3 +113,58 @@
     new MutationObserver(function () { clearTimeout(t); t = setTimeout(function () { fill(); }, 150); }).observe(document.body, { childList: true, subtree: true });
   }
 })();
+/* ===== هوية نماء البصرية (تُطبق على كل الصفحات) ===== */
+(function () {
+  var PATTERN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23b8860b' stroke-opacity='0.14'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3C/g%3E%3C/svg%3E\")";
+  var LOGO_SVG = "<svg viewBox='0 0 48 48' width='80%' height='80%' role='img' aria-label='شعار نماء'><defs><linearGradient id='nmg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#149a79'/><stop offset='1' stop-color='#d4a017'/></linearGradient></defs><path d='M24 3C14 11 10 19 10 27v13h28V27C38 19 34 11 24 3z' fill='none' stroke='url(#nmg)' stroke-width='3' stroke-linejoin='round'/><path d='M24 40V26' stroke='url(#nmg)' stroke-width='3' stroke-linecap='round'/><path d='M24 29c-4.5 0-8.5-2.5-9.5-7.5 5 0 8.5 2.5 9.5 7.5z' fill='#149a79'/><path d='M24 25c4.5 0 8.5-2.5 9.5-7.5-5 0-8.5 2.5-9.5 7.5z' fill='#d4a017'/><circle cx='24' cy='13' r='2.4' fill='#d4a017'/></svg>";
+  var FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%230e7c61'/%3E%3Cpath d='M24 39V25' stroke='%23fff' stroke-width='3.4' stroke-linecap='round'/%3E%3Cpath d='M24 28c-4.5 0-8.5-2.5-9.5-7.5 5 0 8.5 2.5 9.5 7.5z' fill='%23fff'/%3E%3Cpath d='M24 24c4.5 0 8.5-2.5 9.5-7.5-5 0-8.5 2.5-9.5 7.5z' fill='%23d4a017'/%3E%3C/svg%3E";
+  var css = ".logo-mark{background:var(--card);border:1px solid var(--border)}.logo-mark svg{display:block}"
+    + "body{background-image:" + PATTERN + ";background-size:96px 96px}"
+    + ".hero{position:relative;overflow:hidden}.hero-pattern{position:absolute;inset:0;background-image:" + PATTERN + ";background-size:72px 72px;opacity:.55;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}"
+    + ".hero-kicker{display:inline-block;font-size:.78em;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:.1rem 1rem;margin-bottom:.3rem;background:var(--gold-soft)}"
+    + ".orn{display:flex;align-items:center;gap:.8rem;max-width:1180px;margin:1rem auto 0;padding:0 1rem;color:var(--gold)}"
+    + ".orn::before,.orn::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.55}"
+    + ".orn span{font-size:1.25rem;line-height:1}"
+    + ".panel h2,.wsheet h2{border-inline-start:4px solid var(--gold);padding-inline-start:.6rem}"
+    + ".panel,.wsheet{box-shadow:var(--shadow),inset 0 0 0 1px var(--bg)}"
+    + ".btn.primary{box-shadow:0 6px 16px rgba(20,154,121,.22)}"
+    + ":focus-visible{outline:2px solid var(--gold2);outline-offset:2px}"
+    + "::selection{background:var(--gold2);color:#232a28}"
+    + "section[id],.wsheet[id]{scroll-margin-top:90px}";
+  var st = document.createElement("style");
+  st.setAttribute("data-namaa-identity", "1");
+  st.textContent = css;
+  document.head.appendChild(st);
+  // favicon
+  if (!document.querySelector("link[rel='icon']")) {
+    var fav = document.createElement("link");
+    fav.rel = "icon"; fav.type = "image/svg+xml"; fav.href = FAVICON;
+    document.head.appendChild(fav);
+  }
+  // استبدال إيموجي الشعار بالعلامة المخصصة
+  document.querySelectorAll(".logo-mark").forEach(function (m) {
+    m.innerHTML = LOGO_SVG;
+    m.setAttribute("aria-hidden", "true");
+  });
+  function orn() {
+    var d = document.createElement("div");
+    d.className = "orn no-print";
+    d.setAttribute("aria-hidden", "true");
+    d.innerHTML = "<span>\u06DE</span>";
+    return d;
+  }
+  function decorate() {
+    document.querySelectorAll("section.hero:not([data-orn])").forEach(function (h) {
+      h.setAttribute("data-orn", "1");
+      var p = document.createElement("div");
+      p.className = "hero-pattern";
+      p.setAttribute("aria-hidden", "true");
+      h.insertBefore(p, h.firstChild);
+      if (h.parentNode) h.parentNode.insertBefore(orn(), h.nextSibling);
+    });
+    var ft = document.querySelector("footer:not([data-orn])");
+    if (ft && ft.parentNode) { ft.setAttribute("data-orn", "1"); ft.parentNode.insertBefore(orn(), ft); }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", decorate);
+  else decorate();
+})();
