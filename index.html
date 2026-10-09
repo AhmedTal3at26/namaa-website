@@ -165,12 +165,12 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <div><span class="hero-kicker">من الرضاعة إلى ما بعد الجامعة</span></div>
   <h1>منهج <span>نماء</span> لبناء <em>الشخصية الإسلامية</em></h1>
   <p class="quran">﴿ وَابْتَغِ فِيمَا آتَاكَ اللَّهُ الدَّارَ الْآخِرَةَ وَلَا تَنْسَ نَصِيبَكَ مِنَ الدُّنْيَا ﴾ — القصص 77</p>
-  <p>حوّلنا كتاب <b>«نماء — منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة»</b> (مؤسسة المربي) إلى موقع عملي: <b>استبانة للآباء والأمهات</b> لتقييم الطفل عبر <b>11 مجالًا</b> مع <b>تقرير مفصل واقتراحات حسب العمر</b>، و<b>7 صفحات للمراحل</b> تضم المجالات والمعايير المناسبة لكل عمر.</p>
+  <p>«نماء» إطار يجيب عن سؤال: <b>ماذا نربي؟</b> — منهج بالمعايير عبر <b>11 مجالًا</b> من الرضاعة إلى ما بعد الجامعة، أعدّته مؤسسة المربي <b>للأسرة أولًا</b> ثم للمؤسسات التربوية والدعوية. في هذا الموقع: <b>استبانة تقييم</b>، <b>تقرير واقتراحات حسب العمر</b>، <b>صفحات المراحل والمجالات</b>، و<b>أوراق عمل</b>.</p>
   <div class="hero-cta no-print">
-    <button class="btn primary" onclick="goSec('quiz')">📝 ابدأ الاستبانة الآن</button>
-    <a class="btn gold" href="works.html" style="text-decoration:none">📋 أوراق العمل والأناشيد</a>
-    <button class="btn gold" onclick="goSec('stages')">🗂️ استعرض المراحل</button>
-    <button class="btn" onclick="goSec('about')">📚 تعرف على المنهج</button>
+    <button class="btn primary" onclick="goSec('stages')">استكشف المنهج</button>
+    <button class="btn" onclick="goSec('quiz')">أجب عن الاستبانة</button>
+    <button class="btn" onclick="goSec('home');setTimeout(()=>document.getElementById('howto').scrollIntoView({behavior:'smooth'}),80)">كيف تستخدم المنهج؟</button>
+    <a class="btn gold" href="works.html" style="text-decoration:none">أوراق العمل والأناشيد</a>
   </div>
 </section>
 
@@ -186,7 +186,23 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <!-- HOME -->
 <div class="section active" id="sec-home">
   <div class="panel">
-    <h2>🌟 كيف <span>تستخدم</span> الموقع؟</h2>
+    <h2>بنية <span>المنهج الأصلية</span></h2>
+    <p class="note">كما وضعها فريق مؤسسة المربي بنموذج المعايير — أربعة مستويات:</p>
+    <ol style="font-size:.9em">
+      <li><b>الرؤية العامة:</b> وصف إجمالي للشخصية الإسلامية المؤهلة للأدوار الدعوية والإصلاحية.</li>
+      <li><b>المجالات (11):</b> الإيماني، العلم الشرعي، السلوكي والأخلاقي، العقلي، الدعوي، الفكري والمنهجي، النفسي وإدارة الذات، الأسري والاجتماعي، اللغة والتواصل، التقنية والمعلومات، القيادي والإداري.</li>
+      <li><b>المعايير:</b> وصف أداء المتعلم بعد مروره بخبرات المنهج في كل مجال.</li>
+      <li><b>المؤشرات:</b> عبارات إجرائية معرفية ومهارية ووجدانية تحت كل معيار.</li>
+    </ol>
+  </div>
+  <div class="panel example">
+    <h2>مثال <span>مما ستجده</span></h2>
+    <p>من صفحة <a href="stage-6-8.html">التمييز الأول (6–8 سنوات)</a> — المجال السلوكي والأخلاقي، تجد المعيار: «يصدق دائمًا ويعترف بخطئه ويعتذر»، وتحته نشاط تطبيقي: «ميثاق شرف عائلي موقع من الجميع».</p>
+    <p class="note">المصدر: صفحة المرحلة في هذا الموقع (صياغة مبسطة من الكتاب) — ولكل معيار مراجع وأنشطة وخطة في صفحته.</p>
+    <div class="no-print" style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn primary" href="stage-6-8.html">فتح صفحة المثال</a><a class="btn" href="index.html?stage=s3#quiz">استبانة هذه المرحلة</a></div>
+  </div>
+  <div class="panel">
+    <h2 id="howto">🌟 كيف <span>تستخدم</span> الموقع؟</h2>
     <div class="grid g3">
       <div class="dcard"><div class="ic">1️⃣</div><h4>اختر المرحلة العمرية</h4><p>من صفحة «المراحل» اختر عمر طفلك لتظهر المجالات والمعايير والأنشطة المناسبة له بدقة.</p></div>
       <div class="dcard"><div class="ic">2️⃣</div><h4>أجب عن الاستبانة</h4><p>33 عبارة سلوكية قابلة للملاحظة (دائمًا → أبدًا). تستغرق 8–12 دقيقة، وتُحفظ تلقائيًا.</p></div>
@@ -307,7 +323,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 
 <footer>
   خط المتن: IBM Plex Sans Arabic (خط ثمانية الرسمي) • العناوين: Aref Ruqaa • الآيات: Amiri Quran<br>
-  صُمم بعناية لتحويل «نماء» إلى أداة عملية للأسر — نسأل الله أن ينبت أبناءنا نباتًا حسنًا 🌱
+  موقع تفاعلي لمنهج «نماء»: استبانة تقييم للوالدين، تقرير واقتراحات حسب العمر، صفحات المراحل والمجالات، أوراق عمل وأناشيد — نسأل الله أن ينبت أبناءنا نباتًا حسنًا 🌱
 </footer>
 
 <div class="fab no-print"><button id="toTop" title="للأعلى">↑</button></div>

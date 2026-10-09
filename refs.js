@@ -190,3 +190,77 @@
   var f = document.querySelector('link[href*="fonts.googleapis.com/css2"]');
   if (f) f.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Naskh+Arabic:wght@600;700&family=Amiri+Quran&display=swap";
 })();
+/* ===== تنظيم الصفحات الداخلية: مسار تنقل + فهرس + شريط مصادر ===== */
+(function () {
+  var css = ".crumbs{max-width:1180px;margin:.7rem auto 0;padding:.35rem 1rem;font-size:.82em;color:var(--muted);display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}"
+    + ".crumbs a{color:var(--brand2);font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}"
+    + ".crumbs .sep{opacity:.6}"
+    + ".toc{border:1px solid var(--border);border-radius:12px;background:var(--bg2);margin-bottom:.7rem}"
+    + ".toc summary{cursor:pointer;font-weight:700;padding:.6rem .9rem;min-height:48px;display:flex;align-items:center}"
+    + ".toc nav{display:flex;flex-direction:column;padding:0 .9rem .7rem}"
+    + ".toc nav a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border);padding:.4rem 0;font-size:.88em;min-height:44px;display:flex;align-items:center}"
+    + ".src-strip{border-top:1px dashed var(--border);margin-top:.8rem;padding-top:.5rem;font-size:.8em;color:var(--muted)}"
+    + ".panel.example{border-inline-start:4px solid var(--brand2)}"
+    + ".domain-block>ul>li::marker,.stg>ul>li::marker{color:var(--brand2)}"
+    + "body[data-page='stage'] .domain-block .tip::before,body[data-page='domain'] .stg .tip::before{content:'تطبيق عملي: ';font-weight:700;color:var(--brand2)}";
+  var st = document.createElement("style");
+  st.setAttribute("data-namaa-layout", "1");
+  st.textContent = css;
+  document.head.appendChild(st);
+
+  var path = (location.pathname || "").toLowerCase();
+  var page = "index";
+  if (path.indexOf("stage-") > -1) page = "stage";
+  else if (path.indexOf("domain-") > -1) page = "domain";
+  else if (path.indexOf("works.html") > -1) page = "works";
+  else if (path.indexOf("logo.html") > -1) page = "logo";
+  document.body.dataset.page = page;
+  if (page === "index") return;
+
+  // مسار التنقل
+  var raw = (document.title || "").split("|")[0].trim();
+  var sep = '<span class="sep">‹</span>';
+  var html = '<a href="index.html">الرئيسية</a>';
+  if (page === "stage") html += sep + '<a href="index.html#stages">المراحل</a>' + sep + "<span>" + raw + "</span>";
+  else if (page === "domain") html += sep + '<a href="index.html#about">المجالات</a>' + sep + "<span>" + raw + "</span>";
+  else if (page === "works") html += sep + "<span>أوراق العمل والأناشيد</span>";
+  else if (page === "logo") html += sep + "<span>الشعار</span>";
+  var crumb = document.createElement("nav");
+  crumb.className = "crumbs no-print";
+  crumb.setAttribute("aria-label", "مسار التنقل");
+  crumb.innerHTML = html;
+  var tabs = document.querySelector("nav.tabs");
+  if (tabs && tabs.parentNode) tabs.parentNode.insertBefore(crumb, tabs.nextSibling);
+
+  // فهرس الأقسام + شريط المصادر (صفحات المراحل والمجالات فقط)
+  document.querySelectorAll(".panel").forEach(function (p) {
+    if (p.querySelector("#refsLibrary")) return;
+    var blocks = p.querySelectorAll(":scope > .domain-block");
+    var isStage = blocks.length >= 6;
+    var sblocks = p.querySelectorAll(":scope > .stg");
+    var isDomain = !isStage && sblocks.length >= 6;
+    if (!isStage && !isDomain) return;
+    var list = isStage ? blocks : sblocks;
+    var det = document.createElement("details");
+    det.className = "toc no-print";
+    var sum = document.createElement("summary");
+    sum.textContent = isStage ? "فهرس مجالات هذه المرحلة" : "فهرس مراحل هذا المجال";
+    det.appendChild(sum);
+    var nv = document.createElement("nav");
+    Array.prototype.forEach.call(list, function (b, i) {
+      var h = b.querySelector("h3,h4");
+      if (!h) return;
+      b.id = (isStage ? "d" : "s") + i;
+      var a = document.createElement("a");
+      a.href = "#" + b.id;
+      a.textContent = h.textContent.replace(/\s*—.*$/, "").trim();
+      nv.appendChild(a);
+    });
+    det.appendChild(nv);
+    p.insertBefore(det, p.querySelector(isStage ? ".domain-block" : ".stg"));
+    var src = document.createElement("div");
+    src.className = "src-strip";
+    src.textContent = "المصدر: كتاب «نماء — منهج بناء الشخصية الإسلامية» (مؤسسة المربي، الرياض 1431هـ). المعايير هنا بصياغة مبسطة للوالدين، والمرجع الحاكم عند التعارض هو الكتاب الورقي.";
+    p.appendChild(src);
+  });
+})();
