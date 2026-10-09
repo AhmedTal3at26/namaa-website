@@ -189,6 +189,18 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <!-- HOME -->
 <div class="section active" id="sec-home">
   <div class="panel">
+    <h2>أقسام <span>الموقع</span></h2>
+    <p class="note">اختر وجهتك — كل قسم يفتح مباشرة:</p>
+    <div class="grid g3">
+      <div class="dcard"><h4>صفحات المراحل السبع</h4><p>المجالات والمعايير والأنشطة لكل عمر من 0 إلى +18.</p><button class="btn primary btn-sm" onclick="goSec('stages')">فتح المراحل ←</button></div>
+      <div class="dcard"><h4>الاستبانة</h4><p>33 عبارة لتقييم طفلك عبر المجالات الأحد عشر، مع حفظ لكل طفل.</p><button class="btn primary btn-sm" onclick="goSec('quiz')">بدء الاستبانة ←</button></div>
+      <div class="dcard"><h4>التقرير المفصل</h4><p>الدرجات والمستويات والاقتراحات وخطة 30 يومًا، مع سجل التقارير.</p><button class="btn primary btn-sm" onclick="goSec('report')">عرض التقرير ←</button></div>
+      <div class="dcard"><h4>المجالات الأحد عشر</h4><p>صفحات مستقلة تشرح كل مجال ومعاييره عبر المراحل ومراجعه.</p><button class="btn btn-sm" onclick="goSec('about')">تعرف على المجالات ←</button></div>
+      <div class="dcard"><h4>أوراق العمل والأناشيد</h4><p>نماذج قابلة للملء والطباعة + أناشيد مقترحة بروابط.</p><a class="btn btn-sm" href="works.html">فتح أوراق العمل ←</a></div>
+      <div class="dcard"><h4>بنية المنهج</h4><p>المستويات الأربعة الأصلية للمنهج ومثال من المحتوى.</p><button class="btn btn-sm" onclick="goSec('home');setTimeout(()=>document.getElementById('howto').scrollIntoView({behavior:'smooth'}),80)">كيف تستخدم المنهج؟ ←</button></div>
+    </div>
+  </div>
+  <div class="panel">
     <h2>بنية <span>المنهج الأصلية</span></h2>
     <p class="note">كما وضعها فريق مؤسسة المربي بنموذج المعايير — أربعة مستويات:</p>
     <ol style="font-size:.9em">
@@ -250,6 +262,12 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <div class="panel">
     <h2>📝 استبانة <span>الوالدين</span> لتقييم الطفل</h2>
     <p class="note">أجب بصدق حسب ملاحظتك لطفلك خلال آخر شهر. المقياس: دائمًا (5) • غالبًا (4) • أحيانًا (3) • نادرًا (2) • أبدًا (1). تُحفظ الإجابات تلقائيًا في جهازك فقط.</p>
+    <div class="warn no-print" style="display:flex;gap:.6rem;align-items:end;flex-wrap:wrap">
+      <div style="flex:2;min-width:180px"><label class="f" for="profileSel">ملف الطفل (يمكن إضافة أكثر من طفل)</label><select id="profileSel"></select></div>
+      <div style="flex:2;min-width:130px"><label class="f" for="newName">طفل جديد: الاسم</label><input type="text" id="newName" placeholder="الاسم"></div>
+      <div style="flex:1;min-width:80px"><label class="f" for="newAge">العمر</label><input type="number" id="newAge" min="0" max="30" placeholder="7"></div>
+      <div style="display:flex;gap:.4rem"><button class="btn btn-sm primary" id="addChild">+ إضافة</button><button class="btn btn-sm" id="delChild">حذف الملف</button></div>
+    </div>
     <div class="grid g2">
       <div><label class="f" for="childName">اسم الطفل (اختياري)</label><input type="text" id="childName" placeholder="مثال: عبدالله"></div>
       <div><label class="f" for="childAge">عمر الطفل بالسنوات</label><input type="number" id="childAge" min="0" max="30" value="7"></div>
@@ -280,6 +298,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
       <button class="btn" id="loadLastBtn">📂 استرجاع آخر تقرير</button>
       <button class="btn ghost" onclick="goSec('quiz')">→ العودة للاستبانة</button>
     </div>
+    <div id="historyBox" class="no-print" style="margin-top:.6rem"></div>
     <div id="reportBox" style="margin-top:.8rem"><p class="note">لم يتم إنشاء تقرير بعد. أجب عن الاستبانة ثم اضغط «عرض التقرير المفصل».</p></div>
   </div>
 </div>
@@ -588,19 +607,58 @@ renderStage();
 /* ============ الاستبانة ============ */
 let quizStage='s3';
 const qChips=document.getElementById('quizStageChips');
-STAGES.forEach(s=>{const b=document.createElement('button');b.className='chip'+(s.id===quizStage?' active':'');b.dataset.id=s.id;b.textContent=`${s.name} (${s.short})`;b.onclick=()=>{quizStage=s.id;curStage=s.id;document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));renderStage();document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));buildQuiz();};qChips.appendChild(b);});
+STAGES.forEach(s=>{const b=document.createElement('button');b.className='chip'+(s.id===quizStage?' active':'');b.dataset.id=s.id;b.textContent=`${s.name} (${s.short})`;b.onclick=()=>{quizStage=s.id;curStage=s.id;document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));renderStage();document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));try{curProfile().stage=s.id;saveProfiles();}catch(e){}buildQuiz();};qChips.appendChild(b);});
 function stageIdx(id){return STAGES.findIndex(s=>s.id===id);}
 function ageToStage(a){a=+a||0;if(a<=2)return 's1';if(a<=5)return 's2';if(a<=8)return 's3';if(a<=11)return 's4';if(a<=14)return 's5';if(a<=17)return 's6';return 's7';}
 document.getElementById('childAge').addEventListener('change',e=>{
   const sug=ageToStage(e.target.value);
-  quizStage=sug;
-  document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===sug));
-  buildQuiz();
+  quizStage=sug;curStage=sug;
+  const p=curProfile();if(p){p.age=e.target.value;p.stage=sug;saveProfiles();syncProfileSel();}
+  syncChips();renderStage();buildQuiz();
 });
-let answers={};
-try{answers=JSON.parse(localStorage.getItem('namaa_answers')||'{}');}catch(e){answers={};}
-function saveAns(){localStorage.setItem('namaa_answers',JSON.stringify(answers));localStorage.setItem('namaa_child',JSON.stringify({n:document.getElementById('childName').value,a:document.getElementById('childAge').value,s:quizStage}));}
-try{const c=JSON.parse(localStorage.getItem('namaa_child')||'null');if(c){document.getElementById('childName').value=c.n||'';document.getElementById('childAge').value=c.a||7;quizStage=c.s||ageToStage(c.a||7);document.querySelectorAll('#quizStageChips .chip').forEach(x=>x.classList.toggle('active',x.dataset.id===quizStage));}}catch(e){}
+/* ============ ملفات الأطفال (أكثر من طفل + سجل التقارير) ============ */
+let profiles=[],activeId=null,answers={};
+function pid(){return 'c'+Date.now().toString(36)+Math.floor(Math.random()*99);}
+function ansKey(){return 'namaa_answers_'+activeId;}
+function repKey(){return 'namaa_reports_'+activeId;}
+function curProfile(){return profiles.find(p=>p.id===activeId)||profiles[0];}
+function saveProfiles(){localStorage.setItem('namaa_profiles',JSON.stringify(profiles));localStorage.setItem('namaa_active',activeId);}
+function loadAnswers(){try{answers=JSON.parse(localStorage.getItem(ansKey())||'{}');}catch(e){answers={};}}
+function saveAns(){localStorage.setItem(ansKey(),JSON.stringify(answers));const p=curProfile();if(p){p.name=document.getElementById('childName').value;p.age=document.getElementById('childAge').value;p.stage=quizStage;saveProfiles();syncProfileSel();}}
+function syncChips(){document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===quizStage));document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===quizStage));}
+function syncProfileSel(){const sel=document.getElementById('profileSel');if(!sel)return;sel.innerHTML='';profiles.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=(p.name||'طفل بدون اسم')+' ('+(p.age||'—')+' سنوات)';if(p.id===activeId)o.selected=true;sel.appendChild(o);});}
+function loadProfiles(){
+  try{profiles=JSON.parse(localStorage.getItem('namaa_profiles')||'[]');}catch(e){profiles=[];}
+  if(!profiles.length){
+    let oldA={},oldC=null;
+    try{oldA=JSON.parse(localStorage.getItem('namaa_answers')||'{}');}catch(e){}
+    try{oldC=JSON.parse(localStorage.getItem('namaa_child')||'null');}catch(e){}
+    const p={id:pid(),name:(oldC&&oldC.n)||'',age:(oldC&&oldC.a)||7,stage:(oldC&&oldC.s)||null,created:new Date().toISOString()};
+    profiles=[p];activeId=p.id;
+    try{localStorage.setItem(ansKey(),JSON.stringify(oldA));}catch(e){}
+    saveProfiles();
+    try{localStorage.removeItem('namaa_answers');localStorage.removeItem('namaa_child');localStorage.removeItem('namaa_last_report');}catch(e){}
+  }else{
+    activeId=localStorage.getItem('namaa_active');
+    if(!profiles.some(p=>p.id===activeId))activeId=profiles[0].id;
+  }
+  loadAnswers();
+  const p=curProfile();
+  document.getElementById('childName').value=p.name||'';
+  document.getElementById('childAge').value=p.age||7;
+  quizStage=p.stage||ageToStage(p.age||7);
+  syncChips();syncProfileSel();
+}
+function switchProfile(id){
+  if(id===activeId)return;
+  saveAns();
+  activeId=id;saveProfiles();loadAnswers();
+  const p=curProfile();
+  document.getElementById('childName').value=p.name||'';
+  document.getElementById('childAge').value=p.age||7;
+  quizStage=p.stage||ageToStage(p.age||7);
+  syncChips();syncProfileSel();buildQuiz();renderHistory();
+}
 function filteredQ(){const idx=stageIdx(quizStage);return QUESTIONS.map((q,i)=>({...q,qi:i})).filter(q=>idx>=q.min);}
 function buildQuiz(){
   const list=filteredQ();
@@ -627,7 +685,51 @@ function updateProg(){
 }
 document.getElementById('clearQuiz').onclick=()=>{if(confirm('مسح جميع الإجابات؟')){answers={};saveAns();buildQuiz();}};
 document.getElementById('childName').addEventListener('input',saveAns);
+document.getElementById('profileSel').addEventListener('change',e=>switchProfile(e.target.value));
+document.getElementById('addChild').onclick=()=>{
+  const nm=document.getElementById('newName').value.trim();
+  const ag=document.getElementById('newAge').value||7;
+  if(!nm){alert('اكتب اسم الطفل أولًا.');return;}
+  saveAns();
+  const p={id:pid(),name:nm,age:ag,stage:ageToStage(ag),created:new Date().toISOString()};
+  profiles.push(p);activeId=p.id;saveProfiles();loadAnswers();
+  document.getElementById('childName').value=nm;document.getElementById('childAge').value=ag;
+  document.getElementById('newName').value='';document.getElementById('newAge').value='';
+  quizStage=p.stage;syncChips();syncProfileSel();buildQuiz();renderHistory();
+};
+document.getElementById('delChild').onclick=()=>{
+  if(profiles.length<=1){alert('لا يمكن حذف الملف الوحيد — عدّل الاسم بدلًا من ذلك.');return;}
+  const p=curProfile();
+  if(!confirm(`حذف ملف «${p.name||'الطفل'}» وإجاباته وتقاريره نهائيًا؟`))return;
+  try{localStorage.removeItem(ansKey());localStorage.removeItem(repKey());}catch(e){}
+  profiles=profiles.filter(x=>x.id!==activeId);
+  activeId=profiles[0].id;saveProfiles();switchProfileSilent();
+};
+function switchProfileSilent(){
+  loadAnswers();
+  const p=curProfile();
+  document.getElementById('childName').value=p.name||'';
+  document.getElementById('childAge').value=p.age||7;
+  quizStage=p.stage||ageToStage(p.age||7);
+  syncChips();syncProfileSel();buildQuiz();renderHistory();
+}
+function renderHistory(){
+  const box=document.getElementById('historyBox');if(!box)return;
+  let h=[];try{h=JSON.parse(localStorage.getItem(repKey())||'[]');}catch(e){}
+  const p=curProfile();if(!p)return;
+  if(!h.length){box.innerHTML=`<p class="note">لا تقارير محفوظة لملف «${p.name||'هذا الطفل'}» بعد — أنشئ تقريرًا من الاستبانة وسيُحفظ هنا تلقائيًا مع التاريخ.</p>`;return;}
+  box.innerHTML=`<label class="f">تقارير «${p.name||'الطفل'}» المحفوظة (${h.length})</label>`+h.map((d,i)=>{
+    const lv=levelOf(d.total);
+    const dt=new Date(d.date);
+    const ds=isNaN(dt)?'':dt.toLocaleDateString('ar')+' '+dt.toLocaleTimeString('ar',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="bar-row"><span class="nm">${ds}</span><div class="tr"><i style="width:${d.total}%"></i></div><b>${d.total}%</b><span class="badge ${lv.c}">${lv.t}</span><button class="btn btn-sm" data-hv="${i}">عرض</button><button class="btn btn-sm" data-hd="${i}">حذف</button></div>`;
+  }).join('');
+  box.querySelectorAll('[data-hv]').forEach(b=>b.onclick=()=>{const arr=JSON.parse(localStorage.getItem(repKey())||'[]');const d=arr[+b.dataset.hv];if(d){buildReport(d.r,{name:d.name,age:d.age,stage:d.stage});goSec('report');}});
+  box.querySelectorAll('[data-hd]').forEach(b=>b.onclick=()=>{if(!confirm('حذف هذا التقرير؟'))return;const arr=JSON.parse(localStorage.getItem(repKey())||'[]');arr.splice(+b.dataset.hd,1);localStorage.setItem(repKey(),JSON.stringify(arr));renderHistory();});
+}
+loadProfiles();
 buildQuiz();
+renderHistory();
 
 /* ============ التقرير ============ */
 function compute(){
@@ -645,13 +747,21 @@ document.getElementById('showReportBtn').onclick=()=>{
   const r=compute();
   if(r.answered<5){alert('أجب عن 5 عبارات على الأقل لعرض تقرير مفيد (الأفضل إتمام الكل).');goSec('quiz');return;}
   buildReport(r);goSec('report');
+  try{
+    const p=curProfile();
+    const h=JSON.parse(localStorage.getItem(repKey())||'[]');
+    h.unshift({date:new Date().toISOString(),name:document.getElementById('childName').value||(p&&p.name)||'طفلنا الحبيب',age:document.getElementById('childAge').value||(p&&p.age)||'—',stage:quizStage,total:r.total,r});
+    while(h.length>20)h.pop();
+    localStorage.setItem(repKey(),JSON.stringify(h));
+    renderHistory();
+  }catch(e){}
 };
 function renderEmptyHint(){}
-function buildReport(r){
-  const stage=STAGES.find(s=>s.id===quizStage);
-  const name=document.getElementById('childName').value||'طفلنا الحبيب';
-  const age=document.getElementById('childAge').value||'—';
-  const g=groupOf(quizStage);
+function buildReport(r,snap){
+  snap=snap||{name:document.getElementById('childName').value||'طفلنا الحبيب',age:document.getElementById('childAge').value||'—',stage:quizStage};
+  const stage=STAGES.find(s=>s.id===snap.stage)||STAGES.find(s=>s.id===quizStage);
+  const name=snap.name, age=snap.age;
+  const g=groupOf(stage.id);
   const lv=levelOf(r.total);
   const sorted=Object.entries(r.per).filter(([k,v])=>v!==null).sort((a,b)=>b[1]-a[1]);
   const strong=sorted.slice(0,2), weak=[...sorted].reverse().slice(0,3);
@@ -679,8 +789,6 @@ function buildReport(r){
   h+=`<div class="warn">⚠️ متى تستشير مختصًا؟ عناد شديد مستمر + تراجع دراسي حاد + انعزال/عدوانية + مخاوف/كوابيس معطلة + تعرض لإساءة — فاستشارة مبكرة رحمة وليست وصمة.</div>`;
   h+=`<p class="note">أُعد هذا التقرير آليًا من استبانة نماء (روح الكتاب، صياغة مبسطة للوالدين). المرجع الحاكم عند الشك: الكتاب الورقي واستشارة مربٍّ ثقة.</p>`;
   const box=document.getElementById('reportBox');box.innerHTML=h;box.dataset.built='1';
-  const data={name,age,stage:quizStage,r,date:new Date().toISOString()};
-  localStorage.setItem('namaa_last_report',JSON.stringify(data));
 }
 document.getElementById('printBtn').onclick=()=>window.print();
 document.getElementById('copyBtn').onclick=()=>{
@@ -689,7 +797,12 @@ document.getElementById('copyBtn').onclick=()=>{
   navigator.clipboard.writeText(txt).then(()=>alert('تم نسخ الملخص ✅'));
 };
 document.getElementById('loadLastBtn').onclick=()=>{
-  try{const d=JSON.parse(localStorage.getItem('namaa_last_report')||'null');if(!d){alert('لا يوجد تقرير محفوظ بعد.');return;}quizStage=d.stage;document.getElementById('childName').value=d.name||'';buildReport(d.r);goSec('report');}catch(e){alert('تعذر الاسترجاع');}
+  try{
+    const h=JSON.parse(localStorage.getItem(repKey())||'[]');
+    if(!h.length){alert('لا يوجد تقرير محفوظ لهذا الملف بعد.');return;}
+    const d=h[0];
+    buildReport(d.r,{name:d.name,age:d.age,stage:d.stage});goSec('report');
+  }catch(e){alert('تعذر الاسترجاع');}
 };
 /* دعم الروابط العميقة: index.html?stage=s4#quiz */
 (function(){
@@ -697,6 +810,7 @@ document.getElementById('loadLastBtn').onclick=()=>{
     const params=new URLSearchParams(location.search);
     const st=params.get('stage');
     if(st&&STAGES.some(s=>s.id===st)){curStage=st;quizStage=st;
+      try{const p=curProfile();if(p){p.stage=st;saveProfiles();}}catch(e){}
       document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===st));
       document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===st));
       renderStage();buildQuiz();}
