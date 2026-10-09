@@ -178,3 +178,15 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", decorate);
   else decorate();
 })();
+/* ===== تحميل التوكنز المشتركة وخطوط Noto (مرة واحدة لكل الصفحات) ===== */
+(function () {
+  var t = document.createElement("link");
+  t.rel = "stylesheet";
+  t.href = "tokens.css";
+  document.head.appendChild(t);
+  var ic = document.createElement("script");
+  ic.src = "icons.js";
+  document.head.appendChild(ic);
+  var f = document.querySelector('link[href*="fonts.googleapis.com/css2"]');
+  if (f) f.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Naskh+Arabic:wght@600;700&family=Amiri+Quran&display=swap";
+})();
