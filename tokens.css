@@ -1,0 +1,105 @@
+/* =====================================================
+   Namaa Design Tokens — الهوية التربوية العربية الهادئة
+   ملف مشترك واحد يُحمَّل في كل صفحات الموقع عبر refs.js
+   - تباين AA: النص الداكن والثانوي والأخضر والحبر الطيني
+     محسوبة على الخلفيات الفاتحة والداكنة (≥ 4.5:1)
+   - الأخضر للإجراءات الأساسية، والطيني لمسات مساندة فقط
+   - الحالات لا تعتمد على اللون وحده (نص + ✓ دائمًا)
+   ===================================================== */
+
+/* ---------- 1) الألوان والمسافات والحواف (فاتح) ---------- */
+:root{
+  --bg:#F7F4EC;            /* خلفية عاجية */
+  --bg2:#FFFFFF;           /* أسطح بيضاء */
+  --card:#FFFFFF;
+  --text:#24332D;          /* نص داكن */
+  --muted:#58665D;         /* نص ثانوي (AA على الأبيض) */
+  --brand:#24483E;         /* أخضر عميق أساسي */
+  --brand2:#1E6B52;        /* أخضر نصي (AA على الأبيض) */
+  --brand-soft:#E4EDE8;
+  --action:#24483E;        /* لون الإجراءات الأساسية */
+  --action-ink:#FFFFFF;
+  --gold:#b8860b;          /* لمسات زخرفية فقط */
+  --gold2:#d4a017;
+  --gold-soft:#fdf3d3;
+  --gold-ink:#7A5A00;      /* نص ذهبي مقروء (AA) */
+  --clay:#A65F46;          /* طيني مساند — للحدود والزخارف */
+  --clay-ink:#7E4433;      /* حبر طيني للنصوص (AA) */
+  --border:#DDDCD2;        /* حدود فاتحة */
+  --shadow:0 1px 2px rgba(36,51,45,.07),0 4px 14px rgba(36,51,45,.07);
+  --radius:14px;
+  --radius-sm:10px;
+  --radius-lg:18px;
+  --sp-1:.25rem; --sp-2:.5rem; --sp-3:.8rem; --sp-4:1.2rem; --sp-5:1.6rem; --sp-6:2.2rem;
+  --measure:75ch;          /* عرض مريح لقراءة المحتوى الطويل */
+  --font-size:18px;
+  --header-bg:#FFFFFF;
+}
+
+/* ---------- 2) الثيم الداكن ---------- */
+[data-theme="dark"]{
+  --bg:#161A20;
+  --bg2:#1A1F27;
+  --card:#1F2530;
+  --text:#EDE8DB;
+  --muted:#A9B3A9;
+  --brand:#7BC9A6;
+  --brand2:#6FD3A4;
+  --brand-soft:#182A23;
+  --action:#45D19B;
+  --action-ink:#0B1F17;
+  --gold:#e3b341;
+  --gold2:#f0c75e;
+  --gold-soft:#2b2413;
+  --gold-ink:#EAC96A;
+  --clay:#C98A6D;
+  --clay-ink:#E0A586;
+  --border:#2C323D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+  --header-bg:#1A1F27;
+}
+
+/* ---------- 3) الخطوط: نصوص وواجهات ---------- */
+body{
+  font-family:"Noto Sans Arabic","IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+  line-height:1.95;
+  background-color:var(--bg);
+}
+/* عناوين تحريرية كبيرة بخط نسخي — الفقرات والواجهات تبقى بالسنز */
+.hero h1,
+.panel h2,
+.wsheet h2,
+.stg-title,
+.ruqaa{
+  font-family:"Noto Naskh Arabic","Amiri Quran",serif;
+  font-weight:700;
+  line-height:1.75;
+}
+.quran{font-family:"Amiri Quran",serif;line-height:2.2;}
+
+/* ---------- 4) تهدئة الأسطح (داخل الشاشة فقط) ---------- */
+@media screen{
+  header{background:var(--header-bg);backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .hero{background:var(--bg2);}              /* بلا توهجات عائمة */
+  .hero::before{opacity:.22;}                /* تخفيف الزخرفة النصية */
+  .panel,.wsheet,.stat,.dcard,.scard{border-radius:var(--radius);}
+  .hero{border-radius:var(--radius-lg);}
+  .panel,.wsheet{box-shadow:var(--shadow),inset 0 0 0 1px var(--bg);}
+  /* أزرار مسطحة: الأخضر للأساسي */
+  .btn.primary,.tab.active,.chip.active,.likert button.sel{
+    background:var(--action);color:var(--action-ink);border-color:transparent;
+    box-shadow:none;
+  }
+  .btn.gold{background:transparent;color:var(--clay-ink);border:1px solid var(--clay);}
+  /* حالات لا تعتمد على اللون وحده */
+  .likert button.sel::before{content:"✓ ";}
+  .b-ex{color:#0C5A44;background:#E4EDE8;border-color:#0C5A44;}
+  .b-good{color:#175A85;background:#E7F0F7;border-color:#175A85;}
+  .b-mid{color:#7A5A00;background:#FBF0D2;border-color:#7A5A00;}
+  .hero-kicker{color:var(--gold-ink);}
+  .stat strong{color:var(--brand2);}
+  /* عرض مريح للمحتوى الطويل */
+  .hero p{max-width:68ch;}
+  .panel>p,.panel>ul,.panel>ol,.tip,.warn,.plan{max-width:var(--measure);}
+  :focus-visible{outline:2px solid var(--brand2);outline-offset:2px;}
+}
