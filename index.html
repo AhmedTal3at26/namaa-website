@@ -288,10 +288,15 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
     <div class="tip">💡 صممنا صياغة المعايير والأسئلة والاقتراحات بروح الكتاب وبأسلوب إجرائي مبسط للوالدين، مع الحفاظ على نفس المجالات والتدرج العمري. عند التعارض فالمرجع هو الكتاب الورقي.</div>
     <h3>المصادر</h3>
     <ul style="font-size:.86em;color:var(--muted)">
-      <li>مؤسسة المربي — «نماء: منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة» (الطبعة الثانية).</li>
+      <li>مؤسسة المربي — «نماء: منهج بناء الشخصية الإسلامية من الرضاعة إلى ما بعد الجامعة» (الطبعة الثانية) — <a href="https://saaid.org/book/open.php?book=13584" target="_blank" rel="noopener">صفحة الكتاب (قراءة وتحميل)</a> • <a href="https://saaid.org/book/downloadurl.php?type=pdf&id=13584" target="_blank" rel="noopener">تحميل PDF مباشرة</a>.</li>
       <li>عرض وتحليل المنهج: مقال رواحل + فهرس المكتبة التربوية (المجالات الأحد عشر).</li>
       <li>الخط: IBM Plex Sans Arabic (خط ثمانية الرسمي) + Amiri Quran + Aref Ruqaa.</li>
     </ul>
+  </div>
+  <div class="panel">
+    <h2>📚 مكتبة <span>المراجع</span> لكل مجال</h2>
+    <p class="note">مراجع منتقاة لكل مجال من المجالات الأحد عشر — اضغط أي رابط للقراءة أو التحميل (جميع الروابط تم التحقق من عملها).</p>
+    <div id="refsLibrary" class="grid g2"></div>
   </div>
 </div>
 
@@ -304,6 +309,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 
 <div class="fab no-print"><button id="toTop" title="للأعلى">↑</button></div>
 
+<script src="refs.js"></script>
 <script>
 /* ============ الثيم والخط ============ */
 const root=document.documentElement;
@@ -546,7 +552,7 @@ function renderStage(){
   DOMAINS.forEach(d=>{
     const arr=(s.std[d.id]||[]).filter(t=>!q||t.includes(q));
     if(q&&!arr.length&&!(d.n.includes(q)))return;
-    html+=`<div class="domain-block"><h4><span class="dot" style="background:${d.c}"></span>${d.i} ${d.n}</h4><ul>${arr.map(t=>`<li>${t}</li>`).join('')||'<li class="note">لا نتيجة مطابقة للبحث في هذا المجال.</li>'}</ul>`;
+    html+=`<div class="domain-block" data-d="${d.id}"><h4><span class="dot" style="background:${d.c}"></span>${d.i} ${d.n}</h4><ul>${arr.map(t=>`<li>${t}</li>`).join('')||'<li class="note">لا نتيجة مطابقة للبحث في هذا المجال.</li>'}</ul>`;
     const acts=(ACT[d.id]&&ACT[d.id][groupOf(s.id)])||[];
     if(!q&&acts.length)html+=`<div class="tip">💡 أنشطة مقترحة: ${acts.join(' • ')}</div>`;
     html+=`</div>`;
@@ -641,7 +647,9 @@ function buildReport(r){
     const acts=(ACT[k]&&ACT[k][g])||[];
     h+=`<div class="rep-domain"><h4>${d.i} ${d.n} — <b>${v}%</b> <span class="badge ${l.c}">${l.t}</span></h4><div class="note">${d.d}</div>`;
     if(stds.length)h+=`<div style="font-size:.88em"><b>المعايير المستهدفة في مرحلته:</b><ul style="margin:.2rem 0">${stds.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
-    h+=`<div class="tip">💡 <b>اقتراحات عملية (30 يومًا):</b><ul style="margin:.2rem 0">${acts.map(a=>`<li>${a}</li>`).join('')}</ul><div>${tipFor(k,v)}</div></div></div>`;
+    h+=`<div class="tip">💡 <b>اقتراحات عملية (30 يومًا):</b><ul style="margin:.2rem 0">${acts.map(a=>`<li>${a}</li>`).join('')}</ul><div>${tipFor(k,v)}</div>`;
+    try{if(window.refsBoxHTML)h+=window.refsBoxHTML(k);}catch(e){}
+    h+=`</div></div>`;
   });
   const w1=weak[0]?DNAME[weak[0][0]].n:'—', w2=weak[1]?DNAME[weak[1][0]].n:'—';
   h+=`<h3>🗓️ خطة 30 يومًا المقترحة</h3><div class="plan"><ol><li><b>الأسبوع 1 — التثبيت:</b> ثبتوا الصلاة/القرآن + خلق واحد (من ${w1}) بعادة 10 دقائق يوميًا + لوحة نجوم.</li><li><b>الأسبوع 2 — التركيز:</b> أضيفوا مجال (${w2}) بنشاط واحد ممتع + جلسة حوار أسبوعية 20 دقيقة.</li><li><b>الأسبوع 3 — التوسع:</b> أشركوا الطفل في عمل خيري/دعوي صغير + قللوا الشاشة لصالح بديل (قراءة/رياضة/طبيعة).</li><li><b>الأسبوع 4 — التقييم:</b> أعيدوا الاستبانة، واحتفلوا بالتقدم (ولو 5%)، وحددوا هدف الشهر التالي.</li></ol><div class="tip">📌 قاعدة نماء الذهبية: <b>قدوة + حب + تعويد + تشجيع + متابعة</b> — وكثرة اللوم تهدم ما يبنيه التشجيع.</div></div>`;
