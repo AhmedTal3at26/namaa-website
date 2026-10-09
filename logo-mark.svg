@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="علامة نماء">
+  <title>علامة نماء المختصرة</title>
+  <rect x="6" y="38" width="12" height="18" rx="6" fill="#0e7c61"/>
+  <rect x="24" y="28" width="12" height="28" rx="6" fill="#0e7c61"/>
+  <rect x="42" y="18" width="12" height="38" rx="6" fill="#0e7c61"/>
+  <path d="M48 18v-6" stroke="#0e7c61" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M48 12C41 12 36 8 35 2c7 0 12 3 13 10z" fill="#0e7c61"/>
+  <path d="M48 12c7 0 12-4 13-10-7 0-12 3-13 10z" fill="#b8860b"/>
+</svg>

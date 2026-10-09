@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 104" role="img" aria-label="شعار نماء أحادي اللون">
+  <title>نماء — نسخة أحادية اللون</title>
+  <g transform="translate(356,16) scale(1.125)" fill="#232a28" stroke="#232a28">
+    <rect x="6" y="38" width="12" height="18" rx="6" stroke="none"/>
+    <rect x="24" y="28" width="12" height="28" rx="6" stroke="none"/>
+    <rect x="42" y="18" width="12" height="38" rx="6" stroke="none"/>
+    <path d="M48 18v-6" fill="none" stroke-width="4" stroke-linecap="round"/>
+    <path d="M48 12C41 12 36 8 35 2c7 0 12 3 13 10z" stroke="none"/>
+    <path d="M48 12c7 0 12-4 13-10-7 0-12 3-13 10z" stroke="none"/>
+  </g>
+  <text x="336" y="60" text-anchor="end" font-family="'IBM Plex Sans Arabic','Segoe UI',Tahoma,Arial,sans-serif" font-weight="700" font-size="54" fill="#232a28">نماء</text>
+  <text x="336" y="86" text-anchor="end" font-family="'IBM Plex Sans Arabic','Segoe UI',Tahoma,Arial,sans-serif" font-weight="400" font-size="14.5" fill="#232a28">من الرضاعة إلى ما بعد الجامعة — مؤسسة المربي</text>
+</svg>

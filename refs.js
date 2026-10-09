@@ -116,9 +116,10 @@
 /* ===== هوية نماء البصرية (تُطبق على كل الصفحات) ===== */
 (function () {
   var PATTERN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23b8860b' stroke-opacity='0.14'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3C/g%3E%3C/svg%3E\")";
-  var LOGO_SVG = "<svg viewBox='0 0 48 48' width='80%' height='80%' role='img' aria-label='شعار نماء'><defs><linearGradient id='nmg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#149a79'/><stop offset='1' stop-color='#d4a017'/></linearGradient></defs><path d='M24 3C14 11 10 19 10 27v13h28V27C38 19 34 11 24 3z' fill='none' stroke='url(#nmg)' stroke-width='3' stroke-linejoin='round'/><path d='M24 40V26' stroke='url(#nmg)' stroke-width='3' stroke-linecap='round'/><path d='M24 29c-4.5 0-8.5-2.5-9.5-7.5 5 0 8.5 2.5 9.5 7.5z' fill='#149a79'/><path d='M24 25c4.5 0 8.5-2.5 9.5-7.5-5 0-8.5 2.5-9.5 7.5z' fill='#d4a017'/><circle cx='24' cy='13' r='2.4' fill='#d4a017'/></svg>";
-  var FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%230e7c61'/%3E%3Cpath d='M24 39V25' stroke='%23fff' stroke-width='3.4' stroke-linecap='round'/%3E%3Cpath d='M24 28c-4.5 0-8.5-2.5-9.5-7.5 5 0 8.5 2.5 9.5 7.5z' fill='%23fff'/%3E%3Cpath d='M24 24c4.5 0 8.5-2.5 9.5-7.5-5 0-8.5 2.5-9.5 7.5z' fill='%23d4a017'/%3E%3C/svg%3E";
-  var css = ".logo-mark{background:var(--card);border:1px solid var(--border)}.logo-mark svg{display:block}"
+  var LOGO_SVG = "<svg viewBox='0 0 64 64' role='img' aria-label='شعار نماء'><rect x='6' y='38' width='12' height='18' rx='6' style='fill:currentColor'/><rect x='24' y='28' width='12' height='28' rx='6' style='fill:currentColor'/><rect x='42' y='18' width='12' height='38' rx='6' style='fill:currentColor'/><path d='M48 18v-6' style='stroke:currentColor' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M48 12C41 12 36 8 35 2c7 0 12 3 13 10z' style='fill:currentColor'/><path d='M48 12c7 0 12-4 13-10-7 0-12 3-13 10z' style='fill:var(--gold)'/></svg>";
+  var FAVICON = "favicon.svg";
+  var css = ".logo-mark{background:transparent;border:none;box-shadow:none;color:var(--brand);display:grid;place-items:center}.logo-mark svg{width:44px;height:44px;display:block}"
+    + ".footer-brand{display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:700;font-size:1.2em;margin-bottom:.3rem}.footer-brand small{display:block;font-weight:400;color:var(--muted);font-size:.58em}.fb-mark{width:40px;height:40px;color:var(--brand);display:inline-flex;flex-shrink:0}.fb-mark svg{width:100%;height:100%}"
     + "body{background-image:" + PATTERN + ";background-size:96px 96px}"
     + ".hero{position:relative;overflow:hidden}.hero-pattern{position:absolute;inset:0;background-image:" + PATTERN + ";background-size:72px 72px;opacity:.55;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}"
     + ".hero-kicker{display:inline-block;font-size:.78em;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:.1rem 1rem;margin-bottom:.3rem;background:var(--gold-soft)}"
@@ -164,6 +165,15 @@
     });
     var ft = document.querySelector("footer:not([data-orn])");
     if (ft && ft.parentNode) { ft.setAttribute("data-orn", "1"); ft.parentNode.insertBefore(orn(), ft); }
+    var fb = document.querySelector("footer:not([data-brand])");
+    if (fb) {
+      fb.setAttribute("data-brand", "1");
+      var b = document.createElement("div");
+      b.className = "footer-brand";
+      b.setAttribute("aria-label", "شعار نماء");
+      b.innerHTML = "<span class='fb-mark'>" + LOGO_SVG + "</span><span class='fb-word'>\u0646\u0645\u0627\u0621<small>\u0645\u0646 \u0627\u0644\u0631\u0636\u0627\u0639\u0629 \u0625\u0644\u0649 \u0645\u0627 \u0628\u0639\u062F \u0627\u0644\u062C\u0627\u0645\u0639\u0629 \u2014 \u0645\u0624\u0633\u0633\u0629 \u0627\u0644\u0645\u0631\u0628\u064A</small></span>";
+      fb.insertBefore(b, fb.firstChild);
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", decorate);
   else decorate();
