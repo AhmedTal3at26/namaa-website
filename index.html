@@ -42,6 +42,7 @@ header{position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-fil
 .btn.primary{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent}
 .btn.gold{background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border-color:transparent}
 .btn.ghost{background:transparent}
+.btn.btn-sm{font-size:.78em;padding:.3rem .7rem}
 nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5rem;flex-wrap:wrap}
 .tab{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:.5rem 1.1rem;cursor:pointer;font-family:inherit;font-weight:700;font-size:.92em;transition:.2s}
 .tab.active{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent;box-shadow:var(--shadow)}
@@ -124,7 +125,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 .note{font-size:.82em;color:var(--muted)}
 .search{flex:1;min-width:220px;display:flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.5rem .9rem}
 .search input{flex:1;border:none;outline:none;background:transparent;color:var(--text);font-family:inherit;font-size:.92em}
-@media(max-width:640px){.hero h1{font-size:1.55em}.bar-row{flex-wrap:wrap}.bar-row .nm{flex-basis:auto;font-size:.82em}.bar-row .tr{flex:1 1 100%;order:5}.likert button{min-width:70px;font-size:.75em;padding:.5rem .2rem}.btn,.tab,.chip{padding:.55rem 1rem}body{line-height:1.9}}
+@media(max-width:640px){.hero h1{font-size:1.55em}.bar-row{flex-wrap:wrap}.bar-row .nm{flex-basis:auto;font-size:.82em}.bar-row .tr{flex:1 1 100%;order:5}.likert button{min-width:70px;font-size:.75em;padding:.5rem .2rem}.btn,.tab,.chip{padding:.55rem 1rem}.btn.btn-sm{min-height:0;font-size:.78em;padding:.32rem .7rem}body{line-height:1.9}}
 @media print{
   header,nav.tabs,.hero,.stat-row,.fab,.no-print{display:none!important}
   body{background:#fff;color:#111;font-size:14px}
@@ -547,7 +548,7 @@ const DOMAIN_PAGES={iman:'domain-iman.html',shar:'domain-shar.html',sulu:'domain
 const dh=document.getElementById('domainsHome');
 DOMAINS.forEach(d=>{const el=document.createElement('div');el.className='dcard';el.innerHTML=`<div class="ic">${d.i}</div><h4>${d.n}</h4><p>${d.d}</p><a class="btn" style="margin-top:.4rem;font-size:.78em" href="${DOMAIN_PAGES[d.id]}">↗ صفحة المجال بالتفصيل</a>`;dh.appendChild(el);});
 const sh=document.getElementById('stagesHome');
-STAGES.forEach(s=>{const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age">${s.age}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
+STAGES.forEach(s=>{const w=document.createElement('div');w.className='scard';w.style.cursor='default';w.innerHTML=`<h4>${s.name}</h4><div class="note">${s.desc.slice(0,70)}…</div><span class="age">${s.age}</span><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap"><button class="btn btn-sm primary" data-act="open" style="flex:1">↗ فتح صفحة مستقلة</button><button class="btn btn-sm" data-act="view" style="flex:1">👁 عرض سريع</button></div>`;w.querySelector('[data-act="open"]').onclick=(e)=>{e.stopPropagation();window.location.href=STAGE_PAGES[s.id];};w.querySelector('[data-act="view"]').onclick=()=>{goSec('stages');selectStage(s.id);};sh.appendChild(w);});
 const ad=document.getElementById('aboutDomains');
 DOMAINS.forEach((d,i)=>{const li=document.createElement('li');li.innerHTML=`<b><a href="${DOMAIN_PAGES[d.id]}" style="color:inherit">${d.n}</a></b> — ${d.d}`;ad.appendChild(li);});
 

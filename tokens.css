@@ -59,21 +59,21 @@
   --header-bg:#1A1F27;
 }
 
-/* ---------- 3) الخطوط: نصوص وواجهات ---------- */
+/* ---------- 3) الخطوط: ثمانية للنصوص والواجهات والعناوين ---------- */
 body{
-  font-family:"Noto Sans Arabic","IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+  font-family:"IBM Plex Sans Arabic",system-ui,Tahoma,Arial,sans-serif;
   line-height:1.95;
   background-color:var(--bg);
 }
-/* عناوين تحريرية كبيرة بخط نسخي — الفقرات والواجهات تبقى بالسنز */
+/* عناوين بخط الرقعة المقروء — والآيات بالأميري */
 .hero h1,
 .panel h2,
 .wsheet h2,
 .stg-title,
 .ruqaa{
-  font-family:"Noto Naskh Arabic","Amiri Quran",serif;
-  font-weight:700;
-  line-height:1.75;
+  font-family:"Aref Ruqaa",serif;
+  font-weight:400;
+  line-height:1.8;
 }
 .quran{font-family:"Amiri Quran",serif;line-height:2.2;}
 

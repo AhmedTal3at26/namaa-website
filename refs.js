@@ -166,7 +166,7 @@
   ic.src = "icons.js";
   document.head.appendChild(ic);
   var f = document.querySelector('link[href*="fonts.googleapis.com/css2"]');
-  if (f) f.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Naskh+Arabic:wght@600;700&family=Amiri+Quran&display=swap";
+  if (f) f.href = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Amiri+Quran&family=Aref+Ruqaa:wght@400;700&display=swap";
 })();
 /* ===== تنظيم الصفحات الداخلية: مسار تنقل + فهرس + شريط مصادر ===== */
 (function () {
