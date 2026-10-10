@@ -7,26 +7,28 @@
    - الحالات لا تعتمد على اللون وحده (نص + ✓ دائمًا)
    ===================================================== */
 
-/* ---------- 1) الألوان والمسافات والحواف (فاتح) ---------- */
+/* ---------- 1) الألوان والمسافات والحواف (فاتح) ----------
+   اللوحة الزرقاء (قيم تقريبية مستنتجة من الصورة المرفقة):
+   عميق #1D5D9D / متوسط #6AA5C5 / فاتح #CFE4E0 / أبيض مزرق #F2F5F1 */
 :root{
-  --bg:#F7F4EC;            /* خلفية عاجية */
+  --bg:#F2F5F1;            /* خلفية فاتحة مزرقة */
   --bg2:#FFFFFF;           /* أسطح بيضاء */
   --card:#FFFFFF;
-  --text:#24332D;          /* نص داكن */
-  --muted:#58665D;         /* نص ثانوي (AA على الأبيض) */
-  --brand:#24483E;         /* أخضر عميق أساسي */
-  --brand2:#1E6B52;        /* أخضر نصي (AA على الأبيض) */
-  --brand-soft:#E4EDE8;
-  --action:#24483E;        /* لون الإجراءات الأساسية */
+  --text:#1C2B3A;          /* نص داكن مزرق */
+  --muted:#54687C;         /* نص ثانوي (AA على الأبيض) */
+  --brand:#1D5D9D;         /* أزرق عميق أساسي */
+  --brand2:#174E86;        /* أزرق نصي (AA على الأبيض) */
+  --brand-soft:#DCE9F2;
+  --action:#1D5D9D;        /* لون الإجراءات الأساسية */
   --action-ink:#FFFFFF;
-  --gold:#b8860b;          /* لمسات زخرفية فقط */
-  --gold2:#d4a017;
-  --gold-soft:#fdf3d3;
-  --gold-ink:#7A5A00;      /* نص ذهبي مقروء (AA) */
-  --clay:#A65F46;          /* طيني مساند — للحدود والزخارف */
-  --clay-ink:#7E4433;      /* حبر طيني للنصوص (AA) */
-  --border:#DDDCD2;        /* حدود فاتحة */
-  --shadow:0 1px 2px rgba(36,51,45,.07),0 4px 14px rgba(36,51,45,.07);
+  --gold:#6AA5C5;          /* أزرق متوسط للمسات */
+  --gold2:#8FC0DA;
+  --gold-soft:#E4EFF4;
+  --gold-ink:#2E6E9E;      /* نص أزرق مقروء (AA) */
+  --clay:#6AA5C5;          /* مساند — للحدود */
+  --clay-ink:#2E6E9E;      /* حبر مساند للنصوص (AA) */
+  --border:#D5DDE3;        /* حدود فاتحة */
+  --shadow:0 1px 2px rgba(29,93,157,.07),0 4px 14px rgba(29,93,157,.07);
   --radius:14px;
   --radius-sm:10px;
   --radius-lg:18px;
@@ -36,25 +38,25 @@
   --header-bg:#FFFFFF;
 }
 
-/* ---------- 2) الثيم الداكن ---------- */
+/* ---------- 2) الثيم الداكن (كحلي) ---------- */
 [data-theme="dark"]{
-  --bg:#161A20;
-  --bg2:#1A1F27;
-  --card:#1F2530;
-  --text:#EDE8DB;
-  --muted:#A9B3A9;
-  --brand:#7BC9A6;
-  --brand2:#6FD3A4;
-  --brand-soft:#182A23;
-  --action:#45D19B;
-  --action-ink:#0B1F17;
-  --gold:#e3b341;
-  --gold2:#f0c75e;
-  --gold-soft:#2b2413;
-  --gold-ink:#EAC96A;
-  --clay:#C98A6D;
-  --clay-ink:#E0A586;
-  --border:#2C323D;
+  --bg:#0F1923;
+  --bg2:#141F2B;
+  --card:#182635;
+  --text:#EAF0F5;
+  --muted:#A7BDCF;
+  --brand:#8FBEDE;
+  --brand2:#A9D0E8;
+  --brand-soft:#16283A;
+  --action:#8FBEDE;
+  --action-ink:#0A1A29;
+  --gold:#8FBEDE;
+  --gold2:#A9D0E8;
+  --gold-soft:#1B2C3E;
+  --gold-ink:#C4DDF0;
+  --clay:#8FBEDE;
+  --clay-ink:#C4DDF0;
+  --border:#263646;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
   --header-bg:#1A1F27;
 }
@@ -101,6 +103,7 @@ body{
     box-shadow:none;
   }
   .btn.gold{background:transparent;color:var(--clay-ink);border:1px solid var(--clay);}
+  .bar i,.bar-row .tr i{background:var(--brand);} /* أشرطة مسطحة بلا تدرج */
   /* حالات لا تعتمد على اللون وحده */
   .likert button.sel::before{content:"✓ ";}
   .b-ex{color:#0C5A44;background:#E4EDE8;border-color:#0C5A44;}

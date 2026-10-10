@@ -43,6 +43,7 @@ header{position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-fil
 .btn.gold{background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border-color:transparent}
 .btn.ghost{background:transparent}
 .btn.btn-sm{font-size:.78em;padding:.3rem .7rem;border-radius:10px}
+.chip.sel-now{outline:2px solid var(--brand2);outline-offset:1px}
 nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5rem;flex-wrap:wrap}
 .tab{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:.5rem 1.1rem;cursor:pointer;font-family:inherit;font-weight:700;font-size:.92em;transition:.2s}
 .tab.active{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent;box-shadow:var(--shadow)}
@@ -195,13 +196,11 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <div class="panel">
     <h2>أقسام <span>الموقع</span></h2>
     <p class="note">اضغط على القسم المطلوب للانتقال إليه مباشرة:</p>
-    <div class="grid g3">
-      <div class="dcard"><h4>صفحات المراحل السبع</h4><p>المجالات والمعايير والأنشطة لكل عمر من 0 إلى +18.</p><button class="btn primary btn-sm" onclick="goSec('stages')">فتح المراحل ←</button></div>
-      <div class="dcard"><h4>الاستبانة وملفات الأطفال</h4><p>33 عبارة لتقييم كل طفل عبر المجالات الأحد عشر.</p><button class="btn primary btn-sm" onclick="goSec('quiz')">بدء الاستبانة ←</button></div>
-      <div class="dcard"><h4>التقرير وسجل التقارير</h4><p>الدرجات والاقتراحات وخطة 30 يومًا لكل طفل.</p><button class="btn primary btn-sm" onclick="goSec('report')">عرض التقرير ←</button></div>
-      <div class="dcard"><h4>المجالات الأحد عشر</h4><p>صفحات مستقلة لطبيعة كل مجال ومعاييره ومراجعه.</p><button class="btn btn-sm" onclick="goSec('about')">تعرف على المجالات ←</button></div>
-      <div class="dcard"><h4>أوراق العمل والأناشيد</h4><p>نماذج قابلة للملء والطباعة + أناشيد بروابط.</p><a class="btn btn-sm" href="works.html">فتح أوراق العمل ←</a></div>
-      <div class="dcard"><h4>بنية المنهج والمصادر</h4><p>المستويات الأصلية للمنهج ومثال من المحتوى ومصادره.</p><button class="btn btn-sm" onclick="goSec('about')">عن المنهج ←</button></div>
+    <div class="grid g2">
+      <div class="dcard"><h4>المنهج — تعريف بالمنهج</h4><p>بنية منهج نماء الأصلية ومثال من المحتوى ومصادره.</p><button class="btn primary btn-sm" onclick="goSec('about')">تعرف على المنهج ←</button></div>
+      <div class="dcard"><h4>المراحل — 7 مراحل</h4><p>من 0–2 إلى +18: المجالات والمعايير والأنشطة لكل عمر.</p><button class="btn primary btn-sm" onclick="goSec('stages')">فتح المراحل ←</button></div>
+      <div class="dcard"><h4>المجالات — 11 مجالًا</h4><p>طبيعة كل مجال ومعاييره عبر المراحل ومراجعه.</p><button class="btn primary btn-sm" onclick="goSec('about');setTimeout(()=>{const l=document.getElementById('refsLibrary');if(l)l.scrollIntoView({behavior:'smooth'});},120)">استعرض المجالات ←</button></div>
+      <div class="dcard"><h4>الاستبانة — قيّم طفلك</h4><p>أدخل بيانات الطفل الأساسية ثم أجب عن الأسئلة.</p><button class="btn primary btn-sm" onclick="goSec('quiz')">بدء الاستبانة ←</button></div>
     </div>
   </div>
 </div>
@@ -252,6 +251,12 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
     </div>
     <label class="f">المرحلة العمرية (تُقترح تلقائيًا حسب العمر — ويمكن تغييرها)</label>
     <div class="chips" id="quizStageChips"></div>
+    <label class="f">طريقة عرض الأسئلة</label>
+    <div class="chips no-print" id="modeChips">
+      <button class="chip active" data-mode="all">كل الأسئلة في صفحة واحدة</button>
+      <button class="chip" data-mode="one">سؤال واحد في كل صفحة</button>
+    </div>
+    <div id="stepBox"></div>
     <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:.6rem 0" class="no-print">
       <div class="progress" style="flex:1;min-width:200px"><i id="quizBar"></i></div>
       <span id="quizCount" class="note">0 / 0</span>
@@ -655,6 +660,9 @@ function switchProfile(id){
 }
 function filteredQ(){const idx=stageIdx(quizStage);return QUESTIONS.map((q,i)=>({...q,qi:i})).filter(q=>idx>=q.min);}
 function buildQuiz(){
+  stepIdx=0;
+  if(qmode==='one'){document.getElementById('quizList').innerHTML='';renderStep();return;}
+  document.getElementById('stepBox').innerHTML='';
   const list=filteredQ();
   const box=document.getElementById('quizList');box.innerHTML='';
   list.forEach(q=>{
@@ -669,6 +677,39 @@ function buildQuiz(){
     });
     box.appendChild(div);
   });
+  updateProg();
+}
+/* وضعا عرض الأسئلة: الكل أو سؤال واحد */
+let qmode='all', stepIdx=0;
+try{qmode=localStorage.getItem('namaa_qmode')||'all';}catch(e){}
+function syncModeChips(){document.querySelectorAll('#modeChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.mode===qmode));}
+document.querySelectorAll('#modeChips .chip').forEach(c=>c.onclick=()=>{qmode=c.dataset.mode;try{localStorage.setItem('namaa_qmode',qmode);}catch(e){}stepIdx=0;syncModeChips();buildQuiz();});
+function renderStep(){
+  const list=filteredQ();
+  const box=document.getElementById('stepBox');
+  if(!list.length){box.innerHTML='';return;}
+  if(stepIdx>=list.length)stepIdx=list.length-1;
+  if(stepIdx<0)stepIdx=0;
+  const q=list[stepIdx], d=DNAME[q.d];
+  box.innerHTML=`<div class="q"><p><b>سؤال ${stepIdx+1} من ${list.length}</b> — ${q.t} <span class="dom">— ${d.i} ${d.n}</span></p><div class="likert" id="stepLikert"></div>
+  <div class="no-print" style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap">
+    <button class="btn" id="stepPrev"${stepIdx===0?' disabled style="opacity:.5"':''}>→ السابق</button>
+    <button class="btn primary" id="stepNext">${stepIdx===list.length-1?'عرض التقرير ←':'التالي ←'}</button>
+  </div>
+  <div class="chips" id="stepDots" style="margin-top:.5rem"></div></div>`;
+  const lk=document.getElementById('stepLikert');
+  SCALE.forEach(s=>{
+    const b=document.createElement('button');b.textContent=s.t;if(answers['q'+q.qi]===s.v)b.classList.add('sel');
+    b.onclick=()=>{answers['q'+q.qi]=s.v;saveAns();updateProg();lk.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');renderDots();setTimeout(()=>{if(stepIdx<list.length-1){stepIdx++;renderStep();}},350);};
+    lk.appendChild(b);
+  });
+  function renderDots(){
+    const dots=document.getElementById('stepDots');if(!dots)return;dots.innerHTML='';
+    list.forEach((qq,i)=>{const db=document.createElement('button');db.className='chip'+(answers['q'+qq.qi]?' active':'')+((i===stepIdx)?' sel-now':'');db.textContent=(i+1);db.style.minWidth='42px';db.onclick=()=>{stepIdx=i;renderStep();};dots.appendChild(db);});
+  }
+  renderDots();
+  document.getElementById('stepPrev').onclick=()=>{if(stepIdx>0){stepIdx--;renderStep();}};
+  document.getElementById('stepNext').onclick=()=>{if(stepIdx<list.length-1){stepIdx++;renderStep();}else{document.getElementById('showReportBtn').click();}};
   updateProg();
 }
 function updateProg(){
@@ -722,6 +763,7 @@ function renderHistory(){
   box.querySelectorAll('[data-hd]').forEach(b=>b.onclick=()=>{if(!confirm('حذف هذا التقرير؟'))return;const arr=JSON.parse(localStorage.getItem(repKey())||'[]');arr.splice(+b.dataset.hd,1);localStorage.setItem(repKey(),JSON.stringify(arr));renderHistory();});
 }
 loadProfiles();
+syncModeChips();
 buildQuiz();
 renderHistory();
 
