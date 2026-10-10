@@ -95,6 +95,7 @@ body{
   }
 
   .panel,.wsheet,.stat,.dcard,.scard{border-radius:var(--radius);}
+  .dcard{box-shadow:none;} /* بطاقات الأدوات مسطحة بلا ظل */
   .hero{border-radius:var(--radius-lg);}
   .panel,.wsheet{box-shadow:var(--shadow),inset 0 0 0 1px var(--bg);}
   /* أزرار مسطحة: الأخضر للأساسي */

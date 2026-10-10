@@ -41,7 +41,20 @@
     S("compass", '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/>') +
     S("list", '<path d="M8.5 6h12M8.5 12h12M8.5 18h12"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/>') +
     S("link", '<path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1.5 1.5"/><path d="M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1.5-1.5"/>') +
-    S("shield", '<path d="M12 3l7.5 3v6c0 4.5-3 7.5-7.5 9-4.5-1.5-7.5-4.5-7.5-9V6L12 3z"/><path d="M9 12l2 2 4-4"/>');
+    S("shield", '<path d="M12 3l7.5 3v6c0 4.5-3 7.5-7.5 9-4.5-1.5-7.5-4.5-7.5-9V6L12 3z"/><path d="M9 12l2 2 4-4"/>') +
+    S("heart", '<path d="M12 20s-7-4.6-9-9c-1.2-2.8.6-6 3.6-6 1.9 0 3.4 1.3 5.4 3.9 2-2.6 3.5-3.9 5.4-3.9 3 0 4.8 3.2 3.6 6-2 4.4-9 9-9 9z"/>') +
+    S("flower", '<circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="7.2" r="2.6"/><circle cx="12" cy="16.8" r="2.6"/><circle cx="7.2" cy="12" r="2.6"/><circle cx="16.8" cy="12" r="2.6"/>') +
+    S("lightbulb", '<path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.4 11c.7.6 1.4 1.3 1.4 2.5h4c0-1.2.7-1.9 1.4-2.5A6 6 0 0 0 12 3z"/>') +
+    S("megaphone", '<path d="M4 10v5h4l9 4V6l-9 3H4z"/><path d="M8 15v6"/>') +
+    S("smile", '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/><path d="M9 9.5h.01M15 9.5h.01"/>') +
+    S("users", '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-5.5 6.5-5.5s6.5 2 6.5 5.5"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.9c2 .8 3.5 2.4 3.5 5.1"/>') +
+    S("message", '<path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.6A8.5 8.5 0 1 1 21 11.5z"/>') +
+    S("monitor", '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/>') +
+    S("award", '<circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/>') +
+    S("shapes", '<circle cx="8" cy="8" r="4"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>') +
+    S("notebook", '<path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9.5 3v18"/>') +
+    S("rocket", '<path d="M5 15c-1 4-1 5-1 5s1 0 5-1"/><path d="M14 4c3 0 6 3 6 6l-7 7-6-6 7-7z"/><circle cx="15" cy="9" r="1.5"/>') +
+    S("gradcap", '<path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/>');
 
   function mount() {
     if (document.getElementById("namaa-sprite")) return;
@@ -55,7 +68,7 @@
 
   /* قاموس الإيموجي → الأيقونة (مرتب الأطول أولًا) */
   var DICT = [
-    ["👶🧑‍🎓", "layers"], ["🗺️", "compass"], ["🏠", "home"], ["🗂️", "layers"], ["📝", "clipboard"],
+    ["👶🧑‍🎓", "layers"], ["👨‍👩‍👧", "users"], ["🌱", "sprout"], ["🗺️", "compass"], ["🤲", "heart"], ["🌷", "flower"], ["🧠", "lightbulb"], ["📢", "megaphone"], ["💚", "smile"], ["💬", "message"], ["💻", "monitor"], ["🏅", "award"], ["🧸", "shapes"], ["🚀", "rocket"], ["🎓", "gradcap"], ["🏠", "home"], ["🗂️", "layers"], ["📝", "clipboard"],
     ["📊", "chart"], ["📚", "book-open"], ["📋", "clipboard"], ["🖨️", "printer"],
     ["🌙", "moon"], ["☀️", "sun"], ["↗", "external"], ["👁", "eye"],
     ["🗓️", "calendar"], ["⭐", "star"], ["🌟", "compass"], ["🧭", "compass"],
@@ -71,17 +84,18 @@
     var txt = el.textContent || "";
     if (emoji === "📋" && txt.indexOf("نسخ") !== -1) return "copy";
     if (emoji === "📋" && txt.indexOf("أوراق") !== -1) return "pencil";
+    if (emoji === "📚" && el.closest && el.closest(".stg")) return "notebook";
     if (emoji === "📚" && txt.indexOf("مراجع") !== -1) return "link";
     if (emoji === "🧭" && txt.indexOf("المعايير") !== -1) return "list";
     if (emoji === "🗓️" && txt.indexOf("ورقة") !== -1) return "calendar-check";
     if (emoji === "⭐" && txt.indexOf("ورقة") !== -1) return "star";
     if (emoji === "🗓️") return "calendar";
-    var map = { "🗺️": "compass", "🏠": "home", "🗂️": "layers", "📝": "clipboard", "📊": "chart", "📚": "book-open", "📋": "clipboard", "🖨️": "printer", "🌙": "moon", "☀️": "sun", "↗": "external", "👁": "eye", "⭐": "star", "🌟": "compass", "🧭": "compass", "🌿": "sprout", "🎵": "music", "🕌": "moon", "📖": "book-open", "🤝": "pencil", "📱": "shield", "🔍": "search", "▶": "play", "📂": "folder", "→": "arrow-right", "←": "arrow-left", "↑": "arrow-up", "👶🧑‍🎓": "layers" };
+    var map = { "🤲": "heart", "🌷": "flower", "🧠": "lightbulb", "📢": "megaphone", "💚": "smile", "👨‍👩‍👧": "users", "💬": "message", "💻": "monitor", "🏅": "award", "🧸": "shapes", "🚀": "rocket", "🎓": "gradcap", "🗺️": "compass", "🏠": "home", "🗂️": "layers", "📝": "clipboard", "📊": "chart", "📚": "book-open", "📋": "clipboard", "🖨️": "printer", "🌙": "moon", "☀️": "sun", "↗": "external", "👁": "eye", "⭐": "star", "🌟": "compass", "🧭": "compass", "🌿": "sprout", "🎵": "music", "🕌": "moon", "📖": "book-open", "🤝": "pencil", "📱": "shield", "🔍": "search", "▶": "play", "📂": "folder", "→": "arrow-right", "←": "arrow-left", "↑": "arrow-up", "👶🧑‍🎓": "layers", "🌱": "sprout" };
     return map[emoji] || null;
   }
   var joint = DICT.map(function (p) { return p[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|");
   var RE = new RegExp(joint, "gu");
-  var SCOPE = "nav.tabs a,nav.tabs button,.hero-cta .btn,.hero-cta a,.panel h2,.wsheet h2,#reportBox h3,.no-print .btn,.no-print button,.song .pl,#themeBtn,.search";
+  var SCOPE = "nav.tabs a,nav.tabs button,.hero-cta .btn,.hero-cta a,.panel h2,.wsheet h2,#reportBox h3,.no-print .btn,.no-print button,.song .pl,#themeBtn,.search,.domain-block h3,.domain-block h4,.stg h3,.rep-domain h4";
 
   function replaceIn(el) {
     var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
