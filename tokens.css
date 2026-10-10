@@ -116,4 +116,6 @@ body{
   .hero p{max-width:68ch;}
   .panel>p,.panel>ul,.panel>ol,.tip,.warn,.plan{max-width:var(--measure);}
   :focus-visible{outline:2px solid var(--brand2);outline-offset:2px;}
+  .btn.btn-icon{min-width:44px;min-height:44px;padding:.4rem .6rem;font-size:1em;line-height:1;}
+  .warn.wide{max-width:none;}
 }

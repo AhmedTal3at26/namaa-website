@@ -149,10 +149,10 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
       </div>
     </div>
     <div class="controls">
-      <button class="btn" id="fontDecrease" title="تصغير الخط">أ− تصغير</button>
+      <button class="btn btn-icon" id="fontDecrease" aria-label="تصغير الخط" title="تصغير الخط">أ−</button>
       <button class="btn" id="fontReset" title="حجم افتراضي">100%</button>
       <button class="btn" id="fontIncrease" title="تكبير الخط">تكبير أ+</button>
-      <button class="btn" id="themeBtn" title="تبديل الثيم">🌙 داكن / ☀️ فاتح</button>
+      <button class="btn btn-icon" id="themeBtn" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
     </div>
   </div>
 </header>
@@ -187,7 +187,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <div class="section active" id="sec-home">
   <div class="panel">
     <h2>إخلاء <span>مسؤولية</span></h2>
-    <div class="warn">⚠️ هذا الموقع ليس بديلًا عن الكتاب ولا جهة تربوية رسمية — بل هو <b>تحويل لكتاب «نماء — منهج بناء الشخصية الإسلامية» الصادر عن مؤسسة المربي إلى استبانة تقييم وأدوات مساندة للوالدين</b>. المحتوى بصياغة مبسطة، والمرجع الحاكم عند التعارض هو الكتاب الورقي، ونتائج الاستبانة استرشادية وليست تشخيصًا طبيًا أو نفسيًا.</div>
+    <div class="warn wide">⚠️ هذا الموقع ليس بديلًا عن الكتاب ولا جهة تربوية رسمية — بل هو <b>تحويل لكتاب «نماء — منهج بناء الشخصية الإسلامية» الصادر عن مؤسسة المربي إلى استبانة تقييم وأدوات مساندة للوالدين</b>. المحتوى بصياغة مبسطة، والمرجع الحاكم عند التعارض هو الكتاب الورقي، ونتائج الاستبانة استرشادية وليست تشخيصًا طبيًا أو نفسيًا.</div>
   </div>
   <div class="panel">
     <h2>اختر ما <span>تريد فعله</span></h2>
@@ -346,12 +346,13 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <div class="fab no-print"><button id="toTop" title="للأعلى">↑</button></div>
 
 <script src="refs.js"></script>
+<script src="i18n.js"></script>
 <script>
 /* ============ الثيم والخط ============ */
 const root=document.documentElement;
 function applyFont(px){root.style.setProperty('--font-size',px+'px');localStorage.setItem('namaa_font',px);document.getElementById('fontReset').textContent=Math.round(px/18*100)+'%';}
 let curFont=parseInt(localStorage.getItem('namaa_font')||'18',10);
-function applyTheme(t){root.setAttribute('data-theme',t);localStorage.setItem('namaa_theme',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀️ فاتح / 🌙 داكن':'🌙 داكن / ☀️ فاتح';}
+function applyTheme(t){root.setAttribute('data-theme',t);localStorage.setItem('namaa_theme',t);var _tb=document.getElementById('themeBtn');if(_tb){_tb.textContent=t==='dark'?'☀️':'🌙';_tb.setAttribute('aria-label',t==='dark'?'التبديل إلى الوضع الفاتح':'التبديل إلى الوضع الداكن');}}
 applyFont(Math.min(28,Math.max(14,curFont)));
 applyTheme(localStorage.getItem('namaa_theme')||'light');
 document.getElementById('fontIncrease').onclick=()=>applyFont(Math.min(28,curFont+1>28?28:(curFont+=1)));
@@ -503,7 +504,8 @@ const STAGES=[
 ];
 
 /* ============ الاستبانة: 33 عبارة ============ */
-const SCALE=[{v:5,t:'دائمًا'},{v:4,t:'غالبًا'},{v:3,t:'أحيانًا'},{v:2,t:'نادرًا'},{v:1,t:'أبدًا'}];
+const SCALE_AR=[{v:5,t:'دائمًا'},{v:4,t:'غالبًا'},{v:3,t:'أحيانًا'},{v:2,t:'نادرًا'},{v:1,t:'أبدًا'}];
+function scalelist(){return (ENM()&&window.SCALE_EN)?window.SCALE_EN:SCALE_AR;}
 const QUESTIONS=[
  {d:'iman',t:'يُظهر حب الله (يفرح بالعبادة، يذكر الله، يدعوه)',min:1},
  {d:'iman',t:'يستشعر أن الله يراه فيتجنب الخطأ حتى لوحده',min:2},
@@ -555,8 +557,13 @@ const ACT={
  tiqn:{'صغار':['بديل الشاشة: لعب حسي + قصص + خروج طبيعة','قاعدة: لا أجهزة في الغرف والطعام وقبل النوم بساعة'], 'وسط':['اتفاقية رقمية مكتوبة (وقت/محتوى/خصوصية) + فلترة','إنتاج: عرض/فيديو/برمجة مبسطة + لا تواصل اجتماعي'], 'يافعون':['أمن رقمي: خصوصية + إبلاغ + تجنب الإباحية بحزم','مشروع تقني نافع + إدارة وقت الشاشة بتطبيق']},
  qiy:{'صغار':['اختيار بين خيارين + مهمة صغيرة + مدح المبادرة'], 'وسط':['مسؤولية ثابتة + قيادة فريق/رحلة + تخطيط هدف صغير','ميزانية مصروف + ادخار + صدقة'], 'يافعون':['قيادة مبادرة مجتمعية كاملة + خطة مستقبل مكتوبة','عمل صيفي/تطوع + إدارة مال + صناعة خليفة']}
 };
+const ENM=()=>window.NAMAA_LANG==='en';
+function dn(id){return (ENM()&&window.DN_EN)?window.DN_EN[id]:DNAME[id].n;}
+function stgN(s){return (ENM()&&window.ST_EN)?window.ST_EN[s.id]:s.name;}
+function lvT(l){return (ENM()&&window.LV_EN&&window.LV_EN[l.t])?{t:window.LV_EN[l.t],c:l.c}:l;}
+function law(){return ENM()?'en':'ar';}
 function levelOf(p){if(p>=85)return{t:'متميز 🌟',c:'b-ex'};if(p>=70)return{t:'جيد 👍',c:'b-good'};if(p>=50)return{t:'يحتاج دعمًا 🌱',c:'b-mid'};return{t:'أولوية قصوى 🚨',c:'b-low'};}
-function tipFor(d,p){if(p>=85)return'حافظ على التميز: ثبّت العادة، وزد التحدي تدريجيًا، واجعله قدوة يُعلّم غيره.';if(p>=70)return'البناء جيد: ركز على الاستمرارية اليومية + مراجعة أسبوعية قصيرة مع التشجيع.';if(p>=50)return'يحتاج خطة مركزة 30 يومًا: عادة واحدة صغيرة يوميًا + متابعة لطيفة + مكافأة معنوية.';return'ابدأ فورًا بخطوة صغيرة جدًا يوميًا (5–10 دقائق)، مع احتواء وحوار، واستشر مختصًا عند الحاجة.';}
+function tipFor(d,p){if(ENM()){if(p>=85)return'Keep the excellence: consolidate the habit, raise the challenge gradually, and let him teach others.';if(p>=70)return'Good progress: focus on daily consistency plus a short weekly review with encouragement.';if(p>=50)return'Needs a focused 30-day plan: one small daily habit, gentle follow-up, and moral rewards.';return'Start now with a tiny daily step (5\u201310 minutes), warmth and dialogue, and consult a specialist if needed.';}if(p>=85)return'حافظ على التميز: ثبّت العادة، وزد التحدي تدريجيًا، واجعله قدوة يُعلّم غيره.';if(p>=70)return'البناء جيد: ركز على الاستمرارية اليومية + مراجعة أسبوعية قصيرة مع التشجيع.';if(p>=50)return'يحتاج خطة مركزة 30 يومًا: عادة واحدة صغيرة يوميًا + متابعة لطيفة + مكافأة معنوية.';return'ابدأ فورًا بخطوة صغيرة جدًا يوميًا (5–10 دقائق)، مع احتواء وحوار، واستشر مختصًا عند الحاجة.';}
 
 /* ============ عرض المجالات والمراحل ============ */
 const STAGE_PAGES={s1:'stage-0-2.html',s2:'stage-3-5.html',s3:'stage-6-8.html',s4:'stage-9-11.html',s5:'stage-12-14.html',s6:'stage-15-17.html',s7:'stage-18-plus.html'};
@@ -602,7 +609,7 @@ renderStage();
 /* ============ الاستبانة ============ */
 let quizStage='s3';
 const qChips=document.getElementById('quizStageChips');
-STAGES.forEach(s=>{const b=document.createElement('button');b.className='chip'+(s.id===quizStage?' active':'');b.dataset.id=s.id;b.textContent=`${s.name} (${s.short})`;b.onclick=()=>{quizStage=s.id;curStage=s.id;document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));renderStage();document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));try{curProfile().stage=s.id;saveProfiles();}catch(e){}buildQuiz();};qChips.appendChild(b);});
+STAGES.forEach(s=>{const b=document.createElement('button');b.className='chip'+(s.id===quizStage?' active':'');b.dataset.id=s.id;b.textContent=`${stgN(s)} (${s.short})`;b.onclick=()=>{quizStage=s.id;curStage=s.id;document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));renderStage();document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===s.id));try{curProfile().stage=s.id;saveProfiles();}catch(e){}buildQuiz();};qChips.appendChild(b);});
 function stageIdx(id){return STAGES.findIndex(s=>s.id===id);}
 function ageToStage(a){a=+a||0;if(a<=2)return 's1';if(a<=5)return 's2';if(a<=8)return 's3';if(a<=11)return 's4';if(a<=14)return 's5';if(a<=17)return 's6';return 's7';}
 document.getElementById('childAge').addEventListener('change',e=>{
@@ -621,7 +628,7 @@ function saveProfiles(){localStorage.setItem('namaa_profiles',JSON.stringify(pro
 function loadAnswers(){try{answers=JSON.parse(localStorage.getItem(ansKey())||'{}');}catch(e){answers={};}}
 function saveAns(){localStorage.setItem(ansKey(),JSON.stringify(answers));const p=curProfile();if(p){p.name=document.getElementById('childName').value;p.age=document.getElementById('childAge').value;p.stage=quizStage;saveProfiles();syncProfileSel();}}
 function syncChips(){document.querySelectorAll('#stageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===quizStage));document.querySelectorAll('#quizStageChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.id===quizStage));}
-function syncProfileSel(){const sel=document.getElementById('profileSel');if(!sel)return;sel.innerHTML='';profiles.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=(p.name||'طفل بدون اسم')+' ('+(p.age||'—')+' سنوات)';if(p.id===activeId)o.selected=true;sel.appendChild(o);});}
+function syncProfileSel(){const sel=document.getElementById('profileSel');if(!sel)return;sel.innerHTML='';const EN=ENM();profiles.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=(p.name||(EN?'Unnamed child':'طفل بدون اسم'))+' ('+(p.age||'—')+(EN?' yrs':' سنوات')+')';if(p.id===activeId)o.selected=true;sel.appendChild(o);});}
 function loadProfiles(){
   try{profiles=JSON.parse(localStorage.getItem('namaa_profiles')||'[]');}catch(e){profiles=[];}
   if(!profiles.length){
@@ -654,7 +661,7 @@ function switchProfile(id){
   quizStage=p.stage||ageToStage(p.age||7);
   syncChips();syncProfileSel();buildQuiz();renderHistory();
 }
-function filteredQ(){const idx=stageIdx(quizStage);return QUESTIONS.map((q,i)=>({...q,qi:i})).filter(q=>idx>=q.min);}
+function filteredQ(){const idx=stageIdx(quizStage);return QUESTIONS.map((q,i)=>({d:q.d,min:q.min,qi:i,text:((ENM()&&window.EN_Q)?window.EN_Q[i]:q.t)})).filter(q=>idx>=q.min);}
 function buildQuiz(){
   stepIdx=0;
   if(qmode==='one'){document.getElementById('quizList').innerHTML='';renderStep();return;}
@@ -664,9 +671,9 @@ function buildQuiz(){
   list.forEach(q=>{
     const d=DNAME[q.d];
     const div=document.createElement('div');div.className='q'+(answers['q'+q.qi]?' did':'');
-    div.innerHTML=`<p>${q.t} <span class="dom">— ${d.i} ${d.n}</span></p><div class="likert"></div>`;
+    div.innerHTML=`<p>${q.text} <span class="dom">— ${d.i} ${dn(q.d)}</span></p><div class="likert"></div>`;
     const lk=div.querySelector('.likert');
-    SCALE.forEach(s=>{
+    scalelist().forEach(s=>{
       const b=document.createElement('button');b.textContent=`${s.t}`;if(answers['q'+q.qi]===s.v)b.classList.add('sel');
       b.onclick=()=>{answers['q'+q.qi]=s.v;saveAns();div.classList.add('did');lk.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');updateProg();};
       lk.appendChild(b);
@@ -687,14 +694,15 @@ function renderStep(){
   if(stepIdx>=list.length)stepIdx=list.length-1;
   if(stepIdx<0)stepIdx=0;
   const q=list[stepIdx], d=DNAME[q.d];
-  box.innerHTML=`<div class="q"><p><b>سؤال ${stepIdx+1} من ${list.length}</b> — ${q.t} <span class="dom">— ${d.i} ${d.n}</span></p><div class="likert" id="stepLikert"></div>
+  const EN=ENM();
+  box.innerHTML=`<div class="q"><p><b>${EN?('Question '+(stepIdx+1)+' of '+list.length):('سؤال '+(stepIdx+1)+' من '+list.length)}</b> — ${q.text} <span class="dom">— ${d.i} ${dn(q.d)}</span></p><div class="likert" id="stepLikert"></div>
   <div class="no-print" style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap">
-    <button class="btn" id="stepPrev"${stepIdx===0?' disabled style="opacity:.5"':''}>→ السابق</button>
-    <button class="btn primary" id="stepNext">${stepIdx===list.length-1?'عرض التقرير ←':'التالي ←'}</button>
+    <button class="btn" id="stepPrev"${stepIdx===0?' disabled style="opacity:.5"':''}>${EN?'→ Previous':'→ السابق'}</button>
+    <button class="btn primary" id="stepNext">${stepIdx===list.length-1?(EN?'Show report':'عرض التقرير')+' ←':(EN?'Next':'التالي')+' ←'}</button>
   </div>
   <div class="chips" id="stepDots" style="margin-top:.5rem"></div></div>`;
   const lk=document.getElementById('stepLikert');
-  SCALE.forEach(s=>{
+  scalelist().forEach(s=>{
     const b=document.createElement('button');b.textContent=s.t;if(answers['q'+q.qi]===s.v)b.classList.add('sel');
     b.onclick=()=>{answers['q'+q.qi]=s.v;saveAns();updateProg();lk.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');renderDots();setTimeout(()=>{if(stepIdx<list.length-1){stepIdx++;renderStep();}},350);};
     lk.appendChild(b);
@@ -712,15 +720,15 @@ function updateProg(){
   const list=filteredQ();
   const done=list.filter(q=>answers['q'+q.qi]).length;
   document.getElementById('quizBar').style.width=(list.length?Math.round(done/list.length*100):0)+'%';
-  document.getElementById('quizCount').textContent=`${done} / ${list.length} مُجاب`;
+  document.getElementById('quizCount').textContent=`${done} / ${list.length} ${ENM()?'answered':'مُجاب'}`;
 }
-document.getElementById('clearQuiz').onclick=()=>{if(confirm('مسح جميع الإجابات؟')){answers={};saveAns();buildQuiz();}};
+document.getElementById('clearQuiz').onclick=()=>{if(confirm(ENM()?'Clear all answers for this child?':'مسح جميع الإجابات؟')){answers={};saveAns();buildQuiz();}};
 document.getElementById('childName').addEventListener('input',saveAns);
 document.getElementById('profileSel').addEventListener('change',e=>switchProfile(e.target.value));
 document.getElementById('addChild').onclick=()=>{
   const nm=document.getElementById('newName').value.trim();
   const ag=document.getElementById('newAge').value||7;
-  if(!nm){alert('اكتب اسم الطفل أولًا.');return;}
+  if(!nm){alert(ENM()?'Type the child\u2019s name first.':'اكتب اسم الطفل أولًا.');return;}
   saveAns();
   const p={id:pid(),name:nm,age:ag,stage:ageToStage(ag),created:new Date().toISOString()};
   profiles.push(p);activeId=p.id;saveProfiles();loadAnswers();
@@ -729,9 +737,9 @@ document.getElementById('addChild').onclick=()=>{
   quizStage=p.stage;syncChips();syncProfileSel();buildQuiz();renderHistory();
 };
 document.getElementById('delChild').onclick=()=>{
-  if(profiles.length<=1){alert('لا يمكن حذف الملف الوحيد — عدّل الاسم بدلًا من ذلك.');return;}
+  if(profiles.length<=1){alert(ENM()?'You cannot delete the only profile — edit its name instead.':'لا يمكن حذف الملف الوحيد — عدّل الاسم بدلًا من ذلك.');return;}
   const p=curProfile();
-  if(!confirm(`حذف ملف «${p.name||'الطفل'}» وإجاباته وتقاريره نهائيًا؟`))return;
+  if(!confirm(ENM()?('Delete “'+(p.name||'the child')+'” and all answers and reports permanently?'):('حذف ملف «'+(p.name||'الطفل')+'» وإجاباته وتقاريره نهائيًا؟')))return;
   try{localStorage.removeItem(ansKey());localStorage.removeItem(repKey());}catch(e){}
   profiles=profiles.filter(x=>x.id!==activeId);
   activeId=profiles[0].id;saveProfiles();switchProfileSilent();
@@ -748,15 +756,16 @@ function renderHistory(){
   const box=document.getElementById('historyBox');if(!box)return;
   let h=[];try{h=JSON.parse(localStorage.getItem(repKey())||'[]');}catch(e){}
   const p=curProfile();if(!p)return;
-  if(!h.length){box.innerHTML=`<p class="note">لا تقارير محفوظة لملف «${p.name||'هذا الطفل'}» بعد — أنشئ تقريرًا من الاستبانة وسيُحفظ هنا تلقائيًا مع التاريخ.</p>`;return;}
-  box.innerHTML=`<label class="f">تقارير «${p.name||'الطفل'}» المحفوظة (${h.length})</label>`+h.map((d,i)=>{
-    const lv=levelOf(d.total);
+  const EN=ENM();
+  if(!h.length){box.innerHTML=`<p class="note">${EN?('No saved reports for “'+(p.name||'this child')+'” yet — create one from the questionnaire and it will be stored here with its date.'):`لا تقارير محفوظة لملف «${p.name||'هذا الطفل'}» بعد — أنشئ تقريرًا من الاستبانة وسيُحفظ هنا تلقائيًا مع التاريخ.`}</p>`;return;}
+  box.innerHTML=`<label class="f">${EN?('Saved reports for “'+(p.name||'the child')+'” ('+h.length+')'):`تقارير «${p.name||'الطفل'}» المحفوظة (${h.length})`}</label>`+h.map((d,i)=>{
+    const lv=lvT(levelOf(d.total));
     const dt=new Date(d.date);
-    const ds=isNaN(dt)?'':dt.toLocaleDateString('ar')+' '+dt.toLocaleTimeString('ar',{hour:'2-digit',minute:'2-digit'});
-    return `<div class="bar-row"><span class="nm">${ds}</span><div class="tr"><i style="width:${d.total}%"></i></div><b>${d.total}%</b><span class="badge ${lv.c}">${lv.t}</span><button class="btn btn-sm" data-hv="${i}">عرض</button><button class="btn btn-sm" data-hd="${i}">حذف</button></div>`;
+    const ds=isNaN(dt)?'':dt.toLocaleDateString(law())+' '+dt.toLocaleTimeString(law(),{hour:'2-digit',minute:'2-digit'});
+    return `<div class="bar-row"><span class="nm">${ds}</span><div class="tr"><i style="width:${d.total}%"></i></div><b>${d.total}%</b><span class="badge ${lv.c}">${lv.t}</span><button class="btn btn-sm" data-hv="${i}">${EN?'View':'عرض'}</button><button class="btn btn-sm" data-hd="${i}">${EN?'Delete':'حذف'}</button></div>`;
   }).join('');
   box.querySelectorAll('[data-hv]').forEach(b=>b.onclick=()=>{const arr=JSON.parse(localStorage.getItem(repKey())||'[]');const d=arr[+b.dataset.hv];if(d){buildReport(d.r,{name:d.name,age:d.age,stage:d.stage});goSec('report');}});
-  box.querySelectorAll('[data-hd]').forEach(b=>b.onclick=()=>{if(!confirm('حذف هذا التقرير؟'))return;const arr=JSON.parse(localStorage.getItem(repKey())||'[]');arr.splice(+b.dataset.hd,1);localStorage.setItem(repKey(),JSON.stringify(arr));renderHistory();});
+  box.querySelectorAll('[data-hd]').forEach(b=>b.onclick=()=>{if(!confirm(EN?'Delete this report?':'حذف هذا التقرير؟'))return;const arr=JSON.parse(localStorage.getItem(repKey())||'[]');arr.splice(+b.dataset.hd,1);localStorage.setItem(repKey(),JSON.stringify(arr));renderHistory();});
 }
 loadProfiles();
 syncModeChips();
@@ -777,7 +786,7 @@ function compute(){
 }
 document.getElementById('showReportBtn').onclick=()=>{
   const r=compute();
-  if(r.answered<5){alert('أجب عن 5 عبارات على الأقل لعرض تقرير مفيد (الأفضل إتمام الكل).');goSec('quiz');return;}
+  if(r.answered<5){alert(ENM()?'Answer at least 5 items for a useful report (completing all is best).':'أجب عن 5 عبارات على الأقل لعرض تقرير مفيد (الأفضل إتمام الكل).');goSec('quiz');return;}
   buildReport(r);goSec('report');
   try{
     const p=curProfile();
@@ -794,47 +803,50 @@ function buildReport(r,snap){
   const stage=STAGES.find(s=>s.id===snap.stage)||STAGES.find(s=>s.id===quizStage);
   const name=snap.name, age=snap.age;
   const g=groupOf(stage.id);
-  const lv=levelOf(r.total);
+  const EN=ENM();
+  const lv=lvT(levelOf(r.total));
   const sorted=Object.entries(r.per).filter(([k,v])=>v!==null).sort((a,b)=>b[1]-a[1]);
   const strong=sorted.slice(0,2), weak=[...sorted].reverse().slice(0,3);
-  let h=`<div class="panel" style="background:var(--bg2)"><h3>تقرير ${name} — المرحلة: ${stage.name} (${stage.age}) • العمر: ${age} • الإجابات: ${r.answered}/${r.count}</h3>`;
-  h+=`<div class="bar-row"><span class="nm">المؤشر العام</span><div class="tr"><i style="width:${r.total}%"></i></div><b>${r.total}%</b><span class="badge ${lv.c}">${lv.t}</span></div>`;
-  h+=`<div class="tip">${r.total>=85?'ما شاء الله! شخصية متوازنة. مهمتكم: التثبيت + التحدي الأعلى + تعليمه لغيره.':r.total>=70?'مستوى جيد ومبشر. ثبتوا العادات اليومية الصغيرة وستصلون للتميز بإذن الله.':r.total>=50?'بداية طيبة تحتاج خطة مركزة 30 يومًا (عادة واحدة لكل مجال ضعيف). لا تكثروا الأهداف دفعة واحدة.':'لا تقلقوا — كل مهارة تُبنى بالتدريج. ابدءوا بأولويتين فقط (الإيماني + السلوكي) بخطوات صغيرة محببة.'}</div></div>`;
-  h+=`<h3>📊 الدرجات حسب المجال</h3>`;
-  sorted.forEach(([k,v])=>{const d=DNAME[k];const l=levelOf(v);h+=`<div class="bar-row"><span class="nm">${d.i} ${d.n}</span><div class="tr"><i style="width:${v}%"></i></div><b>${v}%</b><span class="badge ${l.c}">${l.t}</span></div>`;});
+  const stgLbl=stgN(stage);
+  let h=`<div class="panel" style="background:var(--bg2)"><h3>${EN?('Report for '+name+' — Stage: '+stgLbl+' • Age: '+age+' • Answered: '+r.answered+'/'+r.count):('تقرير '+name+' — المرحلة: '+stage.name+' ('+stage.age+') • العمر: '+age+' • الإجابات: '+r.answered+'/'+r.count)}</h3>`;
+  h+=`<div class="bar-row"><span class="nm">${EN?'Overall score':'المؤشر العام'}</span><div class="tr"><i style="width:${r.total}%"></i></div><b>${r.total}%</b><span class="badge ${lv.c}">${lv.t}</span></div>`;
+  h+=`<div class="tip">${EN?(r.total>=85?'Wonderful! A balanced character. Your job: consolidate, raise the challenge, and let him teach others.':r.total>=70?'A good, promising level. Keep the small daily habits and you will reach excellence, God willing.':r.total>=50?'A good start needing a focused 30-day plan (one small habit per weak domain). Do not pile up goals.':'Do not worry — every skill grows gradually. Start with two priorities only (faith + conduct) in lovely small steps.'):(r.total>=85?'ما شاء الله! شخصية متوازنة. مهمتكم: التثبيت + التحدي الأعلى + تعليمه لغيره.':r.total>=70?'مستوى جيد ومبشر. ثبتوا العادات اليومية الصغيرة وستصلون للتميز بإذن الله.':r.total>=50?'بداية طيبة تحتاج خطة مركزة 30 يومًا (عادة واحدة لكل مجال ضعيف). لا تكثروا الأهداف دفعة واحدة.':'لا تقلقوا — كل مهارة تُبنى بالتدريج. ابدءوا بأولويتين فقط (الإيماني + السلوكي) بخطوات صغيرة محببة.')}</div></div>`;
+  h+=`<h3>📊 ${EN?'Scores by domain':'الدرجات حسب المجال'}</h3>`;
+  sorted.forEach(([k,v])=>{const d=DNAME[k];const l=lvT(levelOf(v));h+=`<div class="bar-row"><span class="nm">${d.i} ${dn(k)}</span><div class="tr"><i style="width:${v}%"></i></div><b>${v}%</b><span class="badge ${l.c}">${l.t}</span></div>`;});
   const na=Object.entries(r.per).filter(([k,v])=>v===null);
-  if(na.length)h+=`<p class="note">لا ينطبق في هذه المرحلة (يُركَّز على تهيئة البيئة): ${na.map(([k])=>DNAME[k].n).join('، ')}</p>`;
-  h+=`<div class="grid g2"><div class="tip">💪 <b>نقاط القوة:</b> ${strong.map(([k,v])=>`${DNAME[k].n} (${v}%)`).join('، ')||'—'} — عززوها بالمدح والقدوة وتكليفه بتعليم غيره.</div><div class="warn">🎯 <b>أولويات العمل (الأقل درجة):</b> ${weak.map(([k,v])=>`${DNAME[k].n} (${v}%)`).join('، ')||'—'} — ابدءوا بها في الخطة أدناه.</div></div>`;
-  h+=`<h3>📝 البطاقات التفصيلية والاقتراحات (حسب عمره)</h3>`;
+  if(na.length)h+=`<p class="note">${EN?('Not applicable at this stage (focus on environment): '+na.map(([k])=>dn(k)).join(', ')):('لا ينطبق في هذه المرحلة (يُركَّز على تهيئة البيئة): '+na.map(([k])=>DNAME[k].n).join('، '))}</p>`;
+  h+=`<div class="grid g2"><div class="tip">💪 <b>${EN?'Strengths:':'نقاط القوة:'}</b> ${strong.map(([k,v])=>`${dn(k)} (${v}%)`).join(EN?', ':'، ')||'—'} — ${EN?'Reinforce with praise, role-modeling, and letting him teach others.':'عززوها بالمدح والقدوة وتكليفه بتعليم غيره.'}</div><div class="warn">🎯 <b>${EN?'Work priorities (lowest scores):':'أولويات العمل (الأقل درجة):'}</b> ${weak.map(([k,v])=>`${dn(k)} (${v}%)`).join(EN?', ':'، ')||'—'} — ${EN?'Start with these in the plan below.':'ابدءوا بها في الخطة أدناه.'}</div></div>`;
+  h+=`<h3>📝 ${EN?'Details and suggestions (for his age)':'البطاقات التفصيلية والاقتراحات (حسب عمره)'}</h3>`;
   sorted.forEach(([k,v])=>{
-    const d=DNAME[k];const l=levelOf(v);
+    const d=DNAME[k];const l=lvT(levelOf(v));
     const stds=(stage.std[k]||[]).slice(0,3);
     const acts=(ACT[k]&&ACT[k][g])||[];
-    h+=`<div class="rep-domain"><h4>${d.i} ${d.n} — <b>${v}%</b> <span class="badge ${l.c}">${l.t}</span></h4><div class="note">${d.d}</div>`;
-    if(stds.length)h+=`<div style="font-size:.88em"><b>المعايير المستهدفة في مرحلته:</b><ul style="margin:.2rem 0">${stds.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
-    h+=`<div class="tip">💡 <b>اقتراحات عملية (30 يومًا):</b><ul style="margin:.2rem 0">${acts.map(a=>`<li>${a}</li>`).join('')}</ul><div>${tipFor(k,v)}</div>`;
+    h+=`<div class="rep-domain"><h4>${d.i} ${dn(k)} — <b>${v}%</b> <span class="badge ${l.c}">${l.t}</span></h4><div class="note">${d.d}</div>`;
+    if(stds.length)h+=`<div style="font-size:.88em"><b>${EN?'Target standards at his stage (original Arabic):':'المعايير المستهدفة في مرحلته:'}</b><ul style="margin:.2rem 0">${stds.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
+    h+=`<div class="tip">💡 <b>${EN?'Practical suggestions (30 days):':'اقتراحات عملية (30 يومًا):'}</b><ul style="margin:.2rem 0">${acts.map(a=>`<li>${a}</li>`).join('')}</ul><div>${tipFor(k,v)}</div>`;
     try{if(window.refsBoxHTML)h+=window.refsBoxHTML(k);}catch(e){}
     h+=`</div></div>`;
   });
-  const w1=weak[0]?DNAME[weak[0][0]].n:'—', w2=weak[1]?DNAME[weak[1][0]].n:'—';
-  h+=`<h3>🗓️ خطة 30 يومًا المقترحة</h3><div class="plan"><ol><li><b>الأسبوع 1 — التثبيت:</b> ثبتوا الصلاة/القرآن + خلق واحد (من ${w1}) بعادة 10 دقائق يوميًا + لوحة نجوم.</li><li><b>الأسبوع 2 — التركيز:</b> أضيفوا مجال (${w2}) بنشاط واحد ممتع + جلسة حوار أسبوعية 20 دقيقة.</li><li><b>الأسبوع 3 — التوسع:</b> أشركوا الطفل في عمل خيري/دعوي صغير + قللوا الشاشة لصالح بديل (قراءة/رياضة/طبيعة).</li><li><b>الأسبوع 4 — التقييم:</b> أعيدوا الاستبانة، واحتفلوا بالتقدم (ولو 5%)، وحددوا هدف الشهر التالي.</li></ol><div class="no-print" style="margin:.4rem 0"><a class="btn primary" href="works.html">📋 افتح أوراق العمل القابلة للملء والطباعة (الخطة + النجوم + الصلاة + الحفظ + الميثاق)</a></div><div class="tip">📌 قاعدة نماء الذهبية: <b>قدوة + حب + تعويد + تشجيع + متابعة</b> — وكثرة اللوم تهدم ما يبنيه التشجيع.</div></div>`;
-  h+=`<div class="warn">⚠️ متى تستشير مختصًا؟ عناد شديد مستمر + تراجع دراسي حاد + انعزال/عدوانية + مخاوف/كوابيس معطلة + تعرض لإساءة — فاستشارة مبكرة رحمة وليست وصمة.</div>`;
-  h+=`<p class="note">أُعد هذا التقرير آليًا من استبانة نماء (روح الكتاب، صياغة مبسطة للوالدين). المرجع الحاكم عند الشك: الكتاب الورقي واستشارة مربٍّ ثقة.</p>`;
+  const w1=weak[0]?dn(weak[0][0]):'—', w2=weak[1]?dn(weak[1][0]):'—';
+  h+=`<h3>🗓️ ${EN?'Suggested 30-day plan':'خطة 30 يومًا المقترحة'}</h3><div class="plan"><ol>${EN?`<li><b>Week 1 — Consolidate:</b> prayer/Qur\u2019an + one trait (from ${w1}), a 10-minute daily habit + star chart.</li><li><b>Week 2 — Focus:</b> add one domain (${w2}) with a fun activity + a 20-minute weekly dialogue.</li><li><b>Week 3 — Expand:</b> join a small charitable act + swap screen time for reading, sport or nature.</li><li><b>Week 4 — Review:</b> retake the questionnaire, celebrate progress (even 5%), and set next month\u2019s goal.</li>`:`<li><b>الأسبوع 1 — التثبيت:</b> ثبتوا الصلاة/القرآن + خلق واحد (من ${w1}) بعادة 10 دقائق يوميًا + لوحة نجوم.</li><li><b>الأسبوع 2 — التركيز:</b> أضيفوا مجال (${w2}) بنشاط واحد ممتع + جلسة حوار أسبوعية 20 دقيقة.</li><li><b>الأسبوع 3 — التوسع:</b> أشركوا الطفل في عمل خيري/دعوي صغير + قللوا الشاشة لصالح بديل (قراءة/رياضة/طبيعة).</li><li><b>الأسبوع 4 — التقييم:</b> أعيدوا الاستبانة، واحتفلوا بالتقدم (ولو 5%)، وحددوا هدف الشهر التالي.</li>`}</ol><div class="no-print" style="margin:.4rem 0"><a class="btn primary" href="works.html">📋 ${EN?'Open printable worksheets':'افتح أوراق العمل القابلة للملء والطباعة (الخطة + النجوم + الصلاة + الحفظ + الميثاق)'}</a></div><div class="tip">${EN?'📌 Namaa golden rule: <b>role model + love + habituation + encouragement + follow-up</b> — constant blame destroys what encouragement builds.':'📌 قاعدة نماء الذهبية: <b>قدوة + حب + تعويد + تشجيع + متابعة</b> — وكثرة اللوم تهدم ما يبنيه التشجيع.'}</div></div>`;
+  h+=`<div class="warn">${EN?'⚠️ When to consult a specialist? Persistent defiance, sharp school decline, isolation/aggression, disabling fears or nightmares, or exposure to abuse — early consultation is mercy, not stigma.':'⚠️ متى تستشير مختصًا؟ عناد شديد مستمر + تراجع دراسي حاد + انعزال/عدوانية + مخاوف/كوابيس معطلة + تعرض لإساءة — فاستشارة مبكرة رحمة وليست وصمة.'}</div>`;
+  h+=`<p class="note">${EN?'This report is auto-generated from the Namaa questionnaire (simplified wording for parents). When in doubt, the printed book and a trusted educator prevail.':'أُعد هذا التقرير آليًا من استبانة نماء (روح الكتاب، صياغة مبسطة للوالدين). المرجع الحاكم عند الشك: الكتاب الورقي واستشارة مربٍّ ثقة.'}</p>`;
   const box=document.getElementById('reportBox');box.innerHTML=h;box.dataset.built='1';
 }
 document.getElementById('printBtn').onclick=()=>window.print();
 document.getElementById('copyBtn').onclick=()=>{
   const r=compute();const stage=STAGES.find(s=>s.id===quizStage);
-  const txt=`تقرير نماء — ${document.getElementById('childName').value||'الطفل'} (${stage.name}) — العام ${r.total}%`+'\n'+Object.entries(r.per).filter(([k,v])=>v!==null).map(([k,v])=>`${DNAME[k].n}: ${v}% (${levelOf(v).t})`).join('\n');
-  navigator.clipboard.writeText(txt).then(()=>alert('تم نسخ الملخص ✅'));
+  const EN=ENM();
+  const txt=(EN?('Namaa report — '+((document.getElementById('childName').value)||'the child')+' ('+stgN(stage)+') — overall '+r.total+'%'):('تقرير نماء — '+((document.getElementById('childName').value)||'الطفل')+' ('+stage.name+') — العام '+r.total+'%'))+'\n'+Object.entries(r.per).filter(([k,v])=>v!==null).map(([k,v])=>`${dn(k)}: ${v}% (${lvT(levelOf(v)).t})`).join('\n');
+  navigator.clipboard.writeText(txt).then(()=>alert(EN?'Summary copied ✅':'تم نسخ الملخص ✅'));
 };
 document.getElementById('loadLastBtn').onclick=()=>{
   try{
     const h=JSON.parse(localStorage.getItem(repKey())||'[]');
-    if(!h.length){alert('لا يوجد تقرير محفوظ لهذا الملف بعد.');return;}
+    if(!h.length){alert(ENM()?'No saved report for this profile yet.':'لا يوجد تقرير محفوظ لهذا الملف بعد.');return;}
     const d=h[0];
     buildReport(d.r,{name:d.name,age:d.age,stage:d.stage});goSec('report');
-  }catch(e){alert('تعذر الاسترجاع');}
+  }catch(e){alert(ENM()?'Could not load.':'تعذر الاسترجاع');}
 };
 /* دعم الروابط العميقة: index.html?stage=s4#quiz */
 (function(){

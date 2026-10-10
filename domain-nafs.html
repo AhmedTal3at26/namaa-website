@@ -51,7 +51,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <body>
 <header><div class="topbar">
 <a class="logo" href="index.html"><span class="logo-mark">🌱</span><span>نماء <span style="color:var(--brand2)">لبناء الشخصية الإسلامية</span><small>من الرضاعة إلى ما بعد الجامعة — مؤسسة المربي</small></span></a>
-<div class="controls"><button class="btn" id="fontDecrease">أ− تصغير</button><button class="btn" id="fontReset">100%</button><button class="btn" id="fontIncrease">تكبير أ+</button><button class="btn" id="themeBtn">🌙 داكن / ☀️ فاتح</button></div>
+<div class="controls"><button class="btn btn-icon" id="fontDecrease" aria-label="تصغير الخط" title="تصغير الخط">أ−</button><button class="btn" id="fontReset">100%</button><button class="btn btn-icon" id="fontIncrease" aria-label="تكبير الخط" title="تكبير الخط">أ+</button><button class="btn btn-icon" id="themeBtn" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button></div>
 </div></header>
 <nav class="tabs no-print">
 <a class="tab" href="index.html">🏠 الرئيسية</a>
@@ -97,7 +97,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 const root=document.documentElement;
 function applyFont(px){root.style.setProperty('--font-size',px+'px');localStorage.setItem('namaa_font',px);document.getElementById('fontReset').textContent=Math.round(px/18*100)+'%';}
 let curFont=parseInt(localStorage.getItem('namaa_font')||'18',10);
-function applyTheme(t){root.setAttribute('data-theme',t);localStorage.setItem('namaa_theme',t);}
+function applyTheme(t){root.setAttribute('data-theme',t);localStorage.setItem('namaa_theme',t);var _tb=document.getElementById('themeBtn');if(_tb){_tb.textContent=t==='dark'?'☀️':'🌙';_tb.setAttribute('aria-label',t==='dark'?'التبديل إلى الوضع الفاتح':'التبديل إلى الوضع الداكن');}}
 applyFont(Math.min(28,Math.max(14,curFont)));applyTheme(localStorage.getItem('namaa_theme')||'light');
 document.getElementById('fontIncrease').onclick=()=>{curFont=Math.min(28,curFont+1);applyFont(curFont);};
 document.getElementById('fontDecrease').onclick=()=>{curFont=Math.max(14,curFont-1);applyFont(curFont);};
