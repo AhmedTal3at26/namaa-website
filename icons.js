@@ -8,8 +8,9 @@
      (تشغيل الوسائط) لا تُعكس
    ===================================================== */
 (function () {
-  var S = function (id, inner) {
-    return '<symbol id="i-' + id + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + "</symbol>";
+  var S = function (id, inner, vb) {
+    vb = vb || 24;
+    return '<symbol id="i-' + id + '" viewBox="0 0 ' + vb + ' ' + vb + '" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + "</symbol>";
   };
   var SPRITE =
     S("home", '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M10 20v-5h4v5"/>') +
@@ -54,7 +55,18 @@
     S("shapes", '<circle cx="8" cy="8" r="4"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>') +
     S("notebook", '<path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9.5 3v18"/>') +
     S("rocket", '<path d="M5 15c-1 4-1 5-1 5s1 0 5-1"/><path d="M14 4c3 0 6 3 6 6l-7 7-6-6 7-7z"/><circle cx="15" cy="9" r="1.5"/>') +
-    S("gradcap", '<path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/>');
+    S("gradcap", '<path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/>') +
+    S("spot-iman", '<g fill="currentColor"><circle cx="24" cy="9" r="3"/><circle cx="33" cy="13" r="3"/><circle cx="37" cy="22" r="3"/><circle cx="33" cy="31" r="3"/><circle cx="24" cy="35" r="3"/><circle cx="15" cy="31" r="3"/><circle cx="11" cy="22" r="3"/><circle cx="15" cy="13" r="3"/></g><path d="M24 38v5" stroke="currentColor" stroke-width="3"/><rect x="21" y="43" width="6" height="4" rx="2" style="fill:var(--gold)"/>', 48) +
+    S("spot-shar", '<path d="M15 18 33 42M33 18 15 42" stroke="currentColor" stroke-width="5"/><path d="M8 12q8-6 16 0 8-6 16 0v7q-8-6-16 0-8 6-16 0z" style="fill:var(--gold)"/>', 48) +
+    S("spot-sulu", '<g fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="16" r="5"/><circle cx="24" cy="32" r="5"/><circle cx="16" cy="24" r="5"/><circle cx="32" cy="24" r="5"/></g><circle cx="24" cy="24" r="4" style="fill:var(--gold)"/><path d="M24 37v7" stroke="currentColor" stroke-width="3"/>', 48) +
+    S("spot-aql", '<path d="M19 36h10M21 41h6" stroke="currentColor" stroke-width="3"/><path d="M24 5a12 12 0 0 0-6.8 22c1.4 1.2 2.8 2.6 2.8 5h8c0-2.4 1.4-3.8 2.8-5A12 12 0 0 0 24 5z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 12v6M21 15h6" style="stroke:var(--gold)" stroke-width="3"/>', 48) +
+    S("spot-daw", '<path d="M8 20v10h8l18 8V12L16 20H8z" fill="currentColor"/><path d="M38 18a8 8 0 0 1 0 12M41 14a13 13 0 0 1 0 20" style="stroke:var(--gold)" stroke-width="3" fill="none"/>', 48) +
+    S("spot-fikr", '<circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M31 17l-4 10-10 4 4-10 10-4z" fill="currentColor"/><circle cx="24" cy="24" r="2.5" style="fill:var(--gold)"/>', 48) +
+    S("spot-nafs", '<path d="M24 40s-14-9.2-18-18c-2.4-5.6 1.2-12 7.2-12 3.8 0 6.8 2.6 10.8 7.8 4-5.2 7-7.8 10.8-7.8 6 0 9.6 6.4 7.2 12-4 8.8-18 18-18 18z" fill="currentColor"/><path d="M12 24h6l3-6 4 12 3-6h8" style="stroke:var(--gold)" stroke-width="3" fill="none"/>', 48) +
+    S("spot-usar", '<circle cx="15" cy="14" r="6" fill="currentColor"/><circle cx="33" cy="14" r="6" fill="currentColor"/><circle cx="24" cy="27" r="5" style="fill:var(--gold)"/><path d="M6 42c0-7 4-10 9-10M42 42c0-7-4-10-9-10M17 42c0-5 3-7.5 7-7.5s7 2.5 7 7.5" stroke="currentColor" stroke-width="3" fill="none"/>', 48) +
+    S("spot-lugh", '<path d="M40 8H8a4 4 0 0 0-4 4v16a4 4 0 0 0 4 4h8l-2 6 8-6h18a4 4 0 0 0 4-4V12a4 4 0 0 0-4-4z" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M12 18h24M12 24h18M12 30h12" style="stroke:var(--gold)" stroke-width="3"/>', 48) +
+    S("spot-tiqn", '<rect x="6" y="8" width="36" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="3.5"/><rect x="12" y="14" width="14" height="9" rx="2" style="fill:var(--gold)"/><path d="M18 38h12M24 32v6" stroke="currentColor" stroke-width="3.5"/>', 48) +
+    S("spot-qiy", '<path d="M12 4v40" stroke="currentColor" stroke-width="3.5"/><path d="M12 6h24l-6 8 6 8H12z" style="fill:var(--gold)"/><path d="M8 44h8" stroke="currentColor" stroke-width="3.5"/>', 48);
 
   function mount() {
     if (document.getElementById("namaa-sprite")) return;
@@ -62,7 +74,7 @@
     w.innerHTML = '<svg id="namaa-sprite" width="0" height="0" style="position:absolute" aria-hidden="true">' + SPRITE + "</svg>";
     document.body.insertBefore(w.firstChild, document.body.firstChild);
     var st = document.createElement("style");
-    st.textContent = ".ic{width:1.2em;height:1.2em;flex:none;vertical-align:-.22em}nav.tabs .ic{width:1.35em;height:1.35em}h1 .ic,h2 .ic,h3 .ic{width:1.4em;height:1.4em}.btn .ic,.tab .ic,.chip .ic{width:1.15em;height:1.15em}.song .pl{background:var(--brand-soft);color:var(--brand)}.song .pl .ic{width:1.3em;height:1.3em}";
+    st.textContent = ".ic{width:1.2em;height:1.2em;flex:none;vertical-align:-.22em}.spot{width:2em;height:2em;flex:none;vertical-align:-.45em}nav.tabs .ic{width:1.35em;height:1.35em}h1 .ic,h2 .ic,h3 .ic{width:1.4em;height:1.4em}h1 .spot{width:1.7em;height:1.7em;vertical-align:-.35em}.btn .ic,.tab .ic,.chip .ic{width:1.15em;height:1.15em}.song .pl{background:var(--brand-soft);color:var(--brand)}.song .pl .ic{width:1.3em;height:1.3em}";
     document.head.appendChild(st);
   }
 
@@ -77,7 +89,8 @@
     ["📂", "folder"], ["→", "arrow-right"], ["←", "arrow-left"], ["↑", "arrow-up"]
   ];
   function iconSVG(id, extra) {
-    return '<svg class="ic" aria-hidden="true"' + (extra ? " " + extra : "") + '><use href="#i-' + id + '"/></svg>';
+    var cls = (id.indexOf("spot-") === 0) ? "spot" : "ic";
+    return '<svg class="' + cls + '" aria-hidden="true"' + (extra ? " " + extra : "") + '><use href="#i-' + id + '"/></svg>';
   }
   /* سياق خاص: 📋 نسخ→copy، 📚 مراجع→link، 🧭 معايير→list، 🗓️ خطة التقرير→calendar */
   function resolve(emoji, el) {
@@ -90,12 +103,12 @@
     if (emoji === "🗓️" && txt.indexOf("ورقة") !== -1) return "calendar-check";
     if (emoji === "⭐" && txt.indexOf("ورقة") !== -1) return "star";
     if (emoji === "🗓️") return "calendar";
-    var map = { "🤲": "heart", "🌷": "flower", "🧠": "lightbulb", "📢": "megaphone", "💚": "smile", "👨‍👩‍👧": "users", "💬": "message", "💻": "monitor", "🏅": "award", "🧸": "shapes", "🚀": "rocket", "🎓": "gradcap", "🗺️": "compass", "🏠": "home", "🗂️": "layers", "📝": "clipboard", "📊": "chart", "📚": "book-open", "📋": "clipboard", "🖨️": "printer", "🌙": "moon", "☀️": "sun", "↗": "external", "👁": "eye", "⭐": "star", "🌟": "compass", "🧭": "compass", "🌿": "sprout", "🎵": "music", "🕌": "moon", "📖": "book-open", "🤝": "pencil", "📱": "shield", "🔍": "search", "▶": "play", "📂": "folder", "→": "arrow-right", "←": "arrow-left", "↑": "arrow-up", "👶🧑‍🎓": "layers", "🌱": "sprout" };
+    var map = { "🤲": "spot-iman", "🌷": "spot-sulu", "🧠": "spot-aql", "📢": "spot-daw", "💚": "spot-nafs", "👨‍👩‍👧": "spot-usar", "💬": "spot-lugh", "💻": "spot-tiqn", "🏅": "spot-qiy", "📖": "spot-shar", "🧸": "shapes", "🚀": "rocket", "🎓": "gradcap", "🗺️": "compass", "🏠": "home", "🗂️": "layers", "📝": "clipboard", "📊": "chart", "📚": "book-open", "📋": "clipboard", "🖨️": "printer", "🌙": "moon", "☀️": "sun", "↗": "external", "👁": "eye", "⭐": "star", "🌟": "compass", "🧭": "compass", "🌿": "sprout", "🎵": "music", "🕌": "moon", "🤝": "pencil", "📱": "shield", "🔍": "search", "▶": "play", "📂": "folder", "→": "arrow-right", "←": "arrow-left", "↑": "arrow-up", "👶🧑‍🎓": "layers", "🌱": "sprout" };
     return map[emoji] || null;
   }
   var joint = DICT.map(function (p) { return p[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|");
   var RE = new RegExp(joint, "gu");
-  var SCOPE = "nav.tabs a,nav.tabs button,.hero-cta .btn,.hero-cta a,.panel h2,.wsheet h2,#reportBox h3,.no-print .btn,.no-print button,.song .pl,#themeBtn,.search,.domain-block h3,.domain-block h4,.stg h3,.rep-domain h4";
+  var SCOPE = "nav.tabs a,nav.tabs button,.hero-cta .btn,.hero-cta a,.hero h1,.panel h2,.wsheet h2,#reportBox h3,.no-print .btn,.no-print button,.song .pl,#themeBtn,.search,.domain-block h3,.domain-block h4,.stg h3,.rep-domain h4";
 
   function replaceIn(el) {
     var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
