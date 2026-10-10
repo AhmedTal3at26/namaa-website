@@ -38,7 +38,7 @@ nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5
 .tip{background:var(--brand-soft);border:1px dashed var(--brand2);border-radius:12px;padding:.5rem .8rem;font-size:.87em;margin:.4rem 0}
 .warn{background:var(--gold-soft);border:1px dashed var(--gold);border-radius:12px;padding:.5rem .8rem;font-size:.87em;margin:.4rem 0}
 label.f{display:block;font-weight:700;font-size:.88em;margin:.5rem 0 .2rem}
-input[type=text],textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem;font-family:inherit;font-size:.88em;background:var(--bg2);color:var(--text)}
+input[type=text],textarea,select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem;font-family:inherit;font-size:.88em;background:var(--bg2);color:var(--text)}
 textarea{min-height:70px;resize:vertical}
 table.grid{width:100%;border-collapse:collapse;font-size:.85em;margin:.4rem 0}
 table.grid th,table.grid td{border:1px solid var(--border);padding:.35rem .4rem;text-align:center}
@@ -83,6 +83,13 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <p>نماذج عملية مرتبطة باقتراحات المجالات: املؤوها مع أبنائكم على الشاشة (تُحفظ تلقائيًا) أو اطبعوا الورقة وعلّقوها — كل ورقة لها زر طباعة مستقل.</p>
 </section>
 <div class="wrap">
+
+<section class="wsheet" id="ws-autoplan">
+<h2>🎯 خطة العمل <span>المقترحة من التقرير</span></h2>
+<p class="note">اختر اسم الطفل فتُبنى خطته تلقائيًا من أحدث تقرير (الأولويتان الأقل درجة) — عدّل أي خانة ثم اطبع.</p>
+<div class="row no-print"><div><label class="f" for="planChild">اسم الطفل</label><select id="planChild"></select></div><div style="display:flex;align-items:end;gap:.5rem"><button class="btn primary" onclick="printSheet('ws-autoplan')">🖨️ طباعة الخطة</button></div></div>
+<div id="autoPlanBody"></div>
+</section>
 
 <section class="wsheet" id="ws-plan">
 <h2>🗓️ ورقة 1: خطة <span>الـ30 يومًا</span></h2>
@@ -195,6 +202,64 @@ function save(){document.querySelectorAll('[data-w]').forEach(el=>{const k=el.ge
 document.addEventListener('change',e=>{if(e.target.hasAttribute&&e.target.hasAttribute('data-w'))save();});
 document.addEventListener('input',e=>{if(e.target.hasAttribute&&e.target.hasAttribute('data-w'))save();});
 restore();
+/* خطة تلقائية من أحدث تقرير لكل طفل */
+const DN_AR={iman:'الإيماني',shar:'العلم الشرعي',sulu:'السلوكي والأخلاقي',aql:'العقلي',daw:'الدعوي',fikr:'الفكري والمنهجي',nafs:'النفسي وإدارة الذات',usar:'الأسري والاجتماعي',lugh:'اللغة والتواصل',tiqn:'التقنية والمعلومات',qiy:'القيادي والإداري'};
+let planChildId=null;
+function planProfiles(){try{return JSON.parse(localStorage.getItem('namaa_profiles')||'[]');}catch(e){return[];}}
+function planStoreKey(){return 'namaa_autoplan_'+planChildId;}
+function latestReport(id){try{const h=JSON.parse(localStorage.getItem('namaa_reports_'+id)||'[]');return h.length?h[0]:null;}catch(e){return null;}}
+function defaultWeeks(rep){
+  const per=rep&&rep.r?rep.r.per:{};
+  const sorted=Object.keys(per).filter(k=>per[k]!==null&&per[k]!==undefined).sort((a,b)=>per[a]-per[b]);
+  const nm=k=>(DN_AR[k]||k);
+  return [
+    {d:sorted[0]?('تثبيت + '+nm(sorted[0])):'تثبيت العادات',a:'عادة 10 دقائق يوميًا + لوحة النجوم',c:0},
+    {d:sorted[1]?nm(sorted[1]):'المجال الثاني',a:'نشاط ممتع واحد + جلسة حوار 20 دقيقة',c:0},
+    {d:'عمل خيري',a:'مشاركة صغيرة + تقليل الشاشة لصالح بديل',c:0},
+    {d:'تقييم',a:'إعادة الاستبانة + احتفال بالتقدم',c:0}
+  ];
+}
+function renderPlanChildSel(){
+  const sel=document.getElementById('planChild');const ps=planProfiles();
+  sel.innerHTML='';
+  if(!ps.length){planChildId=null;renderAutoPlan();return;}
+  ps.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=(p.name||'طفل')+' ('+(p.age||'—')+')';sel.appendChild(o);});
+  try{const last=localStorage.getItem('namaa_plan_child');planChildId=(last&&ps.some(p=>p.id===last))?last:ps[0].id;}catch(e){planChildId=ps[0].id;}
+  sel.value=planChildId;
+}
+function renderAutoPlan(){
+  const body=document.getElementById('autoPlanBody');
+  const ps=planProfiles();
+  if(!ps.length||!planChildId){body.innerHTML='<p class="note">لا توجد ملفات أطفال بعد. <a href="index.html#quiz">ابدأ الاستبانة في الرئيسية</a> وسيظهر طفلك هنا تلقائيًا.</p>';return;}
+  const rep=latestReport(planChildId);
+  const p=ps.find(x=>x.id===planChildId)||{};
+  if(!rep){body.innerHTML=`<p class="note">لا تقرير محفوظ لـ«${p.name||'الطفل'}» بعد — أنشئ تقريرًا من الاستبانة ثم عد هنا.</p>`;return;}
+  let ed=null;try{ed=JSON.parse(localStorage.getItem(planStoreKey())||'null');}catch(e){}
+  const weeks=(ed&&ed.weeks&&ed.weeks.length===4)?ed.weeks:defaultWeeks(rep);
+  const rw=(ed&&ed.rw)||'';
+  const dt=new Date(rep.date);const ds=isNaN(dt)?'':dt.toLocaleDateString('ar');
+  const esc=s=>String(s==null?'':s).replace(/"/g,'&quot;');
+  body.innerHTML=`<p><b>${p.name||'الطفل'}</b> — المؤشر العام في أحدث تقرير: <b>${rep.total}%</b> <span class="note">(${ds})</span></p>
+  <table class="grid"><tr><th>الأسبوع</th><th>التركيز (من التقرير)</th><th>النشاط — قابل للتعديل</th><th>تم ✅</th></tr>
+  ${weeks.map((w,i)=>`<tr><td>${i+1}</td><td><input type="text" id="ap-d${i}" value="${esc(w.d)}"></td><td><input type="text" id="ap-a${i}" value="${esc(w.a)}"></td><td><input type="checkbox" id="ap-c${i}" ${w.c?'checked':''}></td></tr>`).join('')}
+  </table>
+  <div class="tip">📌 المكافأة المتفق عليها: <input type="text" id="ap-rw" value="${esc(rw)}" placeholder="رحلة، نشاط، مدح أمام الأهل"></div>`;
+  for(let i=0;i<4;i++){
+    document.getElementById('ap-d'+i).addEventListener('input',saveAutoPlan);
+    document.getElementById('ap-a'+i).addEventListener('input',saveAutoPlan);
+    document.getElementById('ap-c'+i).addEventListener('change',saveAutoPlan);
+  }
+  document.getElementById('ap-rw').addEventListener('input',saveAutoPlan);
+}
+function saveAutoPlan(){
+  if(!planChildId)return;
+  const weeks=[];
+  for(let i=0;i<4;i++){const d=document.getElementById('ap-d'+i),a=document.getElementById('ap-a'+i),c=document.getElementById('ap-c'+i);if(!d)break;weeks.push({d:d.value,a:a.value,c:c.checked?1:0});}
+  if(weeks.length!==4)return;
+  try{localStorage.setItem(planStoreKey(),JSON.stringify({weeks,rw:document.getElementById('ap-rw').value}));}catch(e){}
+}
+document.getElementById('planChild').addEventListener('change',e=>{planChildId=e.target.value;try{localStorage.setItem('namaa_plan_child',planChildId);}catch(e2){}renderAutoPlan();});
+renderPlanChildSel();renderAutoPlan();
 function printSheet(id){document.body.classList.add('printing');document.getElementById(id).classList.add('toprint');window.print();}
 window.addEventListener('afterprint',()=>{document.body.classList.remove('printing');document.querySelectorAll('.toprint').forEach(el=>el.classList.remove('toprint'));});
 function clearSheet(id){if(!confirm('مسح محتويات هذه الورقة؟'))return;document.getElementById(id).querySelectorAll('[data-w]').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value='';});save();}
