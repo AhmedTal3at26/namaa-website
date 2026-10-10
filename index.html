@@ -45,6 +45,7 @@ header{position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-fil
 .btn.btn-sm{font-size:.78em;padding:.3rem .7rem;border-radius:10px}
 .step-n{display:inline-grid;place-items:center;min-width:2em;height:2em;padding:0 .4em;border:1.5px solid var(--brand2);color:var(--brand2);border-radius:10px;font-weight:700}
 .chip.sel-now{outline:2px solid var(--brand2);outline-offset:1px}
+#stepDots .chip{min-width:34px;min-height:34px;padding:.15rem .3rem;font-size:.78em}
 nav.tabs{max-width:1180px;margin:.7rem auto 0;padding:0 1rem;display:flex;gap:.5rem;flex-wrap:wrap}
 .tab{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:.5rem 1.1rem;cursor:pointer;font-family:inherit;font-weight:700;font-size:.92em;transition:.2s}
 .tab.active{background:linear-gradient(135deg,#0e7c61,#149a79);color:#fff;border-color:transparent;box-shadow:var(--shadow)}
@@ -149,7 +150,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
       </div>
     </div>
     <div class="controls">
-      <button class="btn btn-icon" id="fontDecrease" aria-label="تصغير الخط" title="تصغير الخط">أ−</button>
+      <button class="btn btn-icon" id="fontDecrease" aria-label="تصغير الخط" title="تصغير الخط">A-</button>
       <button class="btn" id="fontReset" title="حجم افتراضي">100%</button>
       <button class="btn" id="fontIncrease" title="تكبير الخط">تكبير أ+</button>
       <button class="btn btn-icon" id="themeBtn" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
@@ -709,7 +710,7 @@ function renderStep(){
   });
   function renderDots(){
     const dots=document.getElementById('stepDots');if(!dots)return;dots.innerHTML='';
-    list.forEach((qq,i)=>{const db=document.createElement('button');db.className='chip'+(answers['q'+qq.qi]?' active':'')+((i===stepIdx)?' sel-now':'');db.textContent=(i+1);db.style.minWidth='42px';db.onclick=()=>{stepIdx=i;renderStep();};dots.appendChild(db);});
+    list.forEach((qq,i)=>{const db=document.createElement('button');db.className='chip'+(answers['q'+qq.qi]?' active':'')+((i===stepIdx)?' sel-now':'');db.textContent=(i+1);db.style.minWidth='34px';db.style.minHeight='34px';db.onclick=()=>{stepIdx=i;renderStep();};dots.appendChild(db);});
   }
   renderDots();
   document.getElementById('stepPrev').onclick=()=>{if(stepIdx>0){stepIdx--;renderStep();}};
