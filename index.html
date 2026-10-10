@@ -134,8 +134,8 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 @media print{
   header,nav.tabs,.hero,.stat-row,.fab,.no-print{display:none!important}
   body{background:#fff;color:#111;font-size:14px}
-  body.printing-report .section{display:none !important}
-  body.printing-report #sec-report{display:block !important}
+  .section{display:none !important}
+  .section.active{display:block !important}
   .panel{box-shadow:none;break-inside:avoid}
 }
 </style>
@@ -835,8 +835,7 @@ function buildReport(r,snap){
   h+=`<p class="note">${EN?'This report is auto-generated from the Namaa questionnaire (simplified wording for parents). When in doubt, the printed book and a trusted educator prevail.':'أُعد هذا التقرير آليًا من استبانة نماء (روح الكتاب، صياغة مبسطة للوالدين). المرجع الحاكم عند الشك: الكتاب الورقي واستشارة مربٍّ ثقة.'}</p>`;
   const box=document.getElementById('reportBox');box.innerHTML=h;box.dataset.built='1';
 }
-document.getElementById('printBtn').onclick=()=>{document.body.classList.add('printing-report');window.print();};
-window.addEventListener('afterprint',()=>document.body.classList.remove('printing-report'));
+document.getElementById('printBtn').onclick=()=>window.print();
 document.getElementById('copyBtn').onclick=()=>{
   const r=compute();const stage=STAGES.find(s=>s.id===quizStage);
   const EN=ENM();
