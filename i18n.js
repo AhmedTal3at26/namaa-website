@@ -120,7 +120,7 @@
     "اختر ما تريد فعله بالأسفل": "Choose what to do below",
     ": تعرف على المنهج، أو اقرأ المراحل والمجالات، أو ابدأ الاستبانة مباشرة.":": learn about the method, browse stages and domains, or start the questionnaire.",
     "استكشف المنهج":"Explore the method","أجب عن الاستبانة":"Answer the questionnaire","كيف تستخدم المنهج؟":"How to use this site?",
-    "هذا الموقع ليس بديلًا عن الكتاب ولا جهة تربوية رسمية — بل هو":"This site is neither a substitute for the book nor an official body \u2014 it is",
+    "هذا الموقع جهود مستقلة غير تابعة لمؤسسة المربي ولا تمثلها ولا تصدر عنها — بل هو":"This site is an independent effort, not affiliated with, representing, or issued by Al-Murabbi Foundation \u2014 it is",
     "تحويل لكتاب «نماء — منهج بناء الشخصية الإسلامية» الصادر عن مؤسسة المربي إلى استبانة تقييم وأدوات مساندة للوالدين":"a conversion of \u201CNamaa \u2014 Building the Islamic Personality\u201D (Al-Murabbi Foundation) into an assessment questionnaire and supporting tools for parents",
     "المحتوى بصياغة مبسطة، والمرجع الحاكم عند التعارض هو الكتاب الورقي، ونتائج الاستبانة استرشادية وليست تشخيصًا طبيًا أو نفسيًا.":"Content is simplified; the printed book prevails in case of conflict, and results are indicative, not a medical or psychological diagnosis.",
     "بنية منهج نماء الأصلية ومثال من المحتوى ومصادره.":"The original structure, a content sample, and sources.",
@@ -143,6 +143,7 @@
     "المصدر: صفحة المرحلة في هذا الموقع (صياغة مبسطة من الكتاب) — ولكل معيار مراجع وأنشطة وخطة في صفحته.":"Source: this site\u2019s stage page (simplified from the book) \u2014 each standard has references, activities and a plan.",
     "من صفحة":"From the page","تجد المعيار: «يصدق دائمًا ويعترف بخطئه ويعتذر»، وتحته نشاط تطبيقي: «ميثاق شرف عائلي موقع من الجميع».":"find the standard: \u201Che is always truthful, admits mistakes and apologizes,\u201D with an activity: \u201Ca signed family honor code.\u201D",
     "طباعة / حفظ PDF":"Print / Save PDF",
+    "تنزيل نسخة":"Download backup","استعادة":"Restore",
     "خط المتن: IBM Plex Sans Arabic (خط ثمانية الرسمي) • العناوين: Aref Ruqaa • الآيات: Amiri Quran":"Body: IBM Plex Sans Arabic (Thamania font) \u2022 Headings: Aref Ruqaa \u2022 Verses: Amiri Quran",
     "موقع تفاعلي لمنهج «نماء»: استبانة تقييم للوالدين، تقرير واقتراحات حسب العمر، صفحات المراحل والمجالات، أوراق عمل وأناشيد — نسأل الله أن ينبت أبناءنا نباتًا حسنًا 🌱":"Interactive Namaa site: parent assessment, age-based report and suggestions, stage and domain pages, worksheets and songs.",
     "لا نتيجة مطابقة للبحث في هذا المجال.":"No matching result in this domain."

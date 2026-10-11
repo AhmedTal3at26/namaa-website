@@ -193,7 +193,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
 <div class="section active" id="sec-home">
   <div class="panel">
     <h2>إخلاء <span>مسؤولية</span></h2>
-    <div class="warn wide">⚠️ هذا الموقع ليس بديلًا عن الكتاب ولا جهة تربوية رسمية — بل هو <b>تحويل لكتاب «نماء — منهج بناء الشخصية الإسلامية» الصادر عن مؤسسة المربي إلى استبانة تقييم وأدوات مساندة للوالدين</b>. المحتوى بصياغة مبسطة، والمرجع الحاكم عند التعارض هو الكتاب الورقي، ونتائج الاستبانة استرشادية وليست تشخيصًا طبيًا أو نفسيًا.</div>
+    <div class="warn wide">⚠️ هذا الموقع <b>جهود مستقلة غير تابعة لمؤسسة المربي، ولا تمثلها ولا تصدر عنها</b> — بل هو <b>تحويل لكتاب «نماء — منهج بناء الشخصية الإسلامية» الصادر عن المؤسسة إلى استبانة تقييم وأدوات مساندة للوالدين</b>. المحتوى بصياغة مبسطة، والمرجع الحاكم عند التعارض هو الكتاب الورقي، ونتائج الاستبانة استرشادية وليست تشخيصًا طبيًا أو نفسيًا.</div>
   </div>
   <div class="panel">
     <h2>اختر ما <span>تريد فعله</span></h2>
@@ -245,7 +245,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
       <div style="flex:2;min-width:180px"><label class="f" for="profileSel">ملف الطفل (يمكن إضافة أكثر من طفل)</label><select id="profileSel"></select></div>
       <div style="flex:2;min-width:130px"><label class="f" for="newName">طفل جديد: الاسم</label><input type="text" id="newName" placeholder="الاسم"></div>
       <div style="flex:1;min-width:80px"><label class="f" for="newAge">العمر</label><input type="number" id="newAge" min="0" max="30" placeholder="7"></div>
-      <div style="display:flex;gap:.4rem"><button class="btn btn-sm primary" id="addChild">+ إضافة</button><button class="btn btn-sm" id="delChild">حذف الملف</button></div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="btn btn-sm primary" id="addChild">+ إضافة</button><button class="btn btn-sm" id="delChild">حذف الملف</button><button class="btn btn-sm" id="exportBtn">تنزيل نسخة</button><button class="btn btn-sm" id="importBtn">استعادة</button><input type="file" id="importFile" accept=".json,application/json" hidden></div>
     </div>
     <div class="grid g2">
       <div><label class="f" for="childName">اسم الطفل (اختياري)</label><input type="text" id="childName" placeholder="مثال: عبدالله"></div>
@@ -756,6 +756,60 @@ document.getElementById('delChild').onclick=()=>{
   profiles=profiles.filter(x=>x.id!==activeId);
   activeId=profiles[0].id;saveProfiles();switchProfileSilent();
 };
+/* نسخة احتياطية قابلة للنقل بين الأجهزة (اختيارية التشفير بكلمة سر) */
+function b64e(buf){const b=new Uint8Array(buf);let s='';for(let i=0;i<b.length;i++)s+=String.fromCharCode(b[i]);return btoa(s);}
+function b64d(s){const bin=atob(s);const b=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)b[i]=bin.charCodeAt(i);return b;}
+async function deriveKey(pw,salt){const m=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:100000,hash:'SHA-256'},m,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+document.getElementById('exportBtn').onclick=async()=>{
+  saveAns();
+  const data={app:'namaa-backup',v:1,date:new Date().toISOString(),profiles:profiles,activeId:activeId,answers:{},reports:{}};
+  profiles.forEach(p=>{try{data.answers[p.id]=JSON.parse(localStorage.getItem('namaa_answers_'+p.id)||'{}');}catch(e){data.answers[p.id]={};}});
+  profiles.forEach(p=>{try{data.reports[p.id]=JSON.parse(localStorage.getItem('namaa_reports_'+p.id)||'[]');}catch(e){data.reports[p.id]=[];}});
+  try{data.works=JSON.parse(localStorage.getItem('namaa_works')||'{}');}catch(e){data.works={};}
+  data.plans={};profiles.forEach(p=>{try{const v=localStorage.getItem('namaa_autoplan_'+p.id);if(v)data.plans[p.id]=JSON.parse(v);}catch(e){}});
+  let pw=prompt('كلمة سر لحماية النسخة (اتركها فارغة بدون حماية):','');
+  if(pw==null)return;
+  let out,fname;
+  if(pw&&!(window.crypto&&crypto.subtle)){alert('متصفحك لا يدعم التشفير — سيتم التنزيل بدون حماية.');pw='';}
+  if(pw){
+    try{
+      const salt=crypto.getRandomValues(new Uint8Array(16));
+      const iv=crypto.getRandomValues(new Uint8Array(12));
+      const key=await deriveKey(pw,salt);
+      const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},key,new TextEncoder().encode(JSON.stringify(data)));
+      out=JSON.stringify({app:'namaa-backup',enc:'AES-GCM/PBKDF2',salt:b64e(salt),iv:b64e(iv),data:b64e(ct)});
+      fname='namaa-backup-encrypted.json';
+    }catch(e){alert('تعذر التشفير — سيتم التنزيل بدون حماية.');out=JSON.stringify(data);fname='namaa-backup.json';}
+  }else{out=JSON.stringify(data);fname='namaa-backup.json';}
+  const blob=new Blob([out],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fname;document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},600);
+};
+document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('importFile').addEventListener('change',async e=>{
+  const f=e.target.files[0];e.target.value='';if(!f)return;
+  let data;try{data=JSON.parse(await f.text());}catch(err){alert('ملف غير صالح.');return;}
+  if(data&&data.enc){
+    if(!(window.crypto&&crypto.subtle)){alert('متصفحك لا يدعم فك التشفير.');return;}
+    const pw=prompt('أدخل كلمة سر النسخة:');
+    if(!pw){alert('أُلغي الاستيراد.');return;}
+    try{
+      const key=await deriveKey(pw,b64d(data.salt));
+      const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64d(data.iv)},key,b64d(data.data));
+      data=JSON.parse(new TextDecoder().decode(pt));
+    }catch(err){alert('كلمة السر غير صحيحة أو الملف تالف.');return;}
+  }
+  if(!data||data.app!=='namaa-backup'||!Array.isArray(data.profiles)||!data.profiles.length){alert('ملف غير صالح.');return;}
+  if(!confirm('سيتم استبدال البيانات الحالية على هذا الجهاز بنسخة الملف. متابعة؟'))return;
+  profiles=data.profiles;activeId=data.activeId||profiles[0].id;
+  saveProfiles();
+  Object.keys(data.answers||{}).forEach(k=>{try{localStorage.setItem('namaa_answers_'+k,JSON.stringify(data.answers[k]));}catch(err){}});
+  Object.keys(data.reports||{}).forEach(k=>{try{localStorage.setItem('namaa_reports_'+k,JSON.stringify(data.reports[k]));}catch(err){}});
+  if(data.works)try{localStorage.setItem('namaa_works',JSON.stringify(data.works));}catch(err){}
+  if(data.plans)Object.keys(data.plans).forEach(k=>{try{localStorage.setItem('namaa_autoplan_'+k,JSON.stringify(data.plans[k]));}catch(err){}});
+  switchProfileSilent();renderHistory();
+  alert('تمت الاستعادة بنجاح ✅');
+});
 function switchProfileSilent(){
   loadAnswers();
   const p=curProfile();
