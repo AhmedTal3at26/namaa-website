@@ -1,0 +1,35 @@
+{
+  "name": "نماء — منهج بناء الشخصية الإسلامية",
+  "short_name": "نماء",
+  "description": "موقع تفاعلي لمنهج «نماء»: استبانة تقييم للوالدين، تقرير واقتراحات حسب العمر، وصفحات المراحل والمجالات، وأوراق عمل.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F5F1",
+  "theme_color": "#1D5D9D",
+  "categories": ["education", "lifestyle", "parenting"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
