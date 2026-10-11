@@ -242,7 +242,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <div class="panel">
     <h2>📝 استبانة <span>الوالدين</span> لتقييم الطفل</h2>
     <p class="note">أجب بصدق حسب ملاحظتك لطفلك خلال آخر شهر. المقياس: دائمًا (5) • غالبًا (4) • أحيانًا (3) • نادرًا (2) • أبدًا (1). تُحفظ الإجابات تلقائيًا في جهازك فقط. (يُشترط 5 إجابات على الأقل لبناء التقرير.)</p>
-    <p class="note">كيف تُحتسب الدرجات؟ درجة كل مجال هي متوسط إجابات عباراته محولة إلى نسبة مئوية، والدرجة العامة متوسط درجات المجالات. المستويات: 85% فأعلى متميز، 70% فأعلى جيد، 50% فأعلى يحتاج دعمًا، وما دون 50% أولوية قصوى — ونقاط القوة أعلى مجالين، والأولويات أدنى ثلاثة مجالات. التقرير الجزئي والمكتمل: تكفي إجابة واحدة في المجال لاحتساب درجته، والمجالات التي لم تُجب عن أي عبارة فيها تُستبعد من التقرير ولا تدخل الدرجة العامة ولا الأولويات — فالمكتمل ما غطى جميع عبارات مرحلته، والجزئي يقتصر على المجالات المُجابة فقط. هذه القواعد من إعداد فريق الموقع المستقل لتبسيط المتابعة، وليست تقييمًا معتمدًا من مؤسسة المربي.</p>
+    <p class="note">كيف تُحتسب الدرجات؟ درجة كل مجال هي متوسط إجابات عباراته محولة إلى نسبة مئوية، والدرجة العامة متوسط درجات المجالات. المستويات: 85% فأعلى متميز، 70% فأعلى جيد، 50% فأعلى يحتاج دعمًا، وما دون 50% أولوية قصوى — والقائمتان مراتب نسبية بين المجالات المُجابة فقط: تُسمى الأعلى درجة «نقاط قوة» إذا بلغت مستوى جيدًا (70% فأعلى) وإلا فهي «المجالات الأعلى درجة»، والأولويات من غيرها الأدنى درجة دون تكرار أي مجال في القائمتين، ويقل العدد إذا قلّت المجالات المشمولة. التقرير الجزئي والمكتمل: تكفي إجابة واحدة في المجال لاحتساب درجته، والمجالات التي لم تُجب عن أي عبارة فيها تُستبعد من التقرير ولا تدخل الدرجة العامة ولا الأولويات — فالمكتمل ما غطى جميع عبارات مرحلته، والجزئي يقتصر على المجالات المُجابة فقط. هذه القواعد من إعداد فريق الموقع المستقل لتبسيط المتابعة، وليست تقييمًا معتمدًا من مؤسسة المربي.</p>
     <div class="warn no-print" style="display:flex;gap:.6rem;align-items:end;flex-wrap:wrap">
       <div style="flex:2;min-width:180px"><label class="f" for="profileSel">ملف الطفل (يمكن إضافة أكثر من طفل)</label><select id="profileSel"></select></div>
       <div style="flex:2;min-width:130px"><label class="f" for="newName">طفل جديد: الاسم</label><input type="text" id="newName" placeholder="الاسم"></div>
@@ -874,7 +874,9 @@ function buildReport(r,snap){
   const EN=ENM();
   const lv=lvT(levelOf(r.total));
   const sorted=Object.entries(r.per).filter(([k,v])=>v!==null).sort((a,b)=>b[1]-a[1]);
-  const strong=sorted.slice(0,2), weak=[...sorted].reverse().slice(0,3);
+  const strongN=Math.min(2,sorted.length), weakN=Math.min(3,Math.max(0,sorted.length-strongN));
+  const strong=sorted.slice(0,strongN), weak=sorted.slice(strongN).slice(-weakN);
+  const strongOK=strong.length>0&&strong.every(([,v])=>v>=70);
   const stgLbl=stgN(stage);
   let h=`<div class="panel" style="background:var(--bg2)"><h3>${EN?('Report for '+name+' — Stage: '+stgLbl+' • Age: '+age+' • Answered: '+r.answered+'/'+r.count):('تقرير '+name+' — المرحلة: '+stage.name+' ('+stage.age+') • العمر: '+age+' • الإجابات: '+r.answered+'/'+r.count)}</h3>`;
   h+=`<div class="bar-row"><span class="nm">${EN?'Overall score':'المؤشر العام'}</span><div class="tr"><i style="width:${r.total}%"></i></div><b>${r.total}%</b><span class="badge ${lv.c}">${lv.t}</span></div>`;
@@ -883,7 +885,7 @@ function buildReport(r,snap){
   sorted.forEach(([k,v])=>{const d=DNAME[k];const l=lvT(levelOf(v));h+=`<div class="bar-row"><span class="nm">${d.i} ${dn(k)}</span><div class="tr"><i style="width:${v}%"></i></div><b>${v}%</b><span class="badge ${l.c}">${l.t}</span></div>`;});
   const na=Object.entries(r.per).filter(([k,v])=>v===null);
   if(na.length)h+=`<p class="note">${EN?('Not applicable at this stage (focus on environment): '+na.map(([k])=>dn(k)).join(', ')):('لا ينطبق في هذه المرحلة (يُركَّز على تهيئة البيئة): '+na.map(([k])=>DNAME[k].n).join('، '))}</p>`;
-  h+=`<div class="grid g2"><div class="tip">💪 <b>${EN?'Strengths:':'نقاط القوة:'}</b> ${strong.map(([k,v])=>`${dn(k)} (${v}%)`).join(EN?', ':'، ')||'—'} — ${EN?'Reinforce with praise, role-modeling, and letting him teach others.':'عززوها بالمدح والقدوة وتكليفه بتعليم غيره.'}</div><div class="warn">🎯 <b>${EN?'Work priorities (lowest scores):':'أولويات العمل (الأقل درجة):'}</b> ${weak.map(([k,v])=>`${dn(k)} (${v}%)`).join(EN?', ':'، ')||'—'} — ${EN?'Start with these in the plan below.':'ابدءوا بها في الخطة أدناه.'}</div></div>`;
+  h+=`<div class="grid g2"><div class="tip">💪 <b>${EN?(strongOK?'Strengths:':'Highest-scoring domains:'):(strongOK?'نقاط القوة:':'المجالات الأعلى درجة:')}</b> ${strong.map(([k,v])=>`${dn(k)} (${v}%)`).join(EN?', ':'، ')||'—'} — ${EN?(strongOK?'Reinforce with praise, role-modeling, and letting him teach others.':'Read them relatively among answered domains, not absolutely.'):(strongOK?'عززوها بالمدح والقدوة وتكليفه بتعليم غيره.':'تُقرأ نسبيًا بين المجالات المُجابة لا على إطلاقها.')}</div><div class="warn">🎯 <b>${EN?'Work priorities (lowest scores):':'أولويات العمل (الأقل درجة):'}</b> ${weak.map(([k,v])=>`${dn(k)} (${v}%)`).join(EN?', ':'، ')||'—'} — ${EN?'Start with these in the plan below.':'ابدءوا بها في الخطة أدناه.'}</div></div>`;
   h+=`<h3>📝 ${EN?'Details and suggestions (for his age)':'البطاقات التفصيلية والاقتراحات (حسب عمره)'}</h3>`;
   sorted.forEach(([k,v])=>{
     const d=DNAME[k];const l=lvT(levelOf(v));
