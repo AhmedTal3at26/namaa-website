@@ -316,3 +316,23 @@ if (window.top !== window.self) { try { window.top.location = window.self.locati
     p.appendChild(src);
   });
 })();
+
+/* ============================================================
+   تسجيل Service Worker (Workbox) — للعمل دون اتصال
+   يُسجَّل على الإنتاج فقط، ولا يُسجَّل:
+   - داخل إطار المعاينة/iframe
+   - على localhost أو عناوين التطوير
+   - على file://
+   ============================================================ */
+(function registerSW() {
+  if (!("serviceWorker" in navigator)) return;
+  if (window.top !== window.self) return;                 // داخل إطار المعاينة
+  if (window.location.protocol === "file:") return;
+  var host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "") return;
+  if (/(^|\.)localhost$|\.local$|^127\./.test(host)) return;
+  if (window.location.search.indexOf("nosw=1") > -1) return;
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () { /* تجاهُل صامت */ });
+  });
+})();
