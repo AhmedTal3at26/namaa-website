@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نماء | منهج بناء الشخصية الإسلامية — استبانة وتقرير ومراحل</title>
 <meta name="description" content="موقع تفاعلي يحول كتاب نماء - منهج بناء الشخصية الإسلامية إلى استبانة للوالدين مع تقرير مفصل، وصفحات للمراحل العمرية بالمجالات والمعايير.">
+<link rel="canonical" href="https://ahmedtal3at26.github.io/namaa-website/">
+<meta property="og:title" content="نماء | منهج بناء الشخصية الإسلامية — استبانة وتقرير ومراحل">
+<meta property="og:description" content="موقع تفاعلي يحول كتاب نماء - منهج بناء الشخصية الإسلامية إلى استبانة للوالدين مع تقرير مفصل، وصفحات للمراحل العمرية بالمجالات والمعايير.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Amiri+Quran&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
@@ -176,7 +179,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
   <div class="hero-cta no-print">
     <button class="btn primary" onclick="goSec('stages')">استكشف المنهج</button>
     <button class="btn" onclick="goSec('quiz')">أجب عن الاستبانة</button>
-    <button class="btn" onclick="goSec('quiz');setTimeout(()=>document.getElementById('howto').scrollIntoView({behavior:'smooth'}),80)">كيف تستخدم المنهج؟</button>
+    <button class="btn" data-go="quiz" data-scroll="howto">كيف تستخدم المنهج؟</button>
     <a class="btn gold" href="works.html" style="text-decoration:none">أوراق العمل والأناشيد</a>
   </div>
 </section>
@@ -197,7 +200,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
     <div class="grid g2">
       <div class="dcard"><h4>التعرف على المنهج</h4><p>بنية منهج نماء الأصلية ومثال من المحتوى ومصادره.</p><button class="btn primary btn-sm" onclick="goSec('about')">التعرف على المنهج</button></div>
       <div class="dcard"><h4>قراءة المراحل</h4><p>7 مراحل من 0–2 إلى +18: المجالات والمعايير والأنشطة لكل عمر.</p><button class="btn primary btn-sm" onclick="goSec('stages')">قراءة المراحل</button></div>
-      <div class="dcard"><h4>معرفة المجالات</h4><p>11 مجالًا: طبيعة كل مجال ومعاييره عبر المراحل ومراجعه.</p><button class="btn primary btn-sm" onclick="goSec('about');setTimeout(()=>{const l=document.getElementById('refsLibrary');if(l)l.scrollIntoView({behavior:'smooth'});},120)">معرفة المجالات</button></div>
+      <div class="dcard"><h4>معرفة المجالات</h4><p>11 مجالًا: طبيعة كل مجال ومعاييره عبر المراحل ومراجعه.</p><button class="btn primary btn-sm" data-go="about" data-scroll="refsLibrary">معرفة المجالات</button></div>
       <div class="dcard"><h4>بدء الاستبانة</h4><p>أدخل بيانات الطفل الأساسية ثم أجب عن الأسئلة بأي طريقة عرض.</p><button class="btn primary btn-sm" onclick="goSec('quiz')">بدء الاستبانة</button></div>
     </div>
   </div>
@@ -217,7 +220,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
       <a class="chip" href="stage-15-17.html">🚀 15–17 صفحة مستقلة</a>
       <a class="chip" href="stage-18-plus.html">🎓 +18 صفحة مستقلة</a>
     </div>
-    <div class="search no-print">🔍 <input id="stageSearch" placeholder="ابحث في المعايير… مثال: الصلاة، الصدق، الحفظ، التقنية"></div>
+    <div class="search no-print">🔍 <input id="stageSearch" placeholder="ابحث في المعايير… مثال: الصلاة، الصدق، الحفظ، التقنية" aria-label="ابحث في المعايير"></div>
     <div class="chips no-print" id="stageChips"></div>
     <div class="stage-detail" id="stageDetail"></div>
   </div>
@@ -372,6 +375,12 @@ function goSec(id){
   if(id==='report'&&!document.getElementById('reportBox').dataset.built){renderEmptyHint();}
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>goSec(b.dataset.sec));
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-go]');
+  if(!b)return;
+  goSec(b.dataset.go);
+  if(b.dataset.scroll)setTimeout(()=>{const l=document.getElementById(b.dataset.scroll);if(l)l.scrollIntoView({behavior:'smooth'});},120);
+});
 
 /* ============ البيانات: المجالات ============ */
 const DOMAINS=[

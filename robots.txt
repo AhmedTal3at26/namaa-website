@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ahmedtal3at26.github.io/namaa-website/sitemap.xml

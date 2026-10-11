@@ -1,4 +1,6 @@
 /* refs.js — مراجع منهج نماء لكل مجال (روابط تم التحقق من عملها) */
+/* حماية من التضمين داخل إطار خارجي (الاستضافة لا تسمح بترويسات مخصصة) */
+if (window.top !== window.self) { try { window.top.location = window.self.location; } catch (e) { window.self.location.replace(window.self.location.href); } }
 (function () {
   var REFS = {
     iman: [
