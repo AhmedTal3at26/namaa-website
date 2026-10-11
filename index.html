@@ -247,7 +247,7 @@ footer{max-width:1180px;margin:0 auto 2.5rem;padding:1.2rem;text-align:center;co
       <div style="flex:2;min-width:180px"><label class="f" for="profileSel">ملف الطفل (يمكن إضافة أكثر من طفل)</label><select id="profileSel"></select></div>
       <div style="flex:2;min-width:130px"><label class="f" for="newName">طفل جديد: الاسم</label><input type="text" id="newName" placeholder="الاسم"></div>
       <div style="flex:1;min-width:80px"><label class="f" for="newAge">العمر</label><input type="number" id="newAge" min="0" max="30" placeholder="7"></div>
-      <div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="btn btn-sm primary" id="addChild">+ إضافة</button><button class="btn btn-sm" id="delChild">حذف الملف</button><button class="btn btn-sm" id="exportBtn">تنزيل نسخة</button><button class="btn btn-sm" id="importBtn">استعادة</button><input type="file" id="importFile" accept=".json,application/json" hidden></div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="btn btn-sm primary" id="addChild">+ إضافة</button><button class="btn btn-sm" id="delChild">حذف الملف</button><button class="btn btn-sm" id="exportBtn">تنزيل نسخة</button><button class="btn btn-sm" id="importBtn">استعادة</button><input type="file" id="importFile" accept=".json,application/json" aria-label="اختر ملف النسخة الاحتياطية" hidden></div>
     </div>
     <div class="grid g2">
       <div><label class="f" for="childName">اسم الطفل (اختياري)</label><input type="text" id="childName" placeholder="مثال: عبدالله"></div>
