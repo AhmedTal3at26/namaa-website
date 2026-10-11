@@ -275,7 +275,7 @@ if (window.top !== window.self) { try { window.top.location = window.self.locati
   var html = '<a href="index.html">الرئيسية</a>';
   if (page === "stage") html += sep + '<a href="index.html#stages">المراحل</a>' + sep + "<span>" + raw + "</span>";
   else if (page === "domain") html += sep + '<a href="index.html#about">المجالات</a>' + sep + "<span>" + raw + "</span>";
-  else if (page === "works") html += sep + "<span>اوراق العمل</span>";
+  else if (page === "works") html += sep + "<span>أوراق العمل</span>";
   else if (page === "logo") html += sep + "<span>الشعار</span>";
   var crumb = document.createElement("nav");
   crumb.className = "crumbs no-print";

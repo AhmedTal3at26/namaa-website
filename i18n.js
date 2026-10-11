@@ -281,7 +281,7 @@
 
   /* قاموس الواجهة: عربي → إنجليزي (مطابقة نصية دقيقة) */
   var D = {
-    "الرئيسية":"Home","صفحات المراحل":"Stages","الاستبانة":"Questionnaire","التقرير":"Report","عن المنهج":"About the Method","اوراق العمل":"Worksheets & Songs",
+    "الرئيسية":"Home","صفحات المراحل":"Stages","الاستبانة":"Questionnaire","التقرير":"Report","عن المنهج":"About the Method","أوراق العمل":"Worksheets & Songs",
     "من الرضاعة إلى ما بعد الجامعة — مؤسسة المربي":"From infancy to post-university \u2014 Al-Murabbi Foundation",
     "من الرضاعة إلى ما بعد الجامعة":"From Infancy to Post-University",
     "مرحبًا بكم في موقع":"Welcome to",
