@@ -169,6 +169,7 @@ if (window.top !== window.self) { try { window.top.location = window.self.locati
   var FAVICON = "favicon.svg";
   var css = ".logo-mark{background:transparent;border:none;box-shadow:none;color:var(--brand);display:grid;place-items:center}.logo-mark svg{width:44px;height:44px;display:block}"
     + ".footer-brand{display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:700;font-size:1.2em;margin-bottom:.3rem}.footer-brand small{display:block;font-weight:400;color:var(--muted);font-size:.58em}.fb-mark{width:40px;height:40px;color:var(--brand);display:inline-flex;flex-shrink:0}.fb-mark svg{width:100%;height:100%}"
+    + ".controls{position:relative}.menu-panel{position:absolute;top:calc(100% + 6px);inset-inline-end:0;display:flex;gap:.4rem;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.5rem;box-shadow:var(--shadow);z-index:70}.menu-panel[hidden]{display:none}"
     + ".hero-kicker{display:inline-block;font-size:.78em;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:.1rem 1rem;margin-bottom:.3rem;background:var(--gold-soft)}"
     + ".panel h2,.wsheet h2{border-inline-start:4px solid var(--gold);padding-inline-start:.6rem}"
     + ".panel,.wsheet{box-shadow:var(--shadow),inset 0 0 0 1px var(--bg)}"
@@ -192,6 +193,24 @@ if (window.top !== window.self) { try { window.top.location = window.self.locati
     m.setAttribute("aria-hidden", "true");
   });
   function decorate() {
+    /* قائمة خيارات العرض المنسدلة (زر ⋮ يجمع أزرار الخط والمظهر) */
+    var ctl = document.querySelector("header .controls:not([data-menu])");
+    if (ctl) {
+      ctl.setAttribute("data-menu", "1");
+      var mb = document.createElement("button");
+      mb.className = "btn btn-icon"; mb.id = "menuBtn";
+      mb.setAttribute("aria-label", "خيارات العرض");
+      mb.setAttribute("aria-haspopup", "true");
+      mb.setAttribute("aria-expanded", "false");
+      mb.textContent = "⋮";
+      var mp = document.createElement("div");
+      mp.className = "menu-panel"; mp.setAttribute("role", "menu"); mp.hidden = true;
+      while (ctl.firstChild) mp.appendChild(ctl.firstChild);
+      ctl.appendChild(mb); ctl.appendChild(mp);
+      mb.addEventListener("click", function (e) { e.stopPropagation(); mp.hidden = !mp.hidden; mb.setAttribute("aria-expanded", mp.hidden ? "false" : "true"); });
+      document.addEventListener("click", function (e) { if (!mp.hidden && !ctl.contains(e.target)) { mp.hidden = true; mb.setAttribute("aria-expanded", "false"); } });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mp.hidden) { mp.hidden = true; mb.setAttribute("aria-expanded", "false"); mb.focus(); } });
+    }
     /* هوية الشعار في التذييل فقط — بلا زخارف عامة */
     var fb = document.querySelector("footer:not([data-brand])");
     if (fb) {
@@ -256,7 +275,7 @@ if (window.top !== window.self) { try { window.top.location = window.self.locati
   var html = '<a href="index.html">الرئيسية</a>';
   if (page === "stage") html += sep + '<a href="index.html#stages">المراحل</a>' + sep + "<span>" + raw + "</span>";
   else if (page === "domain") html += sep + '<a href="index.html#about">المجالات</a>' + sep + "<span>" + raw + "</span>";
-  else if (page === "works") html += sep + "<span>أوراق العمل والأناشيد</span>";
+  else if (page === "works") html += sep + "<span>اوراق العمل</span>";
   else if (page === "logo") html += sep + "<span>الشعار</span>";
   var crumb = document.createElement("nav");
   crumb.className = "crumbs no-print";

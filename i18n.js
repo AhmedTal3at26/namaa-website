@@ -57,7 +57,7 @@
 
   /* قاموس الواجهة: عربي → إنجليزي (مطابقة نصية دقيقة) */
   var D = {
-    "الرئيسية":"Home","صفحات المراحل":"Stages","الاستبانة":"Questionnaire","التقرير":"Report","عن المنهج":"About the Method","أوراق العمل والأناشيد":"Worksheets & Songs",
+    "الرئيسية":"Home","صفحات المراحل":"Stages","الاستبانة":"Questionnaire","التقرير":"Report","عن المنهج":"About the Method","اوراق العمل":"Worksheets & Songs",
     "من الرضاعة إلى ما بعد الجامعة — مؤسسة المربي":"From infancy to post-university \u2014 Al-Murabbi Foundation",
     "من الرضاعة إلى ما بعد الجامعة":"From Infancy to Post-University",
     "مرحبًا بكم في موقع":"Welcome to",
@@ -179,7 +179,7 @@
   window.NAMAA_SETLANG = setLang;
   /* زر التبديل في كل الصفحات */
   function mountBtn(){
-    var c = document.querySelector(".controls");
+    var c = document.querySelector(".controls .menu-panel") || document.querySelector(".controls");
     if (!c || document.getElementById("langBtn")) return;
     var b = document.createElement("button");
     b.className = "btn btn-icon";
